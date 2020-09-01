@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -31,6 +32,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "bootstrap4",
+    "sheets.apps.SheetsConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -54,10 +57,14 @@ ROOT_URLCONF = "ihatetobudget.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [
+            os.path.join(BASE_DIR, pkg, "template")
+            for pkg in ["ihatetobudget", "sheets"]
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
+                "sheets.template.context_processors.month_list",
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
@@ -79,6 +86,12 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
+
+# Auth
+
+LOGIN_REDIRECT_URL = "/sheets/"
+LOGOUT_REDIRECT_URL = "/"
 
 
 # Password validation

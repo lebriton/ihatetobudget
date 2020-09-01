@@ -1,0 +1,18 @@
+{% extends 'ihatetobudget/common/base.html' %}
+
+{% load bootstrap4 %}
+
+{% block title %}New Expense{% endblock %}
+
+{% block body %}
+  {% include 'sheets/macros/page_header_beginning.html' with title="New Expense" %}
+  {% include 'sheets/macros/page_header_end.html' %}
+
+  <form method="post" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+      <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Submit</button>
+    {% endbuttons %}
+  </form>
+{% endblock %}

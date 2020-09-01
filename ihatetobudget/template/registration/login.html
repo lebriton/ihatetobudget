@@ -1,0 +1,18 @@
+{% extends 'ihatetobudget/common/base.html' %}
+
+{% load bootstrap4 %}
+
+{% block title %}Sign in to IHateToBudget{% endblock %}
+
+{% block body %}
+  <h1 class="mx-auto mb-4 text-center">Sign in</h1>
+  <div class="card mx-auto" style="width: 22rem;">
+    <div class="card-body">
+      <form action="{% url 'login' %}" method="post" class="form">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% bootstrap_button '<i class="fa fa-sign-in"></i> Sign In' button_type="submit" button_class="btn-block btn-primary" %}
+      </form>
+    </div>
+  </div>
+{% endblock %}

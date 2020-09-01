@@ -1,0 +1,34 @@
+{% extends 'sheets/common/base.html' %}
+
+{% load sheet_extras %}
+
+{% block title %}{{ month|date:"F Y" }}{% endblock %}
+
+{% block content %}
+  {% include 'sheets/macros/page_header_beginning.html' with title=month|date:"F Y" %}
+    <a href="{% url 'sheets:new_expense' %}" class="btn btn-block btn-primary btn-sm">
+      <i class="fa fa-plus"></i> New Expense
+    </a>
+  {% include 'sheets/macros/page_header_end.html' %}
+
+  {% regroup object_list|order_queryset_by:'category' by category as category_list %}
+  <div class="row">
+    {% for category in category_list %}
+      <div class="col-lg-6">
+        <div class="card mb-3">
+          <div class="card-header">
+            {{ category.grouper }}
+          </div>
+          <ul class="list-group list-group-flush">
+            {% for expense in category.list %}
+              <li class="list-group-item d-flex justify-content-between align-items-center py-2">
+                {{ expense.description }}
+                <span class="ml-3">{{ expense.amount }}</span>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

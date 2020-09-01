@@ -1,0 +1,44 @@
+<div class="card mb-4">
+  <div class="card-header font-weight-bold text-uppercase">
+    Sheets
+  </div>
+  <div class="card-body">
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link p-0 mb-1" href="{% url 'sheets:index' %}"><i class="fa fa-th"></i> Overview</a>
+      </li>
+      {% if month_list %}
+        <li class="nav-item">
+          <a class="nav-link p-0" href="{% url 'sheets:sheet' month_list.last.year month_list.last.month %}"><i class="fa fa-calendar"></i> Latest</a>
+        </li>
+      {% endif %}
+    </ul>
+
+    <h6 class="mt-4 mb-2 font-weight-normal text-muted text-uppercase">
+      <span>By date</span>
+    </h6>
+
+    <ul class="nav flex-column">
+      {% for month in month_list %}
+        <li class="nav-item">
+          <a class="nav-link p-0{% if not forloop.last %} mb-1{% endif %}" href="{% url 'sheets:sheet' month.year month.month %}">{{ month|date:"F Y" }}</a>
+        </li>
+      {% empty %}
+        No sheet available
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+<div class="card mb-4">
+  <div class="card-header font-weight-bold text-uppercase">
+    Settings
+  </div>
+  <div class="card-body">
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link p-0" href="#"><i class="fa fa-pencil-square-o"></i> Edit categories</a>
+      </li>
+    </ul>
+  </div>
+</div>
