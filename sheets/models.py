@@ -11,7 +11,9 @@ class Category(models.Model):
 
 
 class Expense(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(
+        Category, on_delete=models.CASCADE, null=True, blank=True
+    )
 
     date = models.DateField(default=date.today)
     description = models.CharField(max_length=200)
