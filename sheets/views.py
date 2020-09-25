@@ -6,7 +6,7 @@ from django.views.generic.dates import MonthArchiveView
 from django.views.generic.edit import FormView
 
 from .forms import ExpenseForm
-from .models import Expense
+from .models import Category, Expense
 
 
 @login_required
@@ -25,6 +25,16 @@ class ExpenseFormView(LoginRequiredMixin, FormView):
     template_name = "sheets/new_expense.html"
     form_class = ExpenseForm
     success_url = reverse_lazy("sheets:index")
+
+    def get_initial(self):
+        initial = super().get_initial()
+        #  TODO: make this behaviour more general
+        if category := self.request.GET.get("category"):
+            try:
+                initial["category"] = Category.objects.get(name=category)
+            except Category.DoesNotExist:
+                pass
+        return initial
 
     def form_valid(self, form):
         form.save()

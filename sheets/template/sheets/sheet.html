@@ -15,7 +15,7 @@
   <div class="row">
     {% for category in category_list %}
       <div class="col-lg-6">
-        <div class="card mb-3">
+        <div class="card mb-4">
           <div class="card-header">
             {{ category.grouper }}
           </div>
@@ -27,6 +27,7 @@
               </li>
             {% endfor %}
           </ul>
+          <a href="{% url 'sheets:new_expense' %}?category={{ category.grouper }}" class="btn btn-primary btn-circle position-absolute" style="left: 50%; bottom: -1.125rem; transform: translateX(-1.125rem)"><i class="fa fa-plus fa-lg"></i></a>
         </div>
       </div>
     {% endfor %}
