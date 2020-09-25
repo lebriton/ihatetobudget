@@ -1,5 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 
 def index(request):
-    return render(request, "ihatetobudget/index.html")
+    return (
+        redirect("sheets:index")
+        if request.user.is_authenticated
+        else render(request, "ihatetobudget/index.html")
+    )
