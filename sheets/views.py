@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render
 from django.views.generic.dates import MonthArchiveView
 from django.views.generic.edit import CreateView, UpdateView
@@ -23,7 +24,10 @@ class SheetView(LoginRequiredMixin, MonthArchiveView):
 
 
 class ExpenseCreateView(
-    LoginRequiredMixin, InitialDataAsGETOptionsMixin, CreateView
+    LoginRequiredMixin,
+    InitialDataAsGETOptionsMixin,
+    SuccessMessageMixin,
+    CreateView,
 ):
     template_name = "sheets/expense/create-update.html"
     form_class = ExpenseForm
@@ -36,8 +40,14 @@ class ExpenseCreateView(
         )
     ]
 
+    # SuccessMessageMixin
+    success_message = "Expense successfully created!"
 
-class ExpenseUpdateView(LoginRequiredMixin, UpdateView):
+
+class ExpenseUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     template_name = "sheets/expense/create-update.html"
     model = Expense
     form_class = ExpenseForm
+
+    # SuccessMessageMixin
+    success_message = "Expense successfully changed!"
