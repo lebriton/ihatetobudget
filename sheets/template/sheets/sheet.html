@@ -6,7 +6,7 @@
 
 {% block content %}
   {% include 'sheets/macros/page_header_beginning.html' with title=month|date:"F Y" %}
-    <a href="{% url 'sheets:new_expense' %}" class="btn btn-block btn-primary btn-sm">
+    <a href="{% url 'sheets:expense-new' %}" class="btn btn-block btn-primary btn-sm">
       <i class="fa fa-plus"></i> New Expense
     </a>
   {% include 'sheets/macros/page_header_end.html' %}
@@ -26,12 +26,21 @@
           <ul class="list-group list-group-flush">
             {% for expense in category.list %}
               <li class="list-group-item d-flex justify-content-between align-items-center py-2">
-                {{ expense.description }}
+                <span class="flex-fill">{{ expense.description }}</span>
                 <span class="ml-3">{{ expense.amount }}</span>
+
+                <div class="dropdown ml-3">
+                  <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton{{ expense.pk }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-cog"></i>
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-right py-1" aria-labelledby="dropdownMenuButton{{ expense.pk }}">
+                    <a class="dropdown-item" href="{% url 'sheets:expense-edit' pk=expense.pk %}"><i class="fa fa-pencil"></i> Edit</a>
+                  </div>
+                </div>
               </li>
             {% endfor %}
           </ul>
-          <a href="{% url 'sheets:new_expense' %}?category={{ category.grouper|urlencode }}" class="btn btn-primary btn-circle position-absolute" style="left: 50%; bottom: -1.125rem; transform: translateX(-1.125rem)"><i class="fa fa-plus fa-lg"></i></a>
+          <a href="{% url 'sheets:expense-new' %}?category={{ category.grouper|urlencode }}" class="btn btn-primary btn-circle position-absolute" style="left: 50%; bottom: -1.125rem; transform: translateX(-1.125rem)"><i class="fa fa-plus fa-lg"></i></a>
         </div>
       </div>
     {% endfor %}

@@ -2,11 +2,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views.generic.dates import MonthArchiveView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 
 from ihatetobudget.utils.views import InitialDataAsGETOptionsMixin
 
-from .forms import ExpenseCreateForm
+from .forms import ExpenseForm
 from .models import Category, Expense
 
 
@@ -15,18 +15,18 @@ def index(request):
     return render(request, "sheets/index.html")
 
 
-class ExpenseMonthArchiveView(LoginRequiredMixin, MonthArchiveView):
+class SheetView(LoginRequiredMixin, MonthArchiveView):
     template_name = "sheets/sheet.html"
     queryset = Expense.objects.all()
     date_field = "date"
     allow_future = True
 
 
-class ExpenseCreate(
+class ExpenseCreateView(
     LoginRequiredMixin, InitialDataAsGETOptionsMixin, CreateView
 ):
-    template_name = "sheets/new_expense.html"
-    form_class = ExpenseCreateForm
+    template_name = "sheets/expense/create-update.html"
+    form_class = ExpenseForm
 
     # InitialDataAsGETOptionsMixin
     fields_with_initial_data_as_get_option = [
@@ -35,3 +35,9 @@ class ExpenseCreate(
             lambda option_value: Category.objects.get(name=option_value),
         )
     ]
+
+
+class ExpenseUpdateView(LoginRequiredMixin, UpdateView):
+    template_name = "sheets/expense/create-update.html"
+    model = Expense
+    form_class = ExpenseForm

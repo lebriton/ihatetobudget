@@ -7,8 +7,13 @@ urlpatterns = [
     path("", views.index, name="index"),
     path(
         "<int:year>/<int:month>/",
-        views.ExpenseMonthArchiveView.as_view(month_format="%m"),
+        views.SheetView.as_view(month_format="%m"),
         name="sheet",
     ),
-    path("expenses/new", views.ExpenseCreate.as_view(), name="new_expense"),
+    path("expense/new/", views.ExpenseCreateView.as_view(), name="expense-new"),
+    path(
+        "expense/<int:pk>/",
+        views.ExpenseUpdateView.as_view(),
+        name="expense-edit",
+    ),
 ]
