@@ -43,7 +43,7 @@ class ExpenseCreateView(
     ]
 
     # SuccessMessageMixin
-    success_message = "Expense successfully created!"
+    success_message = "Expense added!"
 
 
 class ExpenseUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
@@ -52,7 +52,7 @@ class ExpenseUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     form_class = ExpenseForm
 
     # SuccessMessageMixin
-    success_message = "Expense successfully changed!"
+    success_message = "Expense modified!"
 
 
 class ExpenseDeleteView(DeleteView):
@@ -64,7 +64,7 @@ class ExpenseDeleteView(DeleteView):
     success_url = reverse_lazy("sheets:index")
 
     # SuccessMessageMixin
-    success_message = "Expense successfully deleted!"
+    success_message = "Expense deleted!"
 
     def delete(self, request, *args, **kwargs):
         #  XXX: SuccessMessageMixin not working with DeleteView
