@@ -28,7 +28,6 @@ class ExpenseFormView(LoginRequiredMixin, FormView):
 
     def get_initial(self):
         initial = super().get_initial()
-        #  TODO: make this behaviour more general
         if category := self.request.GET.get("category"):
             try:
                 initial["category"] = Category.objects.get(name=category)
