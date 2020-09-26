@@ -1,6 +1,7 @@
 from datetime import date
 
 from django.db import models
+from django.urls import reverse
 
 
 class Category(models.Model):
@@ -21,3 +22,9 @@ class Expense(models.Model):
 
     def __str__(self):
         return f"{self.date.isoformat()} - {self.amount} - {self.description} ({self.category})"  # noqa: E501
+
+    def get_absolute_url(self):
+        return reverse(
+            "sheets:sheet",
+            kwargs={"year": self.date.year, "month": self.date.month},
+        )

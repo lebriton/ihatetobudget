@@ -1,7 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
-from django.urls import reverse_lazy
 from django.views.generic.dates import MonthArchiveView
 from django.views.generic.edit import CreateView
 
@@ -28,7 +27,6 @@ class ExpenseFormView(
 ):
     template_name = "sheets/new_expense.html"
     form_class = ExpenseForm
-    success_url = reverse_lazy("sheets:index")
 
     # InitialDataAsGETOptionsMixin
     fields_with_initial_data_as_get_option = [
