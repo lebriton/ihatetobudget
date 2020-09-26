@@ -35,6 +35,10 @@
                   </button>
                   <div class="dropdown-menu dropdown-menu-right py-1" aria-labelledby="dropdownMenuButton{{ expense.pk }}">
                     <a class="dropdown-item" href="{% url 'sheets:expense-edit' pk=expense.pk %}"><i class="fa fa-pencil"></i> Edit</a>
+                    <form action="{% url 'sheets:expense-delete' pk=expense.pk %}" method="post">
+                      {% csrf_token %}
+                      <button type="submit" class="dropdown-item text-danger"><i class="fa fa-trash"></i> Delete</button>
+                    </form>
                   </div>
                 </div>
               </li>

@@ -1,9 +1,11 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
 from django.views.generic.dates import MonthArchiveView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from ihatetobudget.utils.views import InitialDataAsGETOptionsMixin
 
@@ -51,3 +53,28 @@ class ExpenseUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 
     # SuccessMessageMixin
     success_message = "Expense successfully changed!"
+
+
+class ExpenseDeleteView(DeleteView):
+    #  XXX: a `template_name` must be defined if we want to delete via GET.
+    #  Currently, we delete via POST (no need to render a template, since we
+    #  redirect).
+
+    model = Expense
+    success_url = reverse_lazy("sheets:index")
+
+    # SuccessMessageMixin
+    success_message = "Expense successfully deleted!"
+
+    def delete(self, request, *args, **kwargs):
+        #  XXX: SuccessMessageMixin not working with DeleteView
+        messages.success(self.request, self.success_message)
+
+        super_redirect = super().delete(request, *args, **kwargs)
+        object = self.object
+        if self.model.objects.filter(
+            date__year=object.date.year, date__month=object.date.month
+        ).first():
+            #  There's a least one other object with the same year and month
+            return redirect(object.get_absolute_url())
+        return super_redirect
