@@ -9,6 +9,7 @@ pre-commit = "*"
 [packages]
 django = "*"
 django-bootstrap4 = "*"
+django-colorfield = "*"
 
 [requires]
 python_version = "3.8"
