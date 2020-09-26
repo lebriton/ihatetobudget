@@ -10,5 +10,5 @@ urlpatterns = [
         views.ExpenseMonthArchiveView.as_view(month_format="%m"),
         name="sheet",
     ),
-    path("expenses/new", views.ExpenseFormView.as_view(), name="new_expense"),
+    path("expenses/new", views.ExpenseCreate.as_view(), name="new_expense"),
 ]

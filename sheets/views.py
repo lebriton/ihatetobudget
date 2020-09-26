@@ -6,7 +6,7 @@ from django.views.generic.edit import CreateView
 
 from ihatetobudget.utils.views import InitialDataAsGETOptionsMixin
 
-from .forms import ExpenseForm
+from .forms import ExpenseCreateForm
 from .models import Category, Expense
 
 
@@ -22,11 +22,11 @@ class ExpenseMonthArchiveView(LoginRequiredMixin, MonthArchiveView):
     allow_future = True
 
 
-class ExpenseFormView(
+class ExpenseCreate(
     LoginRequiredMixin, InitialDataAsGETOptionsMixin, CreateView
 ):
     template_name = "sheets/new_expense.html"
-    form_class = ExpenseForm
+    form_class = ExpenseCreateForm
 
     # InitialDataAsGETOptionsMixin
     fields_with_initial_data_as_get_option = [
