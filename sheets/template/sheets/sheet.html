@@ -16,20 +16,22 @@
     {% for category in category_list %}
       <div class="col-lg-6">
         <div class="card mb-4">
-          <div class="card-header">
+          <div class="card-header d-flex justify-content-between">
             {% if category.grouper is None %}
               <span class="font-italic">No category</span>
             {% else %}
               {{ category.grouper }}
             {% endif %}
+
+            <span style="font-size: 1.25rem;">{{ category.list|attrsum:'amount'|currency }}</span>
           </div>
           <ul class="list-group list-group-flush">
             {% for expense in category.list %}
               <li class="list-group-item d-flex justify-content-between align-items-center py-2">
                 <span class="flex-fill">{{ expense.description }}</span>
-                <span class="ml-3">{{ expense.amount }}</span>
+                <small class="text-muted ml-3">{{ expense.amount|currency }}</small>
 
-                <div class="dropdown ml-3">
+                <div class="dropdown ml-2">
                   <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton{{ expense.pk }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-cog"></i>
                   </button>
