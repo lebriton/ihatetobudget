@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic.dates import MonthArchiveView
-from django.views.generic.edit import FormView
+from django.views.generic.edit import CreateView
 
 from ihatetobudget.utils.views import InitialDataAsGETOptionsMixin
 
@@ -24,7 +24,7 @@ class ExpenseMonthArchiveView(LoginRequiredMixin, MonthArchiveView):
 
 
 class ExpenseFormView(
-    LoginRequiredMixin, InitialDataAsGETOptionsMixin, FormView
+    LoginRequiredMixin, InitialDataAsGETOptionsMixin, CreateView
 ):
     template_name = "sheets/new_expense.html"
     form_class = ExpenseForm
@@ -37,7 +37,3 @@ class ExpenseFormView(
             lambda option_value: Category.objects.get(name=option_value),
         )
     ]
-
-    def form_valid(self, form):
-        form.save()
-        return super().form_valid(form)
