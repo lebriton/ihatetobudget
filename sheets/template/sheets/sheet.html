@@ -31,7 +31,7 @@
               </li>
             {% endfor %}
           </ul>
-          <a href="{% url 'sheets:new_expense' %}?category={{ category.grouper }}" class="btn btn-primary btn-circle position-absolute" style="left: 50%; bottom: -1.125rem; transform: translateX(-1.125rem)"><i class="fa fa-plus fa-lg"></i></a>
+          <a href="{% url 'sheets:new_expense' %}?category={{ category.grouper|urlencode }}" class="btn btn-primary btn-circle position-absolute" style="left: 50%; bottom: -1.125rem; transform: translateX(-1.125rem)"><i class="fa fa-plus fa-lg"></i></a>
         </div>
       </div>
     {% endfor %}
