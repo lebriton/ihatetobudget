@@ -5,6 +5,8 @@ from django.urls import reverse_lazy
 from django.views.generic.dates import MonthArchiveView
 from django.views.generic.edit import FormView
 
+from ihatetobudget.utils.views import InitialDataAsGETOptionsMixin
+
 from .forms import ExpenseForm
 from .models import Category, Expense
 
@@ -21,19 +23,20 @@ class ExpenseMonthArchiveView(LoginRequiredMixin, MonthArchiveView):
     allow_future = True
 
 
-class ExpenseFormView(LoginRequiredMixin, FormView):
+class ExpenseFormView(
+    LoginRequiredMixin, InitialDataAsGETOptionsMixin, FormView
+):
     template_name = "sheets/new_expense.html"
     form_class = ExpenseForm
     success_url = reverse_lazy("sheets:index")
 
-    def get_initial(self):
-        initial = super().get_initial()
-        if category := self.request.GET.get("category"):
-            try:
-                initial["category"] = Category.objects.get(name=category)
-            except Category.DoesNotExist:
-                pass
-        return initial
+    # InitialDataAsGETOptionsMixin
+    fields_with_initial_data_as_get_option = [
+        (
+            "category",
+            lambda option_value: Category.objects.get(name=option_value),
+        )
+    ]
 
     def form_valid(self, form):
         form.save()
