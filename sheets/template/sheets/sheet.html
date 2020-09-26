@@ -6,7 +6,7 @@
 
 {% block content %}
   {% include 'sheets/macros/page_header_beginning.html' with title=month|date:"F Y" %}
-    <a href="{% url 'sheets:expense-new' %}" class="btn btn-block btn-primary btn-sm">
+    <a href="{% url 'sheets:expense-new' %}" class="btn btn-block btn-success btn-sm">
       <i class="fa fa-plus"></i> New Expense
     </a>
   {% include 'sheets/macros/page_header_end.html' %}
@@ -40,7 +40,7 @@
               </li>
             {% endfor %}
           </ul>
-          <a href="{% url 'sheets:expense-new' %}?category={{ category.grouper|urlencode }}" class="btn btn-primary btn-circle position-absolute" style="left: 50%; bottom: -1.125rem; transform: translateX(-1.125rem)"><i class="fa fa-plus fa-lg"></i></a>
+          <a href="{% url 'sheets:expense-new' %}?category={{ category.grouper|urlencode }}" class="btn btn-light btn-circle border position-absolute" style="left: 50%; bottom: -1.125rem; transform: translateX(-1.125rem)"><i class="fa fa-plus fa-lg"></i></a>
         </div>
       </div>
     {% endfor %}
