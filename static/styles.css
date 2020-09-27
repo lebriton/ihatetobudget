@@ -13,3 +13,23 @@
   color: var(--danger);
   font-weight: bold;
 }
+
+
+/*
+ * Toggle visibility based on parent :hover state (or :active for touch screens)
+ */
+
+.v-child {
+  visibility: hidden;
+}
+
+.v-parent:active.v-parent-bg,
+.v-parent:hover.v-parent-bg {
+  background-color: var(--light);
+}
+
+.v-parent:active .v-child,
+.v-parent:hover .v-child,
+.v-child.show {
+  visibility: visible;
+}
