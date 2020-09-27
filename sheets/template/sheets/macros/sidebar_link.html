@@ -1,0 +1,6 @@
+<a class="nav-link p-0 {% if request.path == url %}active{% endif %}" href="{{ url }}">
+  {% if icon %}
+    <i class="fa-li fa {{ icon }}"></i>
+  {% endif %}
+  {{ text }}
+</a>

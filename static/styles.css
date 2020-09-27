@@ -33,3 +33,19 @@
 .v-child.show {
   visibility: visible;
 }
+
+
+/*
+ * Custom nav style
+ */
+
+.nav-custom a {
+ color: inherit;
+}
+.nav-custom a:hover {
+  text-decoration: underline;
+}
+.nav-custom .nav-link.active {
+  color: var(--primary);
+  font-weight: bold;
+}

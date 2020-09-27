@@ -3,13 +3,15 @@
     Sheets
   </div>
   <div class="card-body">
-    <ul class="nav flex-column">
+    <ul class="fa-ul nav nav-custom flex-column">
       <li class="nav-item">
-        <a class="nav-link p-0 mb-1" href="{% url 'sheets:index' %}"><i class="fa fa-th"></i> Overview</a>
+        {% url 'sheets:index' as url %}
+        {% include "sheets/macros/sidebar_link.html" with url=url icon="fa-th" text="Overview" %}
       </li>
       {% if month_list %}
         <li class="nav-item">
-          <a class="nav-link p-0" href="{% url 'sheets:sheet' month_list.last.year month_list.last.month %}"><i class="fa fa-calendar"></i> Latest</a>
+          {% url 'sheets:sheet' month_list.last.year month_list.last.month as url %}
+          {% include "sheets/macros/sidebar_link.html" with url=url icon="fa-calendar" text="Latest" %}
         </li>
       {% endif %}
     </ul>
@@ -18,10 +20,11 @@
       <span>By date</span>
     </h6>
 
-    <ul class="nav flex-column">
+    <ul class="nav nav-custom flex-column">
       {% for month in month_list %}
         <li class="nav-item">
-          <a class="nav-link p-0{% if not forloop.last %} mb-1{% endif %}" href="{% url 'sheets:sheet' month.year month.month %}">{{ month|date:"F Y" }}</a>
+          {% url 'sheets:sheet' month.year month.month as url %}
+          {% include "sheets/macros/sidebar_link.html" with url=url text=month|date:"F Y" %}
         </li>
       {% empty %}
         No sheet available
@@ -35,9 +38,9 @@
     Settings
   </div>
   <div class="card-body">
-    <ul class="nav flex-column">
+    <ul class="fa-ul nav nav-custom flex-column">
       <li class="nav-item">
-        <a class="nav-link p-0" href="#"><i class="fa fa-pencil-square-o"></i> Edit categories</a>
+        {% include "sheets/macros/sidebar_link.html" with url="#" icon="fa-pencil-square-o" text="Edit categories" %}
       </li>
     </ul>
   </div>
