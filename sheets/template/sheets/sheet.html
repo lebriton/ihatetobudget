@@ -21,6 +21,8 @@
               <span class="font-italic">No category</span>
             {% else %}
               <span class="text-truncate">
+                <div class="d-inline-block rounded-circle align-bottom mr-2" style="width: 1.5rem; height: 1.5rem; background-color: {{ category.grouper.color }};"></div>
+
                 {{ category.grouper }}
               </span>
             {% endif %}

@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "colorfield",
     "bootstrap4",
     "sheets.apps.SheetsConfig",
     "django.contrib.admin",
