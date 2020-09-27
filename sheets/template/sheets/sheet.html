@@ -32,7 +32,7 @@
           <ul class="list-group list-group-flush">
             {% for expense in category.list %}
               <li class="list-group-item d-flex justify-content-between align-items-center py-2">
-                <span class="flex-fill text-truncate">{{ expense.description }}</span>
+                <span class="flex-fill text-truncate">{{ expense }}</span>
                 <small class="text-muted ml-3">{{ expense.amount|currency }}</small>
 
                 <div class="dropdown ml-2">

@@ -23,7 +23,7 @@ class Expense(models.Model):
     amount = models.DecimalField(max_digits=8, decimal_places=2)
 
     def __str__(self):
-        return f"{self.date.isoformat()} - {self.amount} - {self.description} ({self.category})"  # noqa: E501
+        return self.description
 
     def get_absolute_url(self):
         return reverse(
