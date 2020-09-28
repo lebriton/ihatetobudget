@@ -1,5 +1,6 @@
 import base64
 from io import BytesIO
+from decimal import Decimal
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -35,7 +36,7 @@ class SheetView(LoginRequiredMixin, MonthArchiveView):
         context["plot_overview"] = self.generate_plot_overview()
         return context
 
-    def generate_plot_overview(self, figsize=(60, 1), guttersize=1):
+    def generate_plot_overview(self, figsize=(100, 1), guttersize=Decimal(.5)):
         categories = self.get_queryset().values("category").order_by("category")
         amount_list = [
             d["category_sum"]
