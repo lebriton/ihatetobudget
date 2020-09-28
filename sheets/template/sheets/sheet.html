@@ -23,9 +23,7 @@
               <span class="font-italic">No category</span>
             {% else %}
               <span class="text-truncate">
-                <div class="d-inline-block rounded-circle align-bottom mr-2" style="width: 1.5rem; height: 1.5rem; background-color: {{ category.grouper.color }};"></div>
-
-                {{ category.grouper }}
+                {% include 'sheets/macros/category.html' with category=category.grouper %}
               </span>
             {% endif %}
 
@@ -37,18 +35,7 @@
                 <span class="flex-fill text-truncate">{{ expense }}</span>
                 <small class="text-muted text-right ml-3 v-child" style="line-height: 1.25;">{{ expense.date.isoformat }}<br>{{ expense.amount|currency }}</small>
 
-                <div class="dropdown ml-2 v-child">
-                  <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton{{ expense.pk }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-cog"></i>
-                  </button>
-                  <div class="dropdown-menu dropdown-menu-right py-1" aria-labelledby="dropdownMenuButton{{ expense.pk }}">
-                    <a class="dropdown-item" href="{% url 'sheets:expense-edit' pk=expense.pk %}"><i class="fa fa-pencil"></i> Edit</a>
-                    <form action="{% url 'sheets:expense-delete' pk=expense.pk %}" method="post">
-                      {% csrf_token %}
-                      <button type="submit" class="dropdown-item text-danger"><i class="fa fa-trash"></i> Delete</button>
-                    </form>
-                  </div>
-                </div>
+                {% include 'sheets/macros/expense_menu.html' with expense=expense %}
               </li>
             {% endfor %}
           </ul>

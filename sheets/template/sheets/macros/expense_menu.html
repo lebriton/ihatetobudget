@@ -1,0 +1,12 @@
+<div class="dropdown ml-2 v-child">
+  <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton{{ expense.pk }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class="fa fa-cog"></i>
+  </button>
+  <div class="dropdown-menu dropdown-menu-right py-1" aria-labelledby="dropdownMenuButton{{ expense.pk }}">
+    <a class="dropdown-item" href="{% url 'sheets:expense-edit' pk=expense.pk %}"><i class="fa fa-pencil"></i> Edit</a>
+    <form action="{% url 'sheets:expense-delete' pk=expense.pk %}" method="post">
+      {% csrf_token %}
+      <button type="submit" class="dropdown-item text-danger"><i class="fa fa-trash"></i> Delete</button>
+    </form>
+  </div>
+</div>

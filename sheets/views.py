@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
+from django.views.generic import ListView
 from django.views.generic.dates import MonthArchiveView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
@@ -78,3 +79,9 @@ class ExpenseDeleteView(DeleteView):
             #  There's a least one other object with the same year and month
             return redirect(object.get_absolute_url())
         return super_redirect
+
+
+class ExpenseListView(ListView):
+    template_name = "sheets/history.html"
+    paginate_by = 10
+    model = Expense

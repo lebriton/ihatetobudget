@@ -21,4 +21,5 @@ urlpatterns = [
         views.ExpenseDeleteView.as_view(),
         name="expense-delete",
     ),
+    path("expense/history/", views.ExpenseListView.as_view(), name="history"),
 ]
