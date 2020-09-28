@@ -46,6 +46,8 @@ class SheetView(LoginRequiredMixin, MonthArchiveView):
             d["category__color"]
             for d in categories.distinct().values("category__color")
         ]
+        if color_list[0] is None:
+            color_list[0] = "#ddd" # Arbitrary color for "No category"
 
         # Generate the figure **without using pyplot**.
         fig = Figure(figsize=figsize)
