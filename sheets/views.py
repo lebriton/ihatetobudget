@@ -32,8 +32,9 @@ class ExpenseCreateView(
     SuccessMessageMixin,
     CreateView,
 ):
-    template_name = "sheets/expense/create-update.html"
+    template_name = "ihatetobudget/generic/form.html"
     form_class = ExpenseForm
+    extra_context = {"title": "New Expense"}
 
     # InitialDataAsGETOptionsMixin
     fields_with_initial_data_as_get_option = [
@@ -48,9 +49,10 @@ class ExpenseCreateView(
 
 
 class ExpenseUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
-    template_name = "sheets/expense/create-update.html"
+    template_name = "ihatetobudget/generic/form.html"
     model = Expense
     form_class = ExpenseForm
+    extra_context = {"title": "Edit Expense"}
 
     # SuccessMessageMixin
     success_message = "Expense modified!"

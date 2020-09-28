@@ -2,10 +2,10 @@
 
 {% load bootstrap4 %}
 
-{% block title %}{{ object|yesno:"Edit Expense,New Expense" }}{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 {% block body %}
-  {% include 'sheets/macros/page_header_beginning.html' with title=object|yesno:"Edit Expense,New Expense" %}
+  {% include 'sheets/macros/page_header_beginning.html' with title=title %}
   {% include 'sheets/macros/page_header_end.html' %}
 
   <form method="post" class="form">
