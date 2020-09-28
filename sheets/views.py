@@ -32,7 +32,7 @@ class ExpenseCreateView(
     SuccessMessageMixin,
     CreateView,
 ):
-    template_name = "ihatetobudget/generic/form.html"
+    template_name = "ihatetobudget/generic/new-edit-form.html"
     form_class = ExpenseForm
     extra_context = {"title": "New Expense"}
 
@@ -49,7 +49,7 @@ class ExpenseCreateView(
 
 
 class ExpenseUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
-    template_name = "ihatetobudget/generic/form.html"
+    template_name = "ihatetobudget/generic/new-edit-form.html"
     model = Expense
     form_class = ExpenseForm
     extra_context = {"title": "Edit Expense"}
