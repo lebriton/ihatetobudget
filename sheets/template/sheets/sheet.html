@@ -11,6 +11,8 @@
     </a>
   {% include 'sheets/macros/page_header_end.html' %}
 
+  <img class="w-100 my-4 rounded-pill" src="data:image/png;base64,{{ plot_overview }}">
+
   {% regroup object_list|order_queryset_by:'category' by category as category_list %}
   <div class="row">
     {% for category in category_list %}

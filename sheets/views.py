@@ -1,12 +1,17 @@
+import base64
+from io import BytesIO
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.db.models import Sum
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.dates import MonthArchiveView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from matplotlib.figure import Figure
 
 from ihatetobudget.utils.views import InitialDataAsGETOptionsMixin
 
@@ -24,6 +29,40 @@ class SheetView(LoginRequiredMixin, MonthArchiveView):
     queryset = Expense.objects.all()
     date_field = "date"
     allow_future = True
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["plot_overview"] = self.generate_plot_overview()
+        return context
+
+    def generate_plot_overview(self, figsize=(60, 1), guttersize=1):
+        categories = self.get_queryset().values("category").order_by("category")
+        amount_list = [
+            d["category_sum"]
+            for d in categories.annotate(category_sum=Sum("amount"))
+        ]
+        guttersize *= sum(amount_list) / 100
+        color_list = [
+            d["category__color"]
+            for d in categories.distinct().values("category__color")
+        ]
+
+        # Generate the figure **without using pyplot**.
+        fig = Figure(figsize=figsize)
+        ax = fig.subplots()
+
+        left = 0
+        for amount, color in zip(amount_list, color_list):
+            ax.barh(y=0, width=amount, height=0.1, color=color, left=left)
+            left += amount + guttersize
+
+        ax.axis("off")
+        ax.set_xlim(0, left - guttersize)
+
+        buffer = BytesIO()
+        fig.savefig(buffer, format="png", bbox_inches="tight", pad_inches=0)
+
+        return base64.b64encode(buffer.getbuffer()).decode("ascii")
 
 
 class ExpenseCreateView(
