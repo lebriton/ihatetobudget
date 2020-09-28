@@ -22,7 +22,13 @@
       {% for expense in page_obj %}
         <tr class="v-parent v-parent-bg">
           <td>{{ expense.date.isoformat }}</td>
-          <td>{% include 'sheets/macros/category.html' with category=expense.category %}</td>
+          <td>
+            {% if expense.category %}
+              {% include 'sheets/macros/category.html' with category=expense.category %}
+            {% else %}
+              N/A
+            {% endif %}
+          </td>
           <td>{{ expense.amount|currency }}</td>
           <td>{{ expense.description }}</td>
           <td>{% include 'sheets/macros/expense_menu.html' with expense=expense %}</td>
