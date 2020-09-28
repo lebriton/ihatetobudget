@@ -58,7 +58,7 @@ class ExpenseUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     success_message = "Expense modified!"
 
 
-class ExpenseDeleteView(DeleteView):
+class ExpenseDeleteView(LoginRequiredMixin, DeleteView):
     #  XXX: a `template_name` must be defined if we want to delete via GET.
     #  Currently, we delete via POST (no need to render a template, since we
     #  redirect).
@@ -83,7 +83,7 @@ class ExpenseDeleteView(DeleteView):
         return super_redirect
 
 
-class ExpenseListView(ListView):
+class ExpenseListView(LoginRequiredMixin, ListView):
     template_name = "sheets/history.html"
     paginate_by = 10
     model = Expense
