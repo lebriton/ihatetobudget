@@ -1,0 +1,9 @@
+<div class="dropdown ml-2 v-child">
+  <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton{{ category.pk }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class="fa fa-cog"></i>
+  </button>
+  <div class="dropdown-menu dropdown-menu-right py-1" aria-labelledby="dropdownMenuButton{{ category.pk }}">
+    <a class="dropdown-item" href="{% url 'sheets:category-edit' pk=category.pk %}"><i class="fa fa-pencil"></i> Edit</a>
+    <a class="dropdown-item text-danger" href="{% url 'sheets:category-delete' pk=category.pk %}"><i class="fa fa-trash"></i> Delete</a>
+  </div>
+</div>

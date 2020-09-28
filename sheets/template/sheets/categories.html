@@ -1,0 +1,29 @@
+{% extends 'sheets/common/base.html' %}
+
+{% load sheet_extras %}
+
+{% block title %}Categories{% endblock %}
+
+{% block content %}
+  {% include 'sheets/macros/page_header_beginning.html' with title="Categories" %}
+    <a href="{% url 'sheets:category-new' %}" class="btn btn-block btn-success btn-sm">
+      <i class="fa fa-plus"></i> New Category
+    </a>
+  {% include 'sheets/macros/page_header_end.html' %}
+
+  <ul class="list-group list-group-flush">
+    {% if object_list %}
+      {% for category in object_list %}
+        <li class="list-group-item d-flex justify-content-between align-items-center v-parent v-parent-bg">
+          <span class="flex-fill text-truncate">
+            {% include 'sheets/macros/category.html' with category=category %}
+          </span>
+
+          {% include 'sheets/macros/category_menu.html' with category=category %}
+        </li>
+      {% endfor %}
+    {% else %}
+      <p>No categories yet.</p>
+    {% endif %}
+  </ul>
+{% endblock %}

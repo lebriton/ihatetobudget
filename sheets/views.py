@@ -10,7 +10,7 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from ihatetobudget.utils.views import InitialDataAsGETOptionsMixin
 
-from .forms import ExpenseForm
+from .forms import CategoryForm, ExpenseForm
 from .models import Category, Expense
 
 
@@ -87,4 +87,47 @@ class ExpenseListView(LoginRequiredMixin, ListView):
     template_name = "sheets/history.html"
     paginate_by = 10
     model = Expense
-    ordering = ['-date']
+    ordering = ["-date"]
+
+
+class CategoryListView(LoginRequiredMixin, ListView):
+    template_name = "sheets/categories.html"
+    model = Category
+
+
+class CategoryCreateView(
+    LoginRequiredMixin,
+    SuccessMessageMixin,
+    CreateView,
+):
+    template_name = "ihatetobudget/generic/new-edit-form.html"
+    form_class = CategoryForm
+    extra_context = {"title": "New Category"}
+
+    # SuccessMessageMixin
+    success_message = "Category added!"
+
+
+class CategoryUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    template_name = "ihatetobudget/generic/new-edit-form.html"
+    model = Category
+    form_class = CategoryForm
+    extra_context = {"title": "Edit Category"}
+
+    # SuccessMessageMixin
+    success_message = "Category modified!"
+
+
+class CategoryDeleteView(DeleteView):
+    template_name = "ihatetobudget/generic/delete-form.html"
+    model = Category
+    extra_context = {"title": "Delete Category"}
+    success_url = reverse_lazy("sheets:categories")
+
+    # SuccessMessageMixin
+    success_message = "Category deleted!"
+
+    def delete(self, request, *args, **kwargs):
+        #  XXX: SuccessMessageMixin not working with DeleteView
+        messages.success(self.request, self.success_message)
+        return super().delete(request, *args, **kwargs)

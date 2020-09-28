@@ -40,7 +40,8 @@
   <div class="card-body">
     <ul class="fa-ul nav nav-custom flex-column">
       <li class="nav-item">
-        {% include "sheets/macros/sidebar_link.html" with url="#" icon="fa-pencil-square-o" text="Edit categories" %}
+        {% url 'sheets:categories' as url %}
+        {% include "sheets/macros/sidebar_link.html" with url=url icon="fa-pencil-square-o" text="Edit categories" %}
       </li>
     </ul>
   </div>

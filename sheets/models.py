@@ -12,10 +12,15 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse(
+            "sheets:categories",
+        )
+
 
 class Expense(models.Model):
     category = models.ForeignKey(
-        Category, on_delete=models.CASCADE, null=True, blank=True
+        Category, on_delete=models.SET_NULL, null=True, blank=True
     )
 
     date = models.DateField(default=date.today)
