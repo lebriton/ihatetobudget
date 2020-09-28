@@ -17,7 +17,7 @@ urlpatterns = [
         name="expense-edit",
     ),
     path(
-        "expense/<int:pk>/delete",
+        "expense/<int:pk>/delete/",
         views.ExpenseDeleteView.as_view(),
         name="expense-delete",
     ),
