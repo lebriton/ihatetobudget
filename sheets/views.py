@@ -167,7 +167,7 @@ class CategoryUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     success_message = "Category modified!"
 
 
-class CategoryDeleteView(DeleteView):
+class CategoryDeleteView(LoginRequiredMixin, DeleteView):
     template_name = "ihatetobudget/generic/delete-form.html"
     model = Category
     extra_context = {"title": "Delete Category"}
