@@ -1,6 +1,6 @@
 import base64
-from io import BytesIO
 from decimal import Decimal
+from io import BytesIO
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -36,7 +36,7 @@ class SheetView(LoginRequiredMixin, MonthArchiveView):
         context["plot_overview"] = self.generate_plot_overview()
         return context
 
-    def generate_plot_overview(self, figsize=(100, 1), guttersize=Decimal(.5)):
+    def generate_plot_overview(self, figsize=(100, 1), guttersize=Decimal(0.5)):
         categories = self.object_list.values("category").order_by("category")
         amount_list = [
             d["category_sum"]
@@ -48,7 +48,7 @@ class SheetView(LoginRequiredMixin, MonthArchiveView):
             for d in categories.distinct().values("category__color")
         ]
         if color_list[0] is None:
-            color_list[0] = "#ddd" # Arbitrary color for "No category"
+            color_list[0] = "#ddd"  #  Arbitrary color for "No category"
 
         # Generate the figure **without using pyplot**.
         fig = Figure(figsize=figsize)
