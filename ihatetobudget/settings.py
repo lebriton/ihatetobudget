@@ -65,6 +65,7 @@ TEMPLATES = [
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
+                "ihatetobudget.template.context_processors.version",
                 "sheets.template.context_processors.month_list",
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
