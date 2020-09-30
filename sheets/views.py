@@ -33,7 +33,10 @@ class SheetView(LoginRequiredMixin, MonthArchiveView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["plot_overview"] = self.generate_plot_overview()
+        (
+            context["plot_overview"],
+            context["total_amount"],
+        ) = self.generate_plot_overview()
         return context
 
     def generate_plot_overview(self, figsize=(100, 1), guttersize=Decimal(0.5)):
@@ -42,7 +45,8 @@ class SheetView(LoginRequiredMixin, MonthArchiveView):
             d["category_sum"]
             for d in categories.annotate(category_sum=Sum("amount"))
         ]
-        guttersize *= sum(amount_list) / 100
+        total_amount = sum(amount_list)
+        guttersize *= total_amount / 100
         color_list = [
             d["category__color"]
             for d in categories.distinct().values("category__color")
@@ -65,7 +69,10 @@ class SheetView(LoginRequiredMixin, MonthArchiveView):
         buffer = BytesIO()
         fig.savefig(buffer, format="png", bbox_inches="tight", pad_inches=0)
 
-        return base64.b64encode(buffer.getbuffer()).decode("ascii")
+        return (
+            base64.b64encode(buffer.getbuffer()).decode("ascii"),
+            "%.2f" % total_amount,  # XXX: not ideal
+        )
 
 
 class ExpenseCreateView(
