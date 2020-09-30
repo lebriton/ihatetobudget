@@ -37,7 +37,7 @@ class SheetView(LoginRequiredMixin, MonthArchiveView):
         return context
 
     def generate_plot_overview(self, figsize=(100, 1), guttersize=Decimal(.5)):
-        categories = self.get_queryset().values("category").order_by("category")
+        categories = self.object_list.values("category").order_by("category")
         amount_list = [
             d["category_sum"]
             for d in categories.annotate(category_sum=Sum("amount"))
