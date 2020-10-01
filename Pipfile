@@ -10,7 +10,6 @@ pre-commit = "*"
 django = "*"
 django-bootstrap4 = "*"
 django-colorfield = "*"
-matplotlib = "*"
 
 [requires]
 python_version = "3.8"

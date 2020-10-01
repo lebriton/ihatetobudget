@@ -12,7 +12,12 @@
   {% include 'sheets/macros/page_header_end.html' %}
 
   <span class="font-weight-light" style="font-size: 1.5rem;">{{ total_amount|currency }}</span>
-  <img class="w-100 mt-2 mb-4 rounded-pill" src="data:image/png;base64,{{ plot_overview }}">
+
+  <div class="progress mt-2 mb-4 rounded-pill" style="height: .5rem">
+    {% for bar_length, color in plot_overview %}
+      <div class="progress-bar {% if not forloop.first %}ml-1{%endif%}" role="progressbar" style="width: {{ bar_length }}%; background-color: {{ color }};" aria-valuenow="{{ bar_length }}" aria-valuemin="0" aria-valuemax="100"></div>
+    {% endfor %}
+  </div>
 
   {% regroup object_list|order_queryset_by:'category' by category as category_list %}
   <div class="row">

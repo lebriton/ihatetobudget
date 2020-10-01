@@ -12,7 +12,6 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.dates import MonthArchiveView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from matplotlib.figure import Figure
 
 from ihatetobudget.utils.views import InitialDataAsGETOptionsMixin
 
@@ -39,14 +38,12 @@ class SheetView(LoginRequiredMixin, MonthArchiveView):
         ) = self.generate_plot_overview()
         return context
 
-    def generate_plot_overview(self, figsize=(100, 1), guttersize=Decimal(0.5)):
+    def generate_plot_overview(self):
         categories = self.object_list.values("category").order_by("category")
         amount_list = [
             d["category_sum"]
             for d in categories.annotate(category_sum=Sum("amount"))
         ]
-        total_amount = sum(amount_list)
-        guttersize *= total_amount / 100
         color_list = [
             d["category__color"]
             for d in categories.distinct().values("category__color")
@@ -54,23 +51,9 @@ class SheetView(LoginRequiredMixin, MonthArchiveView):
         if color_list[0] is None:
             color_list[0] = "#ddd"  #  Arbitrary color for "No category"
 
-        # Generate the figure **without using pyplot**.
-        fig = Figure(figsize=figsize)
-        ax = fig.subplots()
-
-        left = 0
-        for amount, color in zip(amount_list, color_list):
-            ax.barh(y=0, width=amount, height=0.1, color=color, left=left)
-            left += amount + guttersize
-
-        ax.axis("off")
-        ax.set_xlim(0, left - guttersize)
-
-        buffer = BytesIO()
-        fig.savefig(buffer, format="png", bbox_inches="tight", pad_inches=0)
-
+        total_amount = sum(amount_list)
         return (
-            base64.b64encode(buffer.getbuffer()).decode("ascii"),
+            zip([max(x / total_amount * 100, 1) for x in amount_list], color_list),
             "%.2f" % total_amount,  # XXX: not ideal
         )
 
