@@ -1,3 +1,29 @@
+body, p {
+  font-family: 'Lato', sans-serif;
+}
+
+
+/*
+ * Navbar
+ */
+
+.navbar .nav-link {
+  color: rgba(0, 0, 0, .75) !important;
+  font-weight: 600;
+}
+.navbar .nav-link:hover {
+  color: rgba(0, 0, 0, .5) !important;
+}
+
+.navbar-brand:hover {
+  opacity: .5;
+}
+
+
+/*
+ * Random stuff
+ */
+
 .btn-circle {
   width: 2.25rem;
   height: 2.25rem;

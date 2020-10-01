@@ -11,7 +11,7 @@
     </a>
   {% include 'sheets/macros/page_header_end.html' %}
 
-  <span class="font-weight-light" style="font-size: 1.5rem;">{{ total_amount|currency }}</span>
+  <span class="h3 font-weight-light">{{ total_amount|currency }}</span>
 
   <div class="progress mt-2 mb-4 rounded-pill" style="height: .5rem">
     {% for bar_length, color in plot_overview %}
@@ -28,9 +28,9 @@
 
           <div class="card-header d-flex justify-content-between">
             {% if category.grouper is None %}
-              <span class="font-italic">No category</span>
+              <span class="font-italic font-weight-bold">No category</span>
             {% else %}
-              <span class="text-truncate">
+              <span class="text-truncate font-weight-bold">
                 {% include 'sheets/macros/category.html' with category=category.grouper %}
               </span>
             {% endif %}

@@ -1,6 +1,9 @@
+{% load static %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
-    <a class="navbar-brand" href="{% if user.is_authenticated %}{% url 'sheets:index' %}{% else %}{% url 'index' %}{% endif %}">IHateToBudget</a>
+    <a class="navbar-brand" href="{% if user.is_authenticated %}{% url 'sheets:index' %}{% else %}{% url 'index' %}{% endif %}">
+      <img class="mr-3" src="{% static 'logo.png' %}" height="30" alt="IHateToBudget" loading="lazy">
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -26,7 +29,7 @@
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-user-circle fa-lg"></i>
+              <i class="fa fa-user-circle fa-lg mx-1"></i>
               <span class="font-weight-bold">{{ request.user.first_name }} {{ request.user.last_name }}</span></a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown1">
               <h6 class="dropdown-header">Signed in as <span class="font-weight-bold">{{ request.user }}</span></h6>
