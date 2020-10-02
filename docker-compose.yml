@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  ihatetobudget:
+    build: .
+    command: pipenv run daphne -b 0.0.0.0 ihatetobudget.asgi:application
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "8000:8000"
+    env_file: docker-compose.env
