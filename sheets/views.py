@@ -23,26 +23,28 @@ def index(request):
     # <>
     monthly_insights = defaultdict(lambda: defaultdict(list))
 
-    categories = Category.objects.all()
-    years = [d.year for d in Expense.objects.dates("date", "year")]
-    for year in range(years[0], years[-1] + 1):
-        if year not in years:
-            continue
+    if years := [d.year for d in Expense.objects.dates("date", "year")]:
+        categories = Category.objects.all()
+        for year in range(years[0], years[-1] + 1):
+            if year not in years:
+                continue
 
-        for month in range(1, 13):
-            for category in [None] + list(categories):
-                monthly_insights[year][category].append(
-                    Expense.objects.filter(
-                        date__year=year, date__month=month, category=category
-                    ).aggregate(Sum("amount"))["amount__sum"]
-                    or 0
-                )
+            for month in range(1, 13):
+                for category in [None] + list(categories):
+                    monthly_insights[year][category].append(
+                        Expense.objects.filter(
+                            date__year=year,
+                            date__month=month,
+                            category=category,
+                        ).aggregate(Sum("amount"))["amount__sum"]
+                        or 0
+                    )
 
-    #  XXX: Django templates don't work well with defaultdicts
-    monthly_insights.default_factory = None
-    for category_dict in monthly_insights.values():
-        category_dict.default_factory = None
-    # </>
+        #  XXX: Django templates don't work well with defaultdicts
+        monthly_insights.default_factory = None
+        for category_dict in monthly_insights.values():
+            category_dict.default_factory = None
+        # </>
 
     return render(
         request, "sheets/index.html", dict(monthly_insights=monthly_insights)

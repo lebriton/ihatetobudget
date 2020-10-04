@@ -9,13 +9,15 @@
   <div class="d-flex justify-content-between">
     <h2 class="h3 font-weight-light">Monthly insights</h2>
 
-    <ul class="nav nav-pills justify-content-end ml-3" id="myTab" role="tablist">
-      {% for year in monthly_insights %}
-      <li class="nav-item" role="presentation">
-        <a class="nav-link {% if forloop.first %}active{% endif %}" id="monthlyInsights{{ year }}-tab" data-toggle="tab" href="#monthlyInsights{{ year }}" role="tab" aria-controls="monthlyInsights{{ year }}" aria-selected="{{ forloop.first|yesno:'true,false' }}">{{ year }}</a>
-      </li>
-      {% endfor %}
-    </ul>
+    {% if monthly_insights %}
+      <ul class="nav nav-pills justify-content-end ml-3" id="myTab" role="tablist">
+        {% for year in monthly_insights %}
+        <li class="nav-item" role="presentation">
+          <a class="nav-link {% if forloop.first %}active{% endif %}" id="monthlyInsights{{ year }}-tab" data-toggle="tab" href="#monthlyInsights{{ year }}" role="tab" aria-controls="monthlyInsights{{ year }}" aria-selected="{{ forloop.first|yesno:'true,false' }}">{{ year }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
   </div>
 
   <div class="tab-content" id="myTabContent">
@@ -63,6 +65,8 @@ var myChart = new Chart(ctx, {
 });
         </script>
       </div>
+    {% empty %}
+      <p>Nothing to show yet.</p>
     {% endfor %}
   </div>
 {% endblock %}
