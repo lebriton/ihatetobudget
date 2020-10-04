@@ -21,7 +21,7 @@
   <div class="progress mt-2 mb-4 rounded-pill" style="height: .5rem">
     {% for category in category_list %}
       {% setvar category.list|attrsum:'amount'|div:total_amount|mul:100 as bar_length %}
-      <div class="progress-bar {% if not forloop.first %}ml-1{%endif%}" role="progressbar" style="width: {{ bar_length }}%; background-color: {{ category.grouper.color }};" aria-valuenow="{{ bar_length }}" aria-valuemin="0" aria-valuemax="100"></div>
+      <div class="progress-bar {% if not forloop.first %}ml-1{%endif%}" role="progressbar" style="width: {{ bar_length }}%; background-color: {{ category.grouper.color|default:"#ddd" }};" aria-valuenow="{{ bar_length }}" aria-valuemin="0" aria-valuemax="100"></div>
     {% endfor %}
   </div>
 
