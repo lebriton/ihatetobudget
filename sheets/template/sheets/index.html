@@ -4,6 +4,9 @@
 
 {% block content %}
   {% include 'sheets/macros/page_header_beginning.html' with title="Sheets" %}
+    <a href="{% url 'sheets:expense-new' %}" class="btn btn-block btn-success btn-sm">
+      <i class="fa fa-plus"></i> New Expense
+    </a>
   {% include 'sheets/macros/page_header_end.html' %}
 
   <div class="d-flex justify-content-between">
