@@ -2,7 +2,6 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.db.models import Sum
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import ListView
@@ -25,36 +24,6 @@ class SheetView(LoginRequiredMixin, MonthArchiveView):
     queryset = Expense.objects.all()
     date_field = "date"
     allow_future = True
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        (
-            context["plot_overview"],
-            context["total_amount"],
-        ) = self.generate_plot_overview()
-        return context
-
-    def generate_plot_overview(self):
-        categories = self.object_list.values("category").order_by("category")
-        amount_list = [
-            d["category_sum"]
-            for d in categories.annotate(category_sum=Sum("amount"))
-        ]
-        color_list = [
-            d["category__color"]
-            for d in categories.distinct().values("category__color")
-        ]
-        if color_list[0] is None:
-            color_list[0] = "#ddd"  #  Arbitrary color for "No category"
-
-        total_amount = sum(amount_list)
-        return (
-            zip(
-                [max(x / total_amount * 100, 1) for x in amount_list],
-                color_list,
-            ),
-            "%.2f" % total_amount,  # XXX: not ideal
-        )
 
 
 class ExpenseCreateView(

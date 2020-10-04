@@ -1,10 +1,13 @@
 {% extends 'sheets/common/base.html' %}
 
+{% load mathfilters %}
 {% load sheet_extras %}
 
 {% block title %}{{ month|date:"F Y" }}{% endblock %}
 
 {% block content %}
+  {% setvar object_list|attrsum:'amount' as total_amount %}
+
   {% include 'sheets/macros/page_header_beginning.html' with title=month|date:"F Y" %}
     <a href="{% url 'sheets:expense-new' %}" class="btn btn-block btn-success btn-sm">
       <i class="fa fa-plus"></i> New Expense
@@ -13,13 +16,15 @@
 
   <span class="h3 font-weight-light">{{ total_amount|currency }}</span>
 
+  {% regroup object_list|order_queryset_by:'category' by category as category_list %}
+
   <div class="progress mt-2 mb-4 rounded-pill" style="height: .5rem">
-    {% for bar_length, color in plot_overview %}
-      <div class="progress-bar {% if not forloop.first %}ml-1{%endif%}" role="progressbar" style="width: {{ bar_length }}%; background-color: {{ color }};" aria-valuenow="{{ bar_length }}" aria-valuemin="0" aria-valuemax="100"></div>
+    {% for category in category_list %}
+      {% setvar category.list|attrsum:'amount'|div:total_amount|mul:100 as bar_length %}
+      <div class="progress-bar {% if not forloop.first %}ml-1{%endif%}" role="progressbar" style="width: {{ bar_length }}%; background-color: {{ category.grouper.color }};" aria-valuenow="{{ bar_length }}" aria-valuemin="0" aria-valuemax="100"></div>
     {% endfor %}
   </div>
 
-  {% regroup object_list|order_queryset_by:'category' by category as category_list %}
   <div class="row">
     {% for category in category_list %}
       <div class="col-lg-6">

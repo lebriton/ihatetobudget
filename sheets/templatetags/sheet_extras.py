@@ -18,3 +18,8 @@ def attrsum(container, attr_name):
 @stringfilter
 def currency(string):
     return f"{string.replace('.', ',')}€"  # TEMP:
+
+
+@register.simple_tag
+def setvar(val=None):
+    return val

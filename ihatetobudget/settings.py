@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    "mathfilters",
     "colorfield",
     "bootstrap4",
     "sheets.apps.SheetsConfig",
