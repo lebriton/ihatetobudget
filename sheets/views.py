@@ -1,7 +1,3 @@
-import base64
-from decimal import Decimal
-from io import BytesIO
-
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -53,7 +49,10 @@ class SheetView(LoginRequiredMixin, MonthArchiveView):
 
         total_amount = sum(amount_list)
         return (
-            zip([max(x / total_amount * 100, 1) for x in amount_list], color_list),
+            zip(
+                [max(x / total_amount * 100, 1) for x in amount_list],
+                color_list,
+            ),
             "%.2f" % total_amount,  # XXX: not ideal
         )
 
