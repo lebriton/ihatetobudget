@@ -11,6 +11,7 @@ django = "*"
 django-bootstrap4 = "*"
 django-colorfield = "*"
 daphne = "*"
+django-mathfilters = "*"
 
 [requires]
 python_version = "3.8"
