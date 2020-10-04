@@ -27,7 +27,7 @@
           {% include "sheets/macros/sidebar_link.html" with url=url text=month|date:"F Y" %}
         </li>
       {% empty %}
-        No sheet available
+        <span class="text-warning">No sheet available</span>
       {% endfor %}
     </ul>
   </div>

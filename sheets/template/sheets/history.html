@@ -8,69 +8,73 @@
   {% include 'sheets/macros/page_header_beginning.html' with title="Expense History" %}
   {% include 'sheets/macros/page_header_end.html' %}
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Date</th>
-        <th scope="col">Category</th>
-        <th scope="col">Amount</th>
-        <th scope="col">Description</th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for expense in page_obj %}
-        <tr class="v-parent v-parent-bg">
-          <td>{{ expense.date.isoformat }}</td>
-          <td>
-            {% if expense.category %}
-              {% include 'sheets/macros/category.html' with category=expense.category %}
-            {% else %}
-              N/A
-            {% endif %}
-          </td>
-          <td>{{ expense.amount|currency }}</td>
-          <td>{{ expense.description }}</td>
-          <td>{% include 'sheets/macros/expense_menu.html' with expense=expense %}</td>
+  {% if page_obj %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Category</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Description</th>
+          <th scope="col"></th>
         </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        {% for expense in page_obj %}
+          <tr class="v-parent v-parent-bg">
+            <td>{{ expense.date.isoformat }}</td>
+            <td>
+              {% if expense.category %}
+                {% include 'sheets/macros/category.html' with category=expense.category %}
+              {% else %}
+                N/A
+              {% endif %}
+            </td>
+            <td>{{ expense.amount|currency }}</td>
+            <td>{{ expense.description }}</td>
+            <td>{% include 'sheets/macros/expense_menu.html' with expense=expense %}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
 
-  <nav aria-label="History navigation" class="mt-4">
-    <ul class="pagination justify-content-center">
-      {% if page_obj.has_previous %}
-        <li class="page-item">
-          <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-        </li>
-      {% else %}
-        <li class="page-item disabled">
-          <span class="page-link">Previous</span>
-        </li>
-      {% endif %}
-
-      {% for page_number in page_obj.paginator.page_range %}
-        {% if page_number == page_obj.number %}
-          <li class="page-item active" aria-current="page">
-            <span class="page-link">
-              {{ page_number }}
-              <span class="sr-only">(current)</span>
-            </span>
+    <nav aria-label="History navigation" class="mt-4">
+      <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
           </li>
         {% else %}
-          <li class="page-item"><a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a></li>
+          <li class="page-item disabled">
+            <span class="page-link">Previous</span>
+          </li>
         {% endif %}
-      {% endfor %}
 
-      {% if page_obj.has_next %}
-        <li class="page-item">
-          <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
-        </li>
-      {% else %}
-        <li class="page-item disabled">
-          <span class="page-link">Next</span>
-        </li>
-      {% endif %}
-    </ul>
-  </nav>
+        {% for page_number in page_obj.paginator.page_range %}
+          {% if page_number == page_obj.number %}
+            <li class="page-item active" aria-current="page">
+              <span class="page-link">
+                {{ page_number }}
+                <span class="sr-only">(current)</span>
+              </span>
+            </li>
+          {% else %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a></li>
+          {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+          </li>
+        {% else %}
+          <li class="page-item disabled">
+            <span class="page-link">Next</span>
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
+  {% else %}
+    <p class="text-warning">Nothing to show yet.</p>
+  {% endif %}
 {% endblock %}
