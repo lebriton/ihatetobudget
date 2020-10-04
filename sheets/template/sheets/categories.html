@@ -11,8 +11,8 @@
     </a>
   {% include 'sheets/macros/page_header_end.html' %}
 
-  <ul class="list-group list-group-flush">
-    {% if object_list %}
+  {% if object_list %}
+    <ul class="list-group list-group-flush">
       {% for category in object_list %}
         <li class="list-group-item d-flex justify-content-between align-items-center v-parent v-parent-bg">
           <span class="flex-fill text-truncate">
@@ -22,8 +22,8 @@
           {% include 'sheets/macros/category_menu.html' with category=category %}
         </li>
       {% endfor %}
-    {% else %}
-      <p>No categories yet.</p>
-    {% endif %}
-  </ul>
+    </ul>
+  {% else %}
+    <p>No categories yet.</p>
+  {% endif %}
 {% endblock %}
