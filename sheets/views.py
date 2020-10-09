@@ -4,7 +4,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.db.models import Sum
+from django.db.models import Avg, Sum
+from django.db.models.functions import TruncDay, TruncMonth
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import ListView
@@ -46,8 +47,27 @@ def index(request):
             category_dict.default_factory = None
     # </>
 
+    def _average_per_period(trunc_func):
+        # XXX: formatting using "%.2f" is not ideal
+        return (
+            "%.2f" % x
+            if (
+                x := Expense.objects.annotate(period=trunc_func("date"))
+                .values("period")
+                .annotate(amount__sum=Sum("amount"))
+                .aggregate(Avg("amount__sum"))["amount__sum__avg"]
+            )
+            else "0.00"
+        )
+
     return render(
-        request, "sheets/index.html", dict(monthly_insights=monthly_insights)
+        request,
+        "sheets/index.html",
+        dict(
+            monthly_average=_average_per_period(TruncMonth),
+            daily_average=_average_per_period(TruncDay),
+            monthly_insights=monthly_insights,
+        ),
     )
 
 

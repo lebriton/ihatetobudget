@@ -1,13 +1,44 @@
 {% extends 'sheets/common/base.html' %}
 
-{% block title %}Sheets{% endblock %}
+{% load sheet_extras %}
+
+{% block title %}Overview{% endblock %}
 
 {% block content %}
-  {% include 'sheets/macros/page_header_beginning.html' with title="Sheets" %}
+  {% include 'sheets/macros/page_header_beginning.html' with title="Overview" %}
     <a href="{% url 'sheets:expense-new' %}" class="btn btn-block btn-success btn-sm">
       <i class="fa fa-plus"></i> New Expense
     </a>
   {% include 'sheets/macros/page_header_end.html' %}
+
+  <div class="row mb-4">
+    <div class="col-lg-6">
+      <div class="card text-white bg-primary mb-2">
+        <div class="card-body">
+          <div class="media">
+            <i class="fa fa-calendar fa-3x mr-3" aria-hidden="true"></i>
+            <div class="media-body">
+              <h5 class="mt-0">Monthly average</h5>
+              {{ monthly_average|currency }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="card text-white bg-success mb-2">
+        <div class="card-body">
+          <div class="media">
+            <i class="fa fa-sun-o fa-3x mr-3" aria-hidden="true"></i>
+            <div class="media-body">
+              <h5 class="mt-0">Daily average</h5>
+              {{ daily_average|currency }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="d-flex justify-content-between">
     <h2 class="h3 font-weight-light">Monthly insights</h2>
