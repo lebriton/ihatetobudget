@@ -6,7 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Avg, Sum
 from django.db.models.functions import TruncDay, TruncMonth
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.dates import MonthArchiveView
@@ -124,15 +124,16 @@ class ExpenseDeleteView(LoginRequiredMixin, DeleteView):
     def delete(self, request, *args, **kwargs):
         #  XXX: SuccessMessageMixin not working with DeleteView
         messages.success(self.request, self.success_message)
+        return super().delete(request, *args, **kwargs)
 
-        super_redirect = super().delete(request, *args, **kwargs)
+    def get_success_url(self):
         object = self.object
         if self.model.objects.filter(
             date__year=object.date.year, date__month=object.date.month
         ).first():
             #  There's a least one other object with the same year and month
-            return redirect(object.get_absolute_url())
-        return super_redirect
+            return object.get_absolute_url()
+        return super().get_success_url()
 
 
 class ExpenseListView(LoginRequiredMixin, ListView):
