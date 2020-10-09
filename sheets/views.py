@@ -125,9 +125,12 @@ class ExpenseDeleteView(LoginRequiredMixin, DeleteViewWithSuccessMessage):
 
     def get_success_url(self):
         object = self.object
-        if self.model.objects.filter(
-            date__year=object.date.year, date__month=object.date.month
-        ).first():
+        if (
+            self.model.objects.filter(
+                date__year=object.date.year, date__month=object.date.month
+            ).last()
+            != object
+        ):
             #  There's a least one other object with the same year and month
             return object.get_absolute_url()
         return super().get_success_url()
