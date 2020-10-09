@@ -1,4 +1,5 @@
-from django.views.generic.edit import FormView
+from django.contrib import messages
+from django.views.generic.edit import DeleteView, FormView
 
 
 # XXX: What a monstrous name!
@@ -22,3 +23,10 @@ class InitialDataAsGETOptionsMixin(FormView):
                         #  XXX: log this?
                         pass
         return initial
+
+
+class DeleteViewWithSuccessMessage(DeleteView):
+    def delete(self, request, *args, **kwargs):
+        #  XXX: SuccessMessageMixin not working with DeleteView
+        messages.success(self.request, self.success_message)
+        return super().delete(request, *args, **kwargs)

@@ -1,6 +1,5 @@
 from collections import defaultdict
 
-from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
@@ -10,9 +9,12 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.dates import MonthArchiveView
-from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView
 
-from ihatetobudget.utils.views import InitialDataAsGETOptionsMixin
+from ihatetobudget.utils.views import (
+    DeleteViewWithSuccessMessage,
+    InitialDataAsGETOptionsMixin,
+)
 
 from .forms import CategoryForm, ExpenseForm
 from .models import Category, Expense
@@ -110,7 +112,7 @@ class ExpenseUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     success_message = "Expense modified!"
 
 
-class ExpenseDeleteView(LoginRequiredMixin, DeleteView):
+class ExpenseDeleteView(LoginRequiredMixin, DeleteViewWithSuccessMessage):
     #  XXX: a `template_name` must be defined if we want to delete via GET.
     #  Currently, we delete via POST (no need to render a template, since we
     #  redirect).
@@ -120,11 +122,6 @@ class ExpenseDeleteView(LoginRequiredMixin, DeleteView):
 
     # SuccessMessageMixin
     success_message = "Expense deleted!"
-
-    def delete(self, request, *args, **kwargs):
-        #  XXX: SuccessMessageMixin not working with DeleteView
-        messages.success(self.request, self.success_message)
-        return super().delete(request, *args, **kwargs)
 
     def get_success_url(self):
         object = self.object
@@ -171,7 +168,7 @@ class CategoryUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     success_message = "Category modified!"
 
 
-class CategoryDeleteView(LoginRequiredMixin, DeleteView):
+class CategoryDeleteView(LoginRequiredMixin, DeleteViewWithSuccessMessage):
     template_name = "ihatetobudget/generic/delete-form.html"
     model = Category
     extra_context = {"title": "Delete Category"}
@@ -179,8 +176,3 @@ class CategoryDeleteView(LoginRequiredMixin, DeleteView):
 
     # SuccessMessageMixin
     success_message = "Category deleted!"
-
-    def delete(self, request, *args, **kwargs):
-        #  XXX: SuccessMessageMixin not working with DeleteView
-        messages.success(self.request, self.success_message)
-        return super().delete(request, *args, **kwargs)
