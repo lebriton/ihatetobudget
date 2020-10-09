@@ -44,7 +44,7 @@ def index(request):
         monthly_insights.default_factory = None
         for category_dict in monthly_insights.values():
             category_dict.default_factory = None
-        # </>
+    # </>
 
     return render(
         request, "sheets/index.html", dict(monthly_insights=monthly_insights)
