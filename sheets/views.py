@@ -29,10 +29,7 @@ def index(request):
 
     if years := [d.year for d in Expense.objects.dates("date", "year")]:
         categories = Category.objects.all()
-        for year in range(years[0], years[-1] + 1):
-            if year not in years:
-                continue
-
+        for year in years:
             for month in range(1, 13):
                 for category in [None] + list(categories):
                     monthly_insights[year][category].append(
