@@ -1,9 +1,8 @@
 from django.contrib import messages
-from django.views.generic.edit import FormView
 
 
 # XXX: What a monstrous name!
-class InitialDataAsGETOptionsMixin(FormView):
+class InitialDataAsGETOptionsMixin:
     def get_initial(self):
         initial = super().get_initial()
 
