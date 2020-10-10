@@ -27,7 +27,7 @@ def index(request):
     # <>
     monthly_insights = defaultdict(lambda: defaultdict(list))
 
-    if years := [d.year for d in Expense.objects.dates("date", "year")]:
+    if years := [e.year for e in Expense.objects.dates("date", "year")]:
         categories = Category.objects.all()
         for year in years:
             for month in range(1, 13):
@@ -63,7 +63,7 @@ def index(request):
                 else "0.00"
             ),
             daily_median=statistics.median(
-                d["amount"] for d in Expense.objects.values("amount")
+                e.amount for e in Expense.objects.all()
             ),
             monthly_insights=monthly_insights,
         ),
