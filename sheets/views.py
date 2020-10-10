@@ -62,8 +62,10 @@ def index(request):
                 )
                 else "0.00"
             ),
-            daily_median=statistics.median(
-                e.amount for e in Expense.objects.all()
+            daily_median=(
+                statistics.median(e.amount for e in x)
+                if (x := Expense.objects.all())
+                else "0.00"
             ),
             monthly_insights=monthly_insights,
         ),
