@@ -125,14 +125,14 @@ class ExpenseDeleteView(
 
     def get_success_url(self):
         object = self.object
-        if (
-            self.model.objects.filter(
-                date__year=object.date.year, date__month=object.date.month
-            ).last()
-            != object
+        # XXX: this can probably be optimized
+        if similar_object := (
+            self.model.objects.exclude(pk=object.pk)
+            .filter(date__year=object.date.year, date__month=object.date.month)
+            .first()
         ):
             #  There's a least one other object with the same year and month
-            return object.get_absolute_url()
+            return similar_object.get_absolute_url()
         return super().get_success_url()
 
 
