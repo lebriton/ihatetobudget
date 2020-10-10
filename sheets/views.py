@@ -51,7 +51,7 @@ def index(request):
         request,
         "sheets/index.html",
         dict(
-            monthly_average=(
+            monthly_average_spend=(
                 # XXX: formatting using "%.2f" is not ideal
                 "%.2f" % x
                 if (
@@ -62,7 +62,7 @@ def index(request):
                 )
                 else "0.00"
             ),
-            daily_median=(
+            median_spend=(
                 statistics.median(e.amount for e in x)
                 if (x := Expense.objects.all())
                 else "0.00"
