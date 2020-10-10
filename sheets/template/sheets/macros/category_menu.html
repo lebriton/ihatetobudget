@@ -3,7 +3,7 @@
     <i class="fa fa-cog"></i>
   </button>
   <div class="dropdown-menu dropdown-menu-right py-1" aria-labelledby="dropdownMenuButton{{ category.pk }}">
-    <a class="dropdown-item" href="{% url 'sheets:category-edit' pk=category.pk %}"><i class="fa fa-pencil"></i> Edit</a>
-    <a class="dropdown-item text-danger" href="{% url 'sheets:category-delete' pk=category.pk %}"><i class="fa fa-trash"></i> Delete</a>
+    <a class="dropdown-item" href="{% url 'sheets:category-edit' pk=category.pk %}"><i class="fa fa-pencil fa-fw"></i> Edit</a>
+    <a class="dropdown-item text-danger" href="{% url 'sheets:category-delete' pk=category.pk %}"><i class="fa fa-trash fa-fw"></i> Delete</a>
   </div>
 </div>
