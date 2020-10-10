@@ -35,10 +35,9 @@
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-user-circle fa-lg mx-1"></i>
-              <span class="font-weight-bold">{{ request.user.first_name }} {{ request.user.last_name }}</span></a>
+              <i class="fa fa-user-circle fa-lg"></i></a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown1">
-              <h6 class="dropdown-header">Signed in as <span class="font-weight-bold">{{ request.user }}</span></h6>
+              <h6 class="dropdown-header">Signed in as <span class="font-weight-bolder">{{ request.user }}</span></h6>
               <a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-sign-out fa-fw"></i> Sign out</a>
             </div>
           </li>
