@@ -10,11 +10,11 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.dates import MonthArchiveView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from ihatetobudget.utils.views import (
-    DeleteViewWithSuccessMessage,
     InitialDataAsGETOptionsMixin,
+    SuccessMessageOnDeleteViewMixin,
 )
 
 from .forms import CategoryForm, ExpenseForm
@@ -110,7 +110,9 @@ class ExpenseUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     success_message = "Expense modified!"
 
 
-class ExpenseDeleteView(LoginRequiredMixin, DeleteViewWithSuccessMessage):
+class ExpenseDeleteView(
+    LoginRequiredMixin, SuccessMessageOnDeleteViewMixin, DeleteView
+):
     #  XXX: a `template_name` must be defined if we want to delete via GET.
     #  Currently, we delete via POST (no need to render a template, since we
     #  redirect).
@@ -169,7 +171,9 @@ class CategoryUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     success_message = "Category modified!"
 
 
-class CategoryDeleteView(LoginRequiredMixin, DeleteViewWithSuccessMessage):
+class CategoryDeleteView(
+    LoginRequiredMixin, SuccessMessageOnDeleteViewMixin, DeleteView
+):
     template_name = "ihatetobudget/generic/delete-form.html"
     model = Category
     extra_context = {"title": "Delete Category"}
