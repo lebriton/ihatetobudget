@@ -10,7 +10,7 @@ class InitialDataAsGETOptionsMixin(FormView):
         for (
             option_name,
             interpret_option_value,
-        ) in self.fields_with_initial_data_as_get_option:
+        ) in self.fields_with_initial_data_as_get_option.items():
             if option_value := self.request.GET.get(option_name):
                 if interpret_option_value is None:
                     initial[option_name] = option_value

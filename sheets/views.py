@@ -88,12 +88,11 @@ class ExpenseCreateView(
     extra_context = {"title": "New Expense"}
 
     # InitialDataAsGETOptionsMixin
-    fields_with_initial_data_as_get_option = [
-        (
-            "category",
-            lambda option_value: Category.objects.get(name=option_value),
-        )
-    ]
+    fields_with_initial_data_as_get_option = {
+        "category": lambda option_value: Category.objects.get(
+            name=option_value
+        ),
+    }
 
     # SuccessMessageMixin
     success_message = "Expense added!"
