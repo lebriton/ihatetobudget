@@ -4,6 +4,7 @@
   </button>
   <div class="dropdown-menu dropdown-menu-right py-1" aria-labelledby="dropdownMenuButton{{ expense.pk }}">
     <a class="dropdown-item" href="{% url 'sheets:expense-edit' pk=expense.pk %}"><i class="fa fa-pencil fa-fw"></i> Edit</a>
+    <a class="dropdown-item" href="{% url 'sheets:expense-new' %}?category={{ expense.category|urlencode }}&date={{ expense.date|urlencode }}&description={{ expense.description|urlencode }}&amount={{ expense.amount|urlencode }}"><i class="fa fa-clone fa-fw"></i> Duplicate</a>
     <form action="{% url 'sheets:expense-delete' pk=expense.pk %}" method="post">
       {% csrf_token %}
       <button type="submit" class="dropdown-item text-danger"><i class="fa fa-trash fa-fw"></i> Delete</button>

@@ -94,6 +94,9 @@ class ExpenseCreateView(
         "category": lambda option_value: Category.objects.get(
             name=option_value
         ),
+        "date": None,
+        "description": None,
+        "amount": None,
     }
 
     # SuccessMessageMixin
