@@ -8,7 +8,12 @@
 {% block content %}
   {% setvar object_list|attrsum:'amount' as total_amount %}
 
-  {% include 'sheets/macros/page_header_beginning.html' with title=month|date:"F Y" %}
+  {% setvar month|date:"F Y" as title %}
+  {% if days_left_string %}
+    {% setvar title|add:' <small class="text-muted">'|add:days_left_string|add:'</small>'|safe as title %}
+  {% endif %}
+
+  {% include 'sheets/macros/page_header_beginning.html' with title=title %}
     <a href="{% url 'sheets:expense-new' %}" class="btn btn-block btn-success btn-sm">
       <i class="fa fa-plus fa-fw"></i> New Expense
     </a>

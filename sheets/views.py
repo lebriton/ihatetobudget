@@ -1,3 +1,5 @@
+import calendar
+import datetime
 import statistics
 from collections import defaultdict
 
@@ -78,6 +80,18 @@ class SheetView(LoginRequiredMixin, MonthArchiveView):
     queryset = Expense.objects.all()
     date_field = "date"
     allow_future = True
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        now = datetime.datetime.now()
+        if now.month == context["month"].month:
+            days_left = (
+                calendar.monthrange(year=now.year, month=now.month)[1] - now.day
+            ) + 1
+            context[
+                "days_left_string"
+            ] = f"{days_left} {'days' if days_left > 1 else 'day'} left"
+        return context
 
 
 class ExpenseCreateView(
