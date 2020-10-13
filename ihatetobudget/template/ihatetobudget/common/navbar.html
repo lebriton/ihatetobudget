@@ -2,8 +2,13 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
     <a class="navbar-brand" href="{% if user.is_authenticated %}{% url 'sheets:index' %}{% else %}{% url 'index' %}{% endif %}">
-      <img class="mr-3" src="{% static 'logo.png' %}" height="30" alt="IHateToBudget" loading="lazy">
+      <img src="{% static 'logo.png' %}" height="30" alt="IHateToBudget" loading="lazy">
     </a>
+    {% if user.is_authenticated %}
+      <span class="navbar-text mr-3">
+        <span class="badge badge-pill badge-info font-weight-bold">{% now "jS F" %}</span>
+      </span>
+    {% endif %}
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
