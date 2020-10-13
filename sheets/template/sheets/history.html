@@ -7,34 +7,36 @@
   {% include 'sheets/macros/page_header_end.html' %}
 
   {% if page_obj %}
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Date</th>
-          <th scope="col">Category</th>
-          <th scope="col">Amount</th>
-          <th scope="col">Description</th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for expense in page_obj %}
-          <tr class="v-parent v-parent-bg">
-            <td>{{ expense.date.isoformat }}</td>
-            <td>
-              {% if expense.category %}
-                {% include 'sheets/macros/category.html' with category=expense.category %}
-              {% else %}
-                N/A
-              {% endif %}
-            </td>
-            <td>{{ expense.amount|currency }}</td>
-            <td>{{ expense.description }}</td>
-            <td>{% include 'sheets/macros/expense_menu.html' with expense=expense %}</td>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Category</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Description</th>
+            <th scope="col"></th>
           </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {% for expense in page_obj %}
+            <tr class="v-parent v-parent-bg">
+              <td>{{ expense.date.isoformat }}</td>
+              <td class="text-nowrap">
+                {% if expense.category %}
+                  {% include 'sheets/macros/category.html' with category=expense.category %}
+                {% else %}
+                  N/A
+                {% endif %}
+              </td>
+              <td>{{ expense.amount|currency }}</td>
+              <td style="min-width: 20rem;">{{ expense.description }}</td>
+              <td>{% include 'sheets/macros/expense_menu.html' with expense=expense %}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
 
     <nav aria-label="History navigation" class="mt-4">
       <ul class="pagination justify-content-center">
