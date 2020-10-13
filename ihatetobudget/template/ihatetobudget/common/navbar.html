@@ -13,6 +13,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="dropdown-divider"></div>
       <ul class="navbar-nav mr-auto">
         {% if user.is_authenticated %}
           {% if month_list %}
@@ -30,7 +31,7 @@
       </ul>
       <ul class="navbar-nav">
         {% if user.is_authenticated %}
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown d-none d-lg-block">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fa fa-plus"></i></a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown2">
@@ -38,7 +39,7 @@
               <a class="dropdown-item" href="{% url 'sheets:category-new' %}">New category</a>
             </div>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown d-none d-lg-block">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fa fa-user-circle fa-lg"></i></a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown1">
@@ -46,6 +47,25 @@
               <a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-sign-out fa-fw"></i> Sign out</a>
             </div>
           </li>
+
+          <div class="d-lg-none">
+            <div class="dropdown-divider"></div>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'sheets:expense-new' %}">New expense</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'sheets:category-new' %}">New category</a>
+            </li>
+
+            <div class="dropdown-divider"></div>
+            <span class="navbar-text h6 pb-0 mb-0">
+              Signed in as <span class="font-weight-bolder">{{ request.user }}</span>
+            </span>
+            <h6 class="nav-header"></h6>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-sign-out fa-fw"></i> Sign out</a>
+            </li>
+          </div>
         {% else %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'login' %}">Sign in <i class="fa fa-sign-in fa-fw"></i></a>
