@@ -5,5 +5,7 @@ def index(request):
     return (
         redirect("sheets:index")
         if request.user.is_authenticated
-        else render(request, "ihatetobudget/index.html")
+        else render(
+            request, "ihatetobudget/index.html", context={"title": "Home"}
+        )
     )

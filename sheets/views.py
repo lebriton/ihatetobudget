@@ -51,6 +51,7 @@ def index(request):
         request,
         "sheets/index.html",
         dict(
+            title="Overview",
             monthly_average_spend=(
                 # XXX: formatting using "%.2f" is not ideal
                 "%.2f" % x
@@ -144,11 +145,13 @@ class ExpenseListView(LoginRequiredMixin, ListView):
     paginate_by = 10
     model = Expense
     ordering = ["-date"]
+    extra_context = {"title": "Expense History"}
 
 
 class CategoryListView(LoginRequiredMixin, ListView):
     template_name = "sheets/categories.html"
     model = Category
+    extra_context = {"title": "Categories"}
 
 
 class CategoryCreateView(
