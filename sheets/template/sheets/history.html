@@ -20,7 +20,7 @@
         </thead>
         <tbody>
           {% for expense in page_obj %}
-            <tr class="v-parent v-parent-bg">
+            <tr class="v-parent v-parent-bg {{ expense.date|is_future_date|yesno:'table-info,' }}">
               <td>{{ expense.date.isoformat }}</td>
               <td class="text-nowrap">
                 {% if expense.category %}

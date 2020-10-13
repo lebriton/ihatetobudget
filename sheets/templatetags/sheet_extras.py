@@ -1,3 +1,5 @@
+import datetime
+
 from django import template
 from django.template.defaultfilters import stringfilter
 
@@ -23,3 +25,8 @@ def currency(string):
 @register.simple_tag
 def setvar(val=None):
     return val
+
+
+@register.filter
+def is_future_date(date):
+    return date > datetime.datetime.now().date()
