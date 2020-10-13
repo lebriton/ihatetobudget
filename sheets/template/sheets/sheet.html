@@ -40,7 +40,7 @@
             {% if category.grouper is None %}
               <span class="font-italic font-weight-bold">No category</span>
             {% else %}
-              <span class="text-truncate font-weight-bold">
+              <span class="text-truncate font-weight-bold" data-toggle="tooltip" data-placement="top" title="{{ category.grouper }}">
                 {% include 'sheets/macros/category.html' with category=category.grouper %}
               </span>
             {% endif %}
@@ -50,7 +50,7 @@
           <ul class="list-group list-group-flush">
             {% for expense in category.list|dictsortreversed:'date' %}
               <li class="list-group-item d-flex justify-content-between align-items-center py-2 v-parent v-parent-bg">
-                <span class="flex-fill text-truncate {{ expense.date|is_future_date|yesno:'text-info,' }}">{{ expense }}</span>
+                <span class="flex-fill text-truncate {{ expense.date|is_future_date|yesno:'text-info,' }}"  data-toggle="tooltip" data-placement="top" title="{{ expense }}">{{ expense }}</span>
                 <small class="text-muted text-right ml-3 v-child" style="line-height: 1.25;">{{ expense.date.isoformat }}<br>{{ expense.amount|currency }}</small>
 
                 {% include 'sheets/macros/expense_menu.html' with expense=expense %}
