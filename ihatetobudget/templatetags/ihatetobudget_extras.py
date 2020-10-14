@@ -1,6 +1,7 @@
 import datetime
 
 from django import template
+from django.http import QueryDict
 from django.template.defaultfilters import stringfilter
 
 register = template.Library()
@@ -30,3 +31,10 @@ def setvar(val=None):
 @register.filter
 def is_future_date(date):
     return date > datetime.datetime.now().date()
+
+
+@register.filter
+def override_query_dict(query_dict, parameters):
+    query_dict = query_dict.copy()
+    query_dict.update(QueryDict(parameters))
+    return "&".join(f"{k}={v}" for k, v in query_dict.items())

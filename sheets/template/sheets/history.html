@@ -1,6 +1,6 @@
 {% extends 'ihatetobudget/common/base.html' %}
 
-{% load sheet_extras %}
+{% load ihatetobudget_extras %}
 
 {% block body %}
   {% include 'sheets/macros/page_header_beginning.html' with title=title %}
@@ -11,9 +11,9 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">Date</th>
-            <th scope="col">Category</th>
-            <th scope="col">Amount</th>
+            <th scope="col">{{ sortable_fields_dict.date }}</th>
+            <th scope="col">{{ sortable_fields_dict.category }}</th>
+            <th scope="col">{{ sortable_fields_dict.amount }}</th>
             <th scope="col">Description</th>
             <th scope="col"></th>
           </tr>
@@ -46,7 +46,9 @@
       <ul class="pagination justify-content-center">
         {% if page_obj.has_previous %}
           <li class="page-item">
-            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            {% setvar page_obj.previous_page_number|stringformat:"i" as page %}
+            {% setvar 'page='|add:page as parameters %}
+            <a class="page-link" href="?{{ request.GET|override_query_dict:parameters }}">Previous</a>
           </li>
         {% else %}
           <li class="page-item disabled">
@@ -63,13 +65,17 @@
               </span>
             </li>
           {% else %}
-            <li class="page-item"><a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a></li>
+            {% setvar page_number|stringformat:"i" as page %}
+            {% setvar 'page='|add:page as parameters %}
+            <li class="page-item"><a class="page-link" href="?{{ request.GET|override_query_dict:parameters }}">{{ page_number }}</a></li>
           {% endif %}
         {% endfor %}
 
         {% if page_obj.has_next %}
           <li class="page-item">
-            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+            {% setvar page_obj.next_page_number|stringformat:"i" as page %}
+            {% setvar 'page='|add:page as parameters %}
+            <a class="page-link" href="?{{ request.GET|override_query_dict:parameters }}">Next</a>
           </li>
         {% else %}
           <li class="page-item disabled">

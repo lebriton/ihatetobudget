@@ -16,6 +16,7 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from ihatetobudget.utils.views import (
     InitialDataAsGETOptionsMixin,
+    SortableListViewMixin,
     SuccessMessageOnDeleteViewMixin,
 )
 
@@ -154,12 +155,15 @@ class ExpenseDeleteView(
         return super().get_success_url()
 
 
-class ExpenseListView(LoginRequiredMixin, ListView):
+class ExpenseListView(LoginRequiredMixin, SortableListViewMixin, ListView):
     template_name = "sheets/history.html"
     paginate_by = 10
     model = Expense
     ordering = ["-date"]
     extra_context = {"title": "Expense History"}
+
+    # SortableListViewMixin
+    sortable_fields = ["date", "category", "amount"]
 
 
 class CategoryListView(LoginRequiredMixin, ListView):

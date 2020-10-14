@@ -67,6 +67,10 @@ TEMPLATES = [
         ],
         "APP_DIRS": True,
         "OPTIONS": {
+            "libraries": {
+                #  Make `ihatetobudget_extras` available to other apps
+                "ihatetobudget_extras": "ihatetobudget.templatetags.ihatetobudget_extras",  # noqa: E501
+            },
             "context_processors": [
                 "ihatetobudget.template.context_processors.version",
                 "sheets.template.context_processors.month_list",
