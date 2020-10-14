@@ -157,7 +157,7 @@ class ExpenseDeleteView(
 
 class ExpenseListView(LoginRequiredMixin, SortableListViewMixin, ListView):
     template_name = "sheets/history.html"
-    paginate_by = 10
+    paginate_by = 50
     model = Expense
     ordering = ["-date"]
     extra_context = {"title": "Expense History"}
