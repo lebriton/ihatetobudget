@@ -1,0 +1,10 @@
+localhost:80 {
+  route /static/* {
+    uri strip_prefix /static
+    root * /var/www/static
+    file_server {
+      browse
+    }
+  }
+  reverse_proxy ihatetobudget:8000
+}
