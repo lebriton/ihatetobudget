@@ -1,4 +1,4 @@
-localhost:80 {
+:80 {
   route /static/* {
     uri strip_prefix /static
     root * /var/www/static
