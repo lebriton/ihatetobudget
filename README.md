@@ -13,6 +13,17 @@
   Designed to be self-hosted.
 </p>
 
+## Table of contents
+* [About](#About)
+* [Features](#Features)
+* [Installation & Configuration](#installation--configuration)
+  * [Docker method](#docker-method)
+* [Updates](#updates)
+  * [Docker method](#docker-method-1)
+* [License](#license)
+* [Acknowledgements](#acknowledgements)
+
+
 
 
 ## About
