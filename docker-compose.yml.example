@@ -7,7 +7,7 @@ services:
     restart: always
     volumes:
       - .:/usr/src/app
-      - collectedstatic:/static
+      - static:/static
     env_file: docker-compose.env
   caddy:
     image: caddy:2.0.0
@@ -17,11 +17,11 @@ services:
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
-      - collectedstatic:/var/www/static
+      - static:/var/www/static
     depends_on:
       - ihatetobudget
 
 
 volumes:
   caddy_data:
-  collectedstatic:
+  static:
