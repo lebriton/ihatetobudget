@@ -7,6 +7,8 @@
   {% include 'sheets/macros/page_header_end.html' %}
 
   {% if page_obj %}
+    <p class="text-right">{{ page_obj.start_index }} &ndash; {{ page_obj.end_index }} of {{ page_obj.paginator.count }} items</p>
+
     <div class="table-responsive">
       <table class="table">
         <thead>
