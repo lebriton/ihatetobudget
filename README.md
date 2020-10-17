@@ -63,7 +63,7 @@ WIP
 
 4. Edit `docker-compose.env` and adapt the following environment variables:
 
-   * **`DJANGO_SECRET_KEY`:** This is the secret key used by Django.
+   * `DJANGO_SECRET_KEY`: This is the secret key used by Django.
 
 5. Run `docker-compose up -d`. This will build the main image, and create and start the necessary containers.
 
