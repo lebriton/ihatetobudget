@@ -21,7 +21,6 @@
 * [Updating](#updating)
   * [Docker method](#docker-method-1)
 * [License](#license)
-* [Acknowledgements](#acknowledgements)
 
 
 
@@ -107,7 +106,3 @@ WIP
 ## License
 
 Distributed under the GPLv3 License. See `COPYING` for more information.
-
-## Acknowledgements
-
-WIP
