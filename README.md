@@ -18,7 +18,7 @@
 * [Features](#Features)
 * [Installation & Configuration](#installation--configuration)
   * [Docker method](#docker-method)
-* [Updates](#updates)
+* [Updating](#updating)
   * [Docker method](#docker-method-1)
 * [License](#license)
 * [Acknowledgements](#acknowledgements)
@@ -78,11 +78,29 @@ WIP
 
 7. You should now be able to visit your [IHateToBudget instance](http://127.0.0.1:80) at `http://127.0.0.1:80`. You can login with the username and password you just created.
 
-## Updates
+## Updating
 
 ### Docker method
 
-WIP
+**The following instructions are guidelines. You're free to adapt these to your needs.**
+
+1. Navigate to the root of the repository.
+
+2. Run `docker-compose down`. This will stop all containers.
+
+3. **Create a backup of the database**—just in case—, e.g. run `cp db.sqlite3 db.sqlite3.bak`.
+
+4. Upgrade the codebase to the desired revision, e.g. run `git pull`.
+
+5. Migrate the database:
+
+   ```bash
+   docker-compose run --rm ihatetobudget pipenv run python manage.py migrate
+   ```
+
+   This action will synchronize the database state with the current set of models and migrations.
+
+6. Run `docker-compose up --build -d`. This will rebuild the main image, and create and start the necessary containers.
 
 ## License
 
