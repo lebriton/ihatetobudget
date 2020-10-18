@@ -21,6 +21,7 @@
 * [Updating](#updating)
   * [Docker method](#docker-method-1)
 * [License](#license)
+* [Usage and Contributing](#usage-and-contributing)
 
 
 
@@ -106,3 +107,8 @@ WIP
 ## License
 
 Distributed under the GPLv3 License. See `COPYING` for more information.
+
+
+## Usage and Contributing
+
+Feel free to use IHateToBudget however you want (as long as it respects the [License](#license)). I maintain this project primarily for my own use. If you can think of any relevant changes that should be incorporated into the code, you can contribute by submitting an issue, or even a pull request. I don't plan on adding any developer documentation, though.
