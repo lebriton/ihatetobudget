@@ -1,3 +1,13 @@
+![GitHub Pipenv locked Python version](https://img.shields.io/github/pipenv/locked/python-version/bminusl/ihatetobudget)
+![GitHub Pipenv locked dependency version](https://img.shields.io/github/pipenv/locked/dependency-version/bminusl/ihatetobudget/django)
+![GitHub Pipenv locked dependency version](https://img.shields.io/github/pipenv/locked/dependency-version/bminusl/ihatetobudget/django-bootstrap4)
+![GitHub Pipenv locked dependency version](https://img.shields.io/github/pipenv/locked/dependency-version/bminusl/ihatetobudget/django-colorfield)
+![GitHub Pipenv locked dependency version](https://img.shields.io/github/pipenv/locked/dependency-version/bminusl/ihatetobudget/daphne)
+![GitHub Pipenv locked dependency version](https://img.shields.io/github/pipenv/locked/dependency-version/bminusl/ihatetobudget/django-mathfilters)
+![GitHub](https://img.shields.io/github/license/bminusl/ihatetobudget)
+
+
+
 <p align="center">
   <a href="https://github.com/bminusl/ihatetobudget/">
     <img src="https://raw.githubusercontent.com/bminusl/ihatetobudget/master/static/logo.png" alt="IHateToBudget logo" height="75">
