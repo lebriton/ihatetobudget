@@ -52,7 +52,7 @@ WIP
 Here is a list of the features that should be added in the future:
 
 * Support HTTPS 🔒
-* Implement goals (per category/month) 🥅
+* Set goals (per category/month) 🥅
 
 Also, see the [open issues](https://github.com/bminusl/ihatetobudget/issues) for a list of proposed features (and known issues).
 
