@@ -82,6 +82,8 @@ Also, see the [open issues](https://github.com/bminusl/ihatetobudget/issues) for
 
 ### Docker method
 
+**The following instructions are guidelines. You're free to adapt these to your needs.**
+
 1. Install [Docker](https://www.docker.com/) and [docker-compose](https://docs.docker.com/compose/), if you haven't already.
 
 2. Clone the repository:
