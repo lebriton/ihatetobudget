@@ -5,17 +5,19 @@
 {% block title %}Sign in to IHateToBudget{% endblock %}
 
 {% block body %}
-  <h1 class="mx-auto mb-4 text-center">Sign in</h1>
-  <div class="card mx-auto" style="width: 22rem;">
-    <div class="card-body">
-      <form action="{% url 'login' %}" method="post" class="form">
-        {% csrf_token %}
-        {% bootstrap_form form %}
-        {% bootstrap_button '<i class="fa fa-sign-in"></i> Sign In' button_type="submit" button_class="btn-block btn-primary" %}
-      </form>
+  <div class="w-100 mx-auto" style="max-width: 22rem;">
+    <h1 class="mb-4 text-center">Sign in</h1>
+    <div class="card">
+      <div class="card-body">
+        <form action="{% url 'login' %}" method="post" class="form">
+          {% csrf_token %}
+          {% bootstrap_form form %}
+          {% bootstrap_button '<i class="fa fa-sign-in"></i> Sign In' button_type="submit" button_class="btn-block btn-primary" %}
+        </form>
+      </div>
     </div>
-  </div>
-  <div class="mx-auto mt-1 text-center" style="width: 22rem;">
-    <small>Don't have an account? <a href="https://github.com/bminusl/ihatetobudget">Host your own instance of IHateToBudget.</a></small>
+    <div class="mt-1 text-center">
+      <small>Don't have an account? <a href="https://github.com/bminusl/ihatetobudget">Host your own instance of IHateToBudget.</a></small>
+    </div>
   </div>
 {% endblock %}
