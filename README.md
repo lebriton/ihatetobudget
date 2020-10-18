@@ -28,7 +28,9 @@
 
 ## About
 
-WIP
+Managing your budget and knowing where your money goes is important. I had tried various budgeting methods for many months, but never stuck with one. So I designed IHateToBudget, a simple and efficient application that meets my needs.
+
+And it is also available for you.
 
 ## Features
 
