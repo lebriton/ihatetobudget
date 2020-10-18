@@ -47,7 +47,7 @@ And it is also available for you.
 
 #### Overview
 
-The overview page lets you see the overall statistics.
+The *overview* page lets you see the overall statistics.
 
 ![Overview](./screenshots/overview.png)
 
@@ -59,13 +59,13 @@ Each month is represented by a sheet. Individual expenses are grouped into categ
 
 #### Categories
 
-The categories page lets you to define the name and color of each category.
+The *categories* page lets you define the name and color of each category.
 
 ![Categories](./screenshots/categories.png)
 
 #### History
 
-The history page allows you to deepen your search to filter and find information.
+The *history* page lets you explore and filter all expenses.
 
 ![History](./screenshots/history.png)
 
