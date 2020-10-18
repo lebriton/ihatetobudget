@@ -1,4 +1,4 @@
-## Cheatsheet
+## Cheatsheet
 
 1. Remove all data from the database and generate random data for testing:
 
