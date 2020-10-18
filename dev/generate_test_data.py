@@ -22,6 +22,7 @@ for i, color in enumerate(
     categories.append(c)
 
 
+i = 1
 for dt in rrule.rrule(
     rrule.DAILY, dtstart=date(2019, 6, 5), until=date(2020, 10, 26)
 ):
@@ -29,8 +30,9 @@ for dt in rrule.rrule(
         data = dict(
             category=random.choice(categories),
             date=dt,
-            description="Lorem ispum",
+            description=f"Expense #{i} description...",
             amount=decimal.Decimal(random.uniform(1.0, 250.0)),
         )
+        i += 1
         Expense(**data).save()
         print(f"Created expense: {data}")
