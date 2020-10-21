@@ -5,6 +5,7 @@
 ![GitHub Pipenv locked dependency version](https://img.shields.io/github/pipenv/locked/dependency-version/bminusl/ihatetobudget/daphne)
 ![GitHub Pipenv locked dependency version](https://img.shields.io/github/pipenv/locked/dependency-version/bminusl/ihatetobudget/django-mathfilters)
 ![GitHub](https://img.shields.io/github/license/bminusl/ihatetobudget)
+![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)
 
 
 
