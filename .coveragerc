@@ -1,0 +1,10 @@
+[run]
+omit =
+  *migrations/*,
+  *tests/*,
+  *tests.py,
+  *test_*.py
+
+  manage.py
+  ihatetobudget/asgi.py
+  ihatetobudget/wsgi.py
