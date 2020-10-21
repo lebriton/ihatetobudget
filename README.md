@@ -6,6 +6,7 @@
 ![GitHub Pipenv locked dependency version](https://img.shields.io/github/pipenv/locked/dependency-version/bminusl/ihatetobudget/django-mathfilters)
 ![GitHub](https://img.shields.io/github/license/bminusl/ihatetobudget)
 ![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)
+![GitHub commits since latest release (by date)](https://img.shields.io/github/commits-since/bminusl/ihatetobudget/v1.0.0)
 
 
 
