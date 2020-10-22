@@ -3,7 +3,7 @@
 ![GitHub](https://img.shields.io/github/license/bminusl/ihatetobudget)
 ![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)
 ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/bminusl/ihatetobudget)
-![GitHub commits since latest release (by date)](https://img.shields.io/github/commits-since/bminusl/ihatetobudget/v1.0.0)
+![GitHub commits since latest release (by date)](https://img.shields.io/github/commits-since/bminusl/ihatetobudget/v1.0.1)
 
 
 
