@@ -85,7 +85,8 @@ class SheetView(LoginRequiredMixin, MonthArchiveView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         now = datetime.datetime.now()
-        if now.month == context["month"].month:
+        month = context["month"]
+        if now.month == month.month and now.year == month.year:
             days_left = (
                 calendar.monthrange(year=now.year, month=now.month)[1] - now.day
             ) + 1
