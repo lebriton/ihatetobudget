@@ -17,7 +17,7 @@
     </ul>
 
     <h6 class="mt-3 mb-1 font-weight-normal text-muted text-uppercase">
-      <span>By date</span>
+      By date
     </h6>
 
     <ul class="nav nav-custom flex-column">
@@ -30,14 +30,11 @@
         <span class="text-warning">No sheet available</span>
       {% endfor %}
     </ul>
-  </div>
-</div>
 
-<div class="card mb-4">
-  <div class="card-header font-weight-bold text-uppercase">
-    Settings
-  </div>
-  <div class="card-body">
+    <h6 class="mt-3 mb-1 font-weight-normal text-muted text-uppercase">
+      Settings
+    </h6>
+
     <ul class="fa-ul nav nav-custom flex-column">
       <li class="nav-item">
         {% url 'sheets:categories' as url %}
