@@ -40,7 +40,7 @@
             {% if category.grouper is None %}
               <span class="font-italic font-weight-bold">No category</span>
             {% else %}
-              <span class="text-truncate font-weight-bold" data-toggle="tooltip" data-placement="top" title="{{ category.grouper }}">
+              <span class="flex-fill text-truncate font-weight-bold" data-toggle="tooltip" data-placement="top" title="{{ category.grouper }}">
                 {% include 'sheets/macros/category.html' with category=category.grouper %}
               </span>
             {% endif %}

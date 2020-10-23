@@ -13,11 +13,11 @@
       <table class="table">
         <thead>
           <tr>
-            <th class="text-uppercase" scope="col">{{ sortable_fields_dict.date }}</th>
-            <th class="text-uppercase" scope="col">{{ sortable_fields_dict.category }}</th>
-            <th class="text-uppercase" scope="col">{{ sortable_fields_dict.amount }}</th>
-            <th class="text-uppercase" scope="col">Description</th>
-            <th class="text-uppercase" scope="col">Actions</th>
+            <th class="text-uppercase" scope="col" style="width: 20%">{{ sortable_fields_dict.date }}</th>
+            <th class="text-uppercase" scope="col" style="width: 20%">{{ sortable_fields_dict.category }}</th>
+            <th class="text-uppercase" scope="col" style="width: 20%">{{ sortable_fields_dict.amount }}</th>
+            <th class="text-uppercase" scope="col" style="width: 20%">Description</th>
+            <th class="text-uppercase" scope="col" style="width: 20%">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -28,7 +28,7 @@
                   {{ expense.date.isoformat }}
                 {% endifchanged %}
               </td>
-              <td class="text-nowrap">
+              <td>
                 {% if expense.category %}
                   {% include 'sheets/macros/category.html' with category=expense.category %}
                 {% else %}
@@ -36,7 +36,7 @@
                 {% endif %}
               </td>
               <td>{{ expense.amount|currency }}</td>
-              <td style="min-width: 20rem;">{{ expense.description }}</td>
+              <td>{{ expense.description }}</td>
               <td>{% include 'sheets/macros/expense_menu.html' with expense=expense %}</td>
             </tr>
           {% endfor %}
