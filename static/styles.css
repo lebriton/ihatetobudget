@@ -97,9 +97,15 @@ body, p {
 }
 
 /* Specific to our use */
-.popover .arrow::before {
-    border-left-color: #2e3338;
+.bs-popover-left > .arrow::before {
+  border-left-color: #2e3338;
 }
-.popover .arrow::after {
-    border-left-color: var(--dark);
+.bs-popover-left > .arrow::after {
+  border-left-color: var(--dark);
+}
+.bs-popover-right > .arrow::before{
+  border-right-color: #2e3338;
+}
+.bs-popover-right > .arrow::after {
+  border-right-color: var(--dark);
 }
