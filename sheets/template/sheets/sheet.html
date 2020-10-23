@@ -34,7 +34,7 @@
     {% for category in category_list %}
       <div class="col-lg-6">
         <div class="card mb-4">
-          <a href="{% url 'sheets:expense-new' %}?category={{ category.grouper|urlencode }}" class="btn btn-light btn-circle border position-absolute" style="left: 50%; bottom: -1.125rem; transform: translateX(-1.125rem); z-index: 100;"><i class="fa fa-plus fa-lg"></i></a>
+          <a href="{% url 'sheets:expense-new' %}?category={{ category.grouper|urlencode }}" class="btn btn-light btn-circle border position-absolute" style="left: 50%; bottom: -1rem; transform: translateX(-1rem); z-index: 100;"><i class="fa fa-plus fa-lg"></i></a>
 
           <div class="card-header d-flex justify-content-between">
             {% if category.grouper is None %}
@@ -58,6 +58,9 @@
               </li>
             {% endfor %}
           </ul>
+
+          <div class="card-footer">
+          </div>
         </div>
       </div>
     {% endfor %}
