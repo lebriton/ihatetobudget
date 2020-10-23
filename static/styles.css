@@ -75,3 +75,31 @@ body, p {
   color: var(--primary);
   font-weight: bold;
 }
+
+
+/*
+ * Popover custom style (base on `.card.bg-dark`)
+ */
+
+.popover {
+  background: var(--dark);
+  color: var(--white);
+  border: 1px solid rgba(0,0,0,0.125);
+}
+
+.popover-header {
+  background-color: rgba(0,0,0,0.03);
+  border-bottom: 1px solid rgba(0,0,0,0.125);
+}
+
+.popover-body {
+  color: var(--white);
+}
+
+/* Specific to our use */
+.popover .arrow::before {
+    border-left-color: #2e3338;
+}
+.popover .arrow::after {
+    border-left-color: var(--dark);
+}
