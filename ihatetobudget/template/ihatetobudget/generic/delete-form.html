@@ -6,17 +6,21 @@
   {% include 'sheets/macros/page_header_beginning.html' with title=title %}
   {% include 'sheets/macros/page_header_end.html' %}
 
-  <form method="post" class="form">
-    {% csrf_token %}
-    <div class="alert alert-warning" role="alert">
-      Are you sure you want to delete "<span class="font-weight-bold">{{ object }}</span>"? This action cannot be undone.
+  <div class="row justify-content-md-center">
+    <div class="col-lg-6">
+      <form method="post" class="form">
+        {% csrf_token %}
+        <div class="alert alert-warning" role="alert">
+          Are you sure you want to delete "<span class="font-weight-bold">{{ object }}</span>"? This action cannot be undone.
+        </div>
+        <hr class="mt-5 mb-3">
+        <div class="text-right">
+          {% spaceless %}
+            <button type="button" class="btn btn-light mr-2" onclick="javascript:history.back();"><i class="fa fa-times fa-fw"></i> Cancel</button>
+            <button type="submit" class="btn btn-danger"><i class="fa fa-trash fa-fw"></i> Delete</button>
+          {% endspaceless %}
+        </div>
+      </form>
     </div>
-    <hr class="mt-5 mb-3">
-    <div class="text-right">
-      {% spaceless %}
-        <button type="button" class="btn btn-light mr-2" onclick="javascript:history.back();"><i class="fa fa-times fa-fw"></i> Cancel</button>
-        <button type="submit" class="btn btn-danger"><i class="fa fa-trash fa-fw"></i> Delete</button>
-      {% endspaceless %}
-    </div>
-  </form>
+  </div>
 {% endblock %}
