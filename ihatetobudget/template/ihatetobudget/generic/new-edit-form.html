@@ -6,15 +6,19 @@
   {% include 'sheets/macros/page_header_beginning.html' with title=title %}
   {% include 'sheets/macros/page_header_end.html' %}
 
-  <form method="post" class="form">
-    {% csrf_token %}
-    {% bootstrap_form form %}
-    <hr class="mt-5 mb-3">
-    <div class="text-right">
-      {% spaceless %}
-        <button type="button" class="btn btn-light mr-2" onclick="javascript:history.back();"><i class="fa fa-times fa-fw"></i> Cancel</button>
-        <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o fa-fw"></i> Save</button>
-      {% endspaceless %}
+  <div class="row justify-content-md-center">
+    <div class="col-lg-6">
+      <form method="post" class="form">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <hr class="mt-5 mb-3">
+        <div class="text-right">
+          {% spaceless %}
+            <button type="button" class="btn btn-light mr-2" onclick="javascript:history.back();"><i class="fa fa-times fa-fw"></i> Cancel</button>
+            <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o fa-fw"></i> Save</button>
+          {% endspaceless %}
+        </div>
+      </form>
     </div>
-  </form>
+  </div>
 {% endblock %}
