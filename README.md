@@ -44,6 +44,8 @@ And it is also available for you.
 
 ## Features
 
+⚠️ These screenshots are slightly outdated. ⚠️
+
 #### Overview
 
 The *overview* page lets you see the overall statistics.
