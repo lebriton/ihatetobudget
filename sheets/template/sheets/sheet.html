@@ -19,7 +19,7 @@
     </a>
   {% include 'sheets/macros/page_header_end.html' %}
 
-  <p class="h3 text-center">{{ total_amount|currency }}</p>
+  <p class="h3 text-center fx-fadein">{{ total_amount|currency }}</p>
 
   {% regroup object_list|order_queryset_by:'category' by category as category_list %}
 

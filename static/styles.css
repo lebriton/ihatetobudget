@@ -109,3 +109,17 @@ body, p {
 .bs-popover-right > .arrow::after {
   border-right-color: var(--dark);
 }
+
+
+/*
+ * CSS animations
+ */
+
+@keyframes fadein {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+.fx-fadein {
+  animation-name: fadein;
+  animation-duration: .5s;
+}
