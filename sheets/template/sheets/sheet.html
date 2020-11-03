@@ -45,7 +45,7 @@
               </span>
             {% endif %}
 
-            <span class="ml-3" style="font-size: 1.25rem;">{{ category.list|attrsum:'amount'|currency }}</span>
+            <span class="ml-3">{{ category.list|attrsum:'amount'|currency }}</span>
           </div>
           <ul class="list-group list-group-flush">
             {% for expense in category.list|dictsortreversed:'date' %}
