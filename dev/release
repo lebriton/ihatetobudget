@@ -1,0 +1,7 @@
+#!/bin/bash
+for f in README.md ihatetobudget/__init__.py; do
+  sed -i "s/$1/$2/g" $f
+  git add $f
+done
+git commit -am "Release v$2"
+git tag v$2

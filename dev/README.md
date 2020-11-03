@@ -6,3 +6,9 @@
    python manage.py flush --no-input
    python manage.py shell -c "from dev import generate_test_data"
    ```
+
+2. Release a new version
+
+   ```bash
+   dev/release old_version new_version
+   ```
