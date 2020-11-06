@@ -103,11 +103,11 @@ body, p {
 .bs-popover-left > .arrow::after {
   border-left-color: var(--dark);
 }
-.bs-popover-right > .arrow::before{
-  border-right-color: #2e3338;
+.bs-popover-top > .arrow::before {
+  border-top-color: #2e3338;
 }
-.bs-popover-right > .arrow::after {
-  border-right-color: var(--dark);
+.bs-popover-top > .arrow::after {
+  border-top-color: var(--dark);
 }
 
 
