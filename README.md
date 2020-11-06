@@ -133,7 +133,7 @@ Also, see the [open issues](https://github.com/bminusl/ihatetobudget/issues) for
 
 1. Navigate to the root of the repository.
 
-2. Run `docker-compose down`. This will stop all containers.
+2. Run `docker-compose down -v`. This will stop all containers (and remove volumes).
 
 3. **Create a backup of the database**—just in case—, e.g. run `cp db.sqlite3 db.sqlite3.bak`.
 
