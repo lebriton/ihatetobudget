@@ -22,8 +22,11 @@
         </thead>
         <tbody>
           {% for expense in page_obj %}
-            <tr class="v-parent v-parent-bg {{ expense.date|is_future_date|yesno:'table-info,' }}">
-              <td>{{ expense.date.isoformat }}</td>
+            <tr class="v-parent v-parent-bg">
+              <td>
+                {{ expense.date.isoformat }}
+                {% include 'sheets/macros/potential_future_expense_icon.html' with expense=expense %}
+              </td>
               <td>
                 {% if expense.category %}
                   {% include 'sheets/macros/category.html' with category=expense.category %}
