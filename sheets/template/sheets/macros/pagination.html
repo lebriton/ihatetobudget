@@ -1,0 +1,43 @@
+{% load ihatetobudget_extras %}
+<nav aria-label="History navigation" class="mt-4">
+    <ul class="pagination justify-content-center">
+      {% if page_obj.has_previous %}
+        <li class="page-item">
+          {% setvar page_obj.previous_page_number|stringformat:"i" as page %}
+          {% setvar 'page='|add:page as parameters %}
+          <a class="page-link" href="?{{ request.GET|override_query_dict:parameters }}">Previous</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <span class="page-link">Previous</span>
+        </li>
+      {% endif %}
+
+      {% for page_number in page_obj.paginator.page_range %}
+        {% if page_number == page_obj.number %}
+          <li class="page-item active" aria-current="page">
+            <span class="page-link">
+              {{ page_number }}
+              <span class="sr-only">(current)</span>
+            </span>
+          </li>
+        {% else %}
+          {% setvar page_number|stringformat:"i" as page %}
+          {% setvar 'page='|add:page as parameters %}
+          <li class="page-item"><a class="page-link" href="?{{ request.GET|override_query_dict:parameters }}">{{ page_number }}</a></li>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <li class="page-item">
+          {% setvar page_obj.next_page_number|stringformat:"i" as page %}
+          {% setvar 'page='|add:page as parameters %}
+          <a class="page-link" href="?{{ request.GET|override_query_dict:parameters }}">Next</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <span class="page-link">Next</span>
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
