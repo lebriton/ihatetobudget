@@ -6,7 +6,7 @@ from collections import defaultdict
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.db.models import Avg, Sum
+from django.db.models import Avg, Q, Sum
 from django.db.models.functions import TruncMonth
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -165,6 +165,17 @@ class ExpenseListView(LoginRequiredMixin, SortableListViewMixin, ListView):
 
     # SortableListViewMixin
     sortable_fields = ["date", "category", "amount"]
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        if query := self.request.GET.get("q"):
+            return queryset.filter(
+                Q(date__icontains=query)
+                | Q(category__name__icontains=query)
+                | Q(amount__icontains=query)
+                | Q(description__icontains=query)
+            )
+        return queryset
 
 
 class CategoryListView(LoginRequiredMixin, ListView):

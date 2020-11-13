@@ -1,3 +1,10 @@
 <div class="d-inline-block rounded-circle align-bottom mr-2" style="width: 1.5rem; height: 1.5rem; background-color: {{ category.color }};"></div>
 
-{{ category }}
+{# `category_name` is an optional parameter. It can be used by the caller to #}
+{# override the displayed category name. This can be useful to e.g. apply a #}
+{# custom filter. #}
+{% if category_name %}
+    {{ category_name }}
+{% else %}
+    {{ category }}
+{% endif %}

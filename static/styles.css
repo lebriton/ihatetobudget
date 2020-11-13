@@ -40,6 +40,10 @@ body, p {
   font-weight: bold;
 }
 
+.text-highlight {
+  background-color: var(--yellow);
+}
+
 
 /*
  * Toggle visibility based on parent :hover state (or :active for touch screens)

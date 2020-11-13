@@ -1,8 +1,10 @@
 import datetime
+import re
 
 from django import template
 from django.http import QueryDict
 from django.template.defaultfilters import stringfilter
+from django.utils.safestring import mark_safe
 
 register = template.Library()
 
@@ -38,3 +40,20 @@ def override_query_dict(query_dict, parameters):
     query_dict = query_dict.copy()
     query_dict.update(QueryDict(parameters))
     return "&".join(f"{k}={v}" for k, v in query_dict.items())
+
+
+@register.filter
+@stringfilter
+def highlight_text(text, term):
+    return (
+        mark_safe(
+            re.sub(
+                term,
+                lambda matchobj: f'<span class="text-highlight">{matchobj.group(0)}</span>',  # noqa: E501
+                text,
+                flags=re.I,
+            )
+        )
+        if term
+        else text
+    )

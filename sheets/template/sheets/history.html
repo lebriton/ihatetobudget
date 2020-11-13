@@ -3,12 +3,30 @@
 {% load ihatetobudget_extras %}
 
 {% block body %}
+  {% setvar request.GET.q as q %}
+
   {% include 'sheets/macros/page_header_beginning.html' with title=title %}
+    <span class="text-nowrap ml-3">{{ page_obj.start_index }} &ndash; {{ page_obj.end_index }} of {{ page_obj.paginator.count }} items</span>
   {% include 'sheets/macros/page_header_end.html' %}
 
-  {% if page_obj %}
-    <p class="text-right">{{ page_obj.start_index }} &ndash; {{ page_obj.end_index }} of {{ page_obj.paginator.count }} items</p>
+  <form action="?abc=foo" method="get">
+    <div class="input-group mb-3">
+      <input name="q" value="{{ q }}" type="text" class="form-control" placeholder="Date, category, amount, description" aria-label="Date, category, amount, description" aria-describedby="button-addon2">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fa fa-search"></i></button>
+      </div>
 
+      {% for parameter, value in request.GET.items %}
+        {% if parameter == 'q' or parameter == 'page' %}
+          {# skip #}
+        {% else %}
+          <input type="hidden" name="{{ parameter }}" value="{{ value }}">
+        {% endif %}
+      {% endfor %}
+    </div>
+  </form>
+
+    {# Note: This part is kept indented to keep a clear changes history #}
     <div class="table-responsive">
       <table class="table">
         <thead>
@@ -24,18 +42,18 @@
           {% for expense in page_obj %}
             <tr class="v-parent v-parent-bg">
               <td>
-                {{ expense.date.isoformat }}
+                {{ expense.date.isoformat|highlight_text:q }}
                 {% include 'sheets/macros/potential_future_expense_icon.html' with expense=expense %}
               </td>
               <td>
                 {% if expense.category %}
-                  {% include 'sheets/macros/category.html' with category=expense.category %}
+                  {% include 'sheets/macros/category.html' with category=expense.category category_name=expense.category.name|highlight_text:q %}
                 {% else %}
                   N/A
                 {% endif %}
               </td>
-              <td>{{ expense.amount|currency }}</td>
-              <td>{{ expense.description }}</td>
+              <td>{{ expense.amount|currency|highlight_text:q }}</td>
+              <td>{{ expense.description|highlight_text:q }}</td>
               <td>{% include 'sheets/macros/expense_menu.html' with expense=expense %}</td>
             </tr>
           {% endfor %}
@@ -85,7 +103,4 @@
         {% endif %}
       </ul>
     </nav>
-  {% else %}
-    <p class="text-warning">Nothing to show yet.</p>
-  {% endif %}
 {% endblock %}

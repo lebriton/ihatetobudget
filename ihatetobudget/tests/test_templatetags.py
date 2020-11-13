@@ -97,3 +97,35 @@ foobarbazspamhameggs
                     context,
                     expected_rendered_string,
                 )
+
+    def test_highlight_text(self):
+        template_code = "{{ 'Lorem ipsum'|highlight_text:term }}"
+
+        for context, expected_rendered_string in [
+            #  General case
+            (
+                dict(term="rem"),
+                'Lo<span class="text-highlight">rem</span> ipsum',
+            ),
+            #  Verify case-insensitivity
+            (
+                dict(term="lo"),
+                '<span class="text-highlight">Lo</span>rem ipsum',
+            ),
+            #  Verify multiple occurrences
+            (
+                dict(term="m"),
+                'Lore<span class="text-highlight">m</span> ipsu<span class="text-highlight">m</span>',  # noqa: E501
+            ),
+            #  Verify no search term
+            (dict(term=""), "Lorem ipsum"),
+        ]:
+            with self.subTest(
+                context=context,
+                expected_rendered_string=expected_rendered_string,
+            ):
+                self.assertRenderedCorrectly(
+                    template_code,
+                    context,
+                    expected_rendered_string,
+                )
