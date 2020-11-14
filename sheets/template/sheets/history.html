@@ -15,15 +15,15 @@
       <div class="input-group-append">
         <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fa fa-search"></i></button>
       </div>
-
-      {% for parameter, value in request.GET.items %}
-        {% if parameter == 'q' or parameter == 'page' %}
-          {# skip #}
-        {% else %}
-          <input type="hidden" name="{{ parameter }}" value="{{ value }}">
-        {% endif %}
-      {% endfor %}
     </div>
+
+    {% for parameter, value in request.GET.items %}
+      {% if parameter == 'q' or parameter == 'page' %}
+        {# skip #}
+      {% else %}
+        <input type="hidden" name="{{ parameter }}" value="{{ value }}">
+      {% endif %}
+    {% endfor %}
   </form>
 
   {% include 'sheets/macros/pagination.html' %}
