@@ -14,6 +14,9 @@ body, p {
 .navbar .nav-link:hover {
   color: rgba(0, 0, 0, .5) !important;
 }
+.navbar .nav-link.disabled {
+  color: rgba(0, 0, 0, .35) !important;
+}
 
 .navbar-brand:hover {
   opacity: .5;

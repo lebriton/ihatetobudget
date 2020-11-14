@@ -74,6 +74,7 @@ TEMPLATES = [
             "context_processors": [
                 "ihatetobudget.template.context_processors.version",
                 "sheets.template.context_processors.month_list",
+                "sheets.template.context_processors.current_sheet_dict",
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
