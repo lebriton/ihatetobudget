@@ -9,7 +9,7 @@
     <span class="text-nowrap ml-3">{{ page_obj.start_index }} &ndash; {{ page_obj.end_index }} of {{ page_obj.paginator.count }} items</span>
   {% include 'sheets/macros/page_header_end.html' %}
 
-  <form action="?abc=foo" method="get">
+  <form action="" method="get">
     <div class="input-group mb-3">
       <input name="q" value="{{ q }}" type="text" class="form-control" placeholder="Date, category, amount, description" aria-label="Date, category, amount, description" aria-describedby="button-addon2">
       <div class="input-group-append">
