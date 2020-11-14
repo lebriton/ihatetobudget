@@ -71,7 +71,7 @@ def index(request):
                 if (x := Expense.objects.all())
                 else "0.00"
             ),
-            monthly_insights=monthly_insights,
+            monthly_insights_dict=monthly_insights,
         ),
     )
 

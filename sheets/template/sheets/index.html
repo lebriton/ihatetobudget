@@ -49,9 +49,9 @@
   <div class="d-flex justify-content-between">
     <h2 class="h3">Monthly insights</h2>
 
-    {% if monthly_insights %}
+    {% if monthly_insights_dict %}
       <ul class="nav nav-pills justify-content-end ml-3" id="myTab" role="tablist">
-        {% for year in monthly_insights %}
+        {% for year in monthly_insights_dict %}
         <li class="nav-item" role="presentation">
           <a class="nav-link {% if forloop.first %}active{% endif %}" id="monthlyInsights{{ year }}-tab" data-toggle="tab" href="#monthlyInsights{{ year }}" role="tab" aria-controls="monthlyInsights{{ year }}" aria-selected="{{ forloop.first|yesno:'true,false' }}">{{ year }}</a>
         </li>
@@ -61,7 +61,7 @@
   </div>
 
   <div class="tab-content" id="myTabContent">
-    {% for year, category_dict in monthly_insights.items %}
+    {% for year, category_dict in monthly_insights_dict.items %}
       <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="monthlyInsights{{ year }}" role="tabpanel" aria-labelledby="monthlyInsights{{ year }}-tab">
         <canvas class="my-4" id="canvas{{ year }}"></canvas>
         <script>
@@ -71,12 +71,12 @@ var myChart = new Chart(ctx, {
     data: {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
       datasets: [
-        {% for category, amounts_per_month in category_dict.items %}
+        {% for category, amounts_per_month_list in category_dict.items %}
           {
             label: '{{ category|default:"No category" }}',
             backgroundColor: '{{ category.color|default:"#ddd" }}',
             data: [
-              {% for amount in amounts_per_month %}
+              {% for amount in amounts_per_month_list %}
                 {{ amount }},
               {% endfor %}
             ],
