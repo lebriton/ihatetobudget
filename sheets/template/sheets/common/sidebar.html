@@ -8,12 +8,6 @@
         {% url 'sheets:index' as url %}
         {% include "sheets/macros/sidebar_link.html" with url=url icon="fa-th" text="Overview" %}
       </li>
-      {% if month_list %}
-        <li class="nav-item">
-          {% url 'sheets:sheet' month_list.last.year month_list.last.month as url %}
-          {% include "sheets/macros/sidebar_link.html" with url=url icon="fa-calendar" text="Latest" %}
-        </li>
-      {% endif %}
     </ul>
 
     <h6 class="mt-3 mb-1 font-weight-normal text-muted text-uppercase">
