@@ -24,7 +24,7 @@
       {% url 'sheets:sheet' previous_month.year previous_month.month as url %}
       <a href="{{ url }}"><i class="fa fa-hand-o-left text-dark" data-toggle="tooltip" title="Previous month"></i></a>
     {% else %}
-      <span><i class="fa fa-hand-o-left text-muted" data-toggle="tooltip" title="Previous month"></i></span>
+      <span class="text-muted"><i class="fa fa-hand-o-left" data-toggle="tooltip" title="Previous month"></i></span>
     {% endif %}
 
     <p class="h3 text-center fx-fadein mb-0">{{ total_amount|currency }}</p>
@@ -33,7 +33,7 @@
       {% url 'sheets:sheet' next_month.year next_month.month as url %}
       <a href="{{ url }}"><i class="fa fa-hand-o-right text-dark" data-toggle="tooltip" title="Next month"></i></a>
     {% else %}
-      <span><i class="fa fa-hand-o-right text-muted" data-toggle="tooltip" title="Next month"></i></span>
+      <span class="text-muted"><i class="fa fa-hand-o-right" data-toggle="tooltip" title="Next month"></i></span>
     {% endif %}
   </div>
 
