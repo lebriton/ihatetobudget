@@ -14,9 +14,7 @@
   {% endif %}
 
   {% include 'sheets/macros/page_header_beginning.html' with title=title %}
-    <a href="{% url 'sheets:expense-new' %}" class="btn btn-block btn-success btn-sm">
-      <i class="fa fa-plus fa-fw"></i> New Expense
-    </a>
+    {% include 'sheets/macros/new_expense_button.html' %}
   {% include 'sheets/macros/page_header_end.html' %}
 
   <div class="d-flex justify-content-between align-items-center">
