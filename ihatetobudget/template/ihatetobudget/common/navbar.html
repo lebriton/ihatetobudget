@@ -17,8 +17,8 @@
       <ul class="navbar-nav mr-auto">
         {% if user.is_authenticated %}
           <li class="nav-item">
-            {% if current_sheet_dict %}
-              <a class="nav-link" href="{% url 'sheets:sheet' current_sheet_dict.year current_sheet_dict.month %}">Current sheet</a>
+            {% if current_sheet_date %}
+              <a class="nav-link" href="{% url 'sheets:sheet' current_sheet_date.year current_sheet_date.month %}">Current sheet</a>
             {% else %}
               <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Current sheet</a>
             {% endif %}

@@ -15,10 +15,10 @@
     </h6>
 
     <ul class="nav nav-custom flex-column">
-      {% for month in month_list %}
+      {% for sheet_date in sheet_date_list %}
         <li class="nav-item">
-          {% url 'sheets:sheet' month.year month.month as url %}
-          {% include "sheets/macros/sidebar_link.html" with url=url text=month|date:"F Y" %}
+          {% url 'sheets:sheet' sheet_date.year sheet_date.month as url %}
+          {% include "sheets/macros/sidebar_link.html" with url=url text=sheet_date|date:"F Y" %}
         </li>
       {% empty %}
         <span class="text-warning">No sheet available</span>
