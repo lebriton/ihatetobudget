@@ -1,3 +1,4 @@
+{% load ihatetobudget_extras %}
 <div class="card mt-3 mt-md-0 mb-4">
   <div class="card-header font-weight-bold text-uppercase">
     Sheets
@@ -14,11 +15,17 @@
       By date
     </h6>
 
-    <ul class="nav nav-custom flex-column">
+    <ul class="fa-ul nav nav-custom flex-column">
       {% for sheet_date in sheet_date_list %}
         <li class="nav-item">
+          {% if sheet_date.month == current_sheet_date.month and sheet_date.year == current_sheet_date.year %}
+            {% setvar "fa-hand-spock-o" as icon %}
+          {% else %}
+            {% setvar '' as icon %}
+          {% endif %}
+
           {% url 'sheets:sheet' sheet_date.year sheet_date.month as url %}
-          {% include "sheets/macros/sidebar_link.html" with url=url text=sheet_date|date:"F Y" %}
+          {% include "sheets/macros/sidebar_link.html" with url=url icon=icon text=sheet_date|date:"F Y" %}
         </li>
       {% empty %}
         <span class="text-warning">No sheet available</span>
