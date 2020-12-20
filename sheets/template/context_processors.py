@@ -16,6 +16,6 @@ def sheet_date_list(request):
 def current_sheet_date(request):
     now = datetime.datetime.now()
     for sheet_date in sheet_date_list(request).get("sheet_date_list", []):
-        if now.month == sheet_date.month and now.year == sheet_date.year:
+        if sheet_date.month == now.month and sheet_date.year == now.year:
             return {"current_sheet_date": sheet_date}
     return {}
