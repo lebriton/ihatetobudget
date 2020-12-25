@@ -53,7 +53,7 @@ Define categories, and their color.
 
 #### 2. Sheet
 
-Add dated and categorized expenses. They are automatically grouped by month (i.e. sheet)
+Add dated and categorized expenses. They are automatically grouped by month (i.e. sheet).
 
 ![Sheet](./screenshots/sheet.png)
 
