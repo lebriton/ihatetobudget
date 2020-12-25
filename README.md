@@ -166,7 +166,7 @@ See the [Developer documentation][#developer-documentation] section below for mo
 
 ### The development environment
 
-#### Set up
+#### Set up
 
 1. Install [Pipenv](https://pypi.org/project/pipenv/), if you haven't already.
 
@@ -198,7 +198,7 @@ This action spawns a shell within the virtualenv.
 
 Since IHateToBudget is primarily a Django project, you should read [Django's documentation](https://docs.djangoproject.com/en/3.1/) if you are not familiar with it already.
 
-### Code quality
+### Code quality
 
 [`pre-commit`](https://pypi.org/project/pre-commit/) hooks are used to keep the code clean, namely:
 * [`black`](https://pypi.org/project/black/)
