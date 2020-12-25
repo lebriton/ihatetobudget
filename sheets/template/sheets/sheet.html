@@ -9,7 +9,10 @@
   {% setvar object_list|attrsum:'amount' as total_amount %}
 
   {% setvar month|date:"F Y" as title %}
-  {% if days_left_string %}
+  {% if days_left %}
+    {% setvar days_left|pluralize:"day,days" as s %}
+    {% setvar days_left|stringformat:"i "|add:s|add:' left' as days_left_string %}
+
     {% setvar title|add:' <small class="text-muted">'|add:days_left_string|add:'</small>'|safe as title %}
   {% endif %}
 
