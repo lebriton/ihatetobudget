@@ -31,6 +31,12 @@
   * [Docker method](#docker-method-1)
 * [License](#license)
 * [Contributing](#contributing)
+* [Developer documentation](#developer-documentation)
+  * [The development environment](#the-development-environment)
+    * [Set up](#set-up)
+    * [Usage](#usage)
+  * [Code quality](#code-quality)
+  * [Testing](#testing)
 
 
 
@@ -152,4 +158,69 @@ Distributed under the GPLv3 License. See `COPYING` for more information.
 
 I maintain this project primarily for my own use. If you can think of any relevant changes that should be incorporated into the code, you can contribute by opening an issue or submitting a pull request.
 
-**_The documentation on how to contribute is WIP_**
+See the [Developer documentation][#developer-documentation] section below for more information.
+
+## Developer documentation
+
+**_This section is WIP_**
+
+### The development environment
+
+#### Set up
+
+1. Install [Pipenv](https://pypi.org/project/pipenv/), if you haven't already.
+
+   Pipenv is used to manage dependencies and the virtual environment.
+   Note: IHateToBudget currently targets **Python 3.8**, so **make sure it is installed too**.
+
+2. Set up the virtual environment by executing the following command:
+
+   ```bash
+   pipenv install --dev
+   ```
+
+   This action will install both develop and default packages.
+
+#### Usage
+
+When you start a new development session, run the following command:
+
+```bash
+pipenv shell
+```
+
+This action spawns a shell within the virtualenv.
+
+
+---
+
+**You should now be able to work.**
+
+Since IHateToBudget is primarily a Django project, you should read [Django's documentation](https://docs.djangoproject.com/en/3.1/) if you are not familiar with it already.
+
+### Code quality
+
+[`pre-commit`](https://pypi.org/project/pre-commit/) hooks are used to keep the code clean, namely:
+* [`black`](https://pypi.org/project/black/)
+* [`flake8`](https://pypi.org/project/flake8/)
+* [`isort`](https://pypi.org/project/isort/)
+
+Execute the following command to run pre-commit against all files:
+
+```bash
+pre-commit run --all-files
+```
+
+### Testing
+
+* To run tests, execute the following command:
+
+  ```bash
+  python manage.py test
+  ```
+
+* Alternatively, [`coverage`](https://pypi.org/project/coverage/) can be used to measure code coverage:
+
+  ```bash
+  coverage run --source='.' manage.py test
+  ```
