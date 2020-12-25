@@ -59,7 +59,7 @@ Add dated and categorized expenses. They are automatically grouped by month (i.e
 
 #### 3. Overview
 
-Analyze overall statistics.
+Analyze the overall statistics.
 
 ![Overview](./screenshots/overview.png)
 
