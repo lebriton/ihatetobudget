@@ -106,7 +106,7 @@ Explore and filter all expenses.
 
 5. Run `docker-compose up -d`. This will build the main image, and create and start the necessary containers.
 
-6. To be able to login, you will need a super user. To create it, execute the following commands:
+6. To be able to login, you will need a (super) user. To create it, execute the following commands:
 
    ```bash
    docker-compose run --rm ihatetobudget pipenv run python manage.py migrate
