@@ -1,12 +1,3 @@
-![GitHub Pipenv locked Python version](https://img.shields.io/github/pipenv/locked/python-version/bminusl/ihatetobudget)
-![GitHub Pipenv locked dependency version](https://img.shields.io/github/pipenv/locked/dependency-version/bminusl/ihatetobudget/django)
-![GitHub](https://img.shields.io/github/license/bminusl/ihatetobudget)
-![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)
-![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/bminusl/ihatetobudget)
-![GitHub commits since latest release (by date)](https://img.shields.io/github/commits-since/bminusl/ihatetobudget/v1.1.0)
-
-
-
 <p align="center">
   <a href="https://github.com/bminusl/ihatetobudget/">
     <img src="https://raw.githubusercontent.com/bminusl/ihatetobudget/master/static/logo.png" alt="IHateToBudget logo" height="75">
@@ -17,6 +8,15 @@
 <h3 align="center">IHateToBudget</h3>
 
 <p align="center">
+  <img src="https://img.shields.io/github/pipenv/locked/python-version/bminusl/ihatetobudget" alt="GitHub Pipenv locked Python version">
+  <img src="https://img.shields.io/github/pipenv/locked/dependency-version/bminusl/ihatetobudget/django" alt="GitHub Pipenv locked dependency version">
+  <img src="https://img.shields.io/github/license/bminusl/ihatetobudget" alt="GitHub">
+  <img src="https://img.shields.io/badge/code%20style-black-000000.svg" alt="Code style: black">
+  <img src="https://img.shields.io/github/v/tag/bminusl/ihatetobudget" alt="GitHub tag (latest by date)">
+  <img src="https://img.shields.io/github/commits-since/bminusl/ihatetobudget/v1.1.0" alt="GitHub commits since latest release (by date)">
+</p>
+
+<p align="center">
   A simple web app to understand and control your expenses.
   <br>
   Designed to be self-hosted.
@@ -25,57 +25,49 @@
 ## Table of contents
 * [About](#About)
 * [Features](#Features)
-  * [Roadmap](#roadmap)
 * [Installation & Configuration](#installation--configuration)
   * [Docker method](#docker-method)
 * [Updating](#updating)
   * [Docker method](#docker-method-1)
 * [License](#license)
-* [Usage and Contributing](#usage-and-contributing)
+* [Contributing](#contributing)
 
 
 
 
 ## About
 
-Managing your budget and knowing where your money goes is important. I had tried various budgeting methods for many months, but never stuck with one. So I designed IHateToBudget, a simple and efficient application that meets my needs.
+It is important to control your budget and know where your money goes. I've tried lots of different apps and methods, but none have really convinced me. So I designed and developed IHateToBudget, a simple and efficient application that meets my needs.
 
-And it is also available for you.
+And it's also available for you.
 
 ## Features
 
-#### Overview
+A basic authorization system exists but this application is not intended to be hosted on a public network (yet?). It is designed to be self-hosted locally (e.g. on a Raspberry Pi) and used by a few users within the same household.
 
-The *overview* page lets you see the overall statistics.
+#### 1. Categories
 
-![Overview](./screenshots/overview.png)
-
-#### Sheet
-
-Each month is represented by a sheet. Individual expenses are grouped into categories.
-
-![Sheet](./screenshots/sheet.png)
-
-#### Categories
-
-The *categories* page lets you define the name and color of each category.
+Define categories, and their color.
 
 ![Categories](./screenshots/categories.png)
 
-#### History
+#### 2. Sheet
 
-The *history* page lets you explore and filter all expenses.
+Add dated and categorized expenses. They are automatically grouped by month (i.e. sheet)
+
+![Sheet](./screenshots/sheet.png)
+
+#### 3. Overview
+
+Analyze overall statistics.
+
+![Overview](./screenshots/overview.png)
+
+#### 4. History
+
+Explore and filter all expenses.
 
 ![History](./screenshots/history.png)
-
-### Roadmap
-
-Here is a list of the features that should be added in the future:
-
-* Support HTTPS 🔒
-* Set goals (per category/month) 🥅
-
-Also, see the [open issues](https://github.com/bminusl/ihatetobudget/issues) for a list of proposed features (and known issues).
 
 ## Installation & Configuration
 
@@ -110,6 +102,8 @@ Also, see the [open issues](https://github.com/bminusl/ihatetobudget/issues) for
 
    * `DJANGO_SECRET_KEY`: This is the secret key used by Django.
 
+      See [https://docs.djangoproject.com/en/3.1/ref/settings/#std:setting-SECRET_KEY](https://docs.djangoproject.com/en/3.1/ref/settings/#std:setting-SECRET_KEY) for more information.
+
 5. Run `docker-compose up -d`. This will build the main image, and create and start the necessary containers.
 
 6. To be able to login, you will need a super user. To create it, execute the following commands:
@@ -131,7 +125,9 @@ Also, see the [open issues](https://github.com/bminusl/ihatetobudget/issues) for
 
 1. Navigate to the root of the repository.
 
-2. Run `docker-compose down -v`. This will stop all containers (and remove volumes).
+2. Run `docker-compose down -v`. This will stop all containers.
+
+   Note: Volumes are also removed (`-v`), see [why](https://github.com/bminusl/ihatetobudget/commit/d893f01e223909df80f80d9187c355091b18c6e8).
 
 3. **Create a backup of the database**—just in case—, e.g. run `cp db.sqlite3 db.sqlite3.bak`.
 
@@ -152,6 +148,8 @@ Also, see the [open issues](https://github.com/bminusl/ihatetobudget/issues) for
 Distributed under the GPLv3 License. See `COPYING` for more information.
 
 
-## Usage and Contributing
+## Contributing
 
-Feel free to use IHateToBudget however you want (as long as it respects the [License](#license)). I maintain this project primarily for my own use. If you can think of any relevant changes that should be incorporated into the code, you can contribute by submitting an issue, or even a pull request. I don't plan on adding any developer documentation, though.
+I maintain this project primarily for my own use. If you can think of any relevant changes that should be incorporated into the code, you can contribute by opening an issue or submitting a pull request.
+
+**_The documentation on how to contribute is WIP_**
