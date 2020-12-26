@@ -2,17 +2,13 @@ import datetime
 
 from django.test import TestCase
 
-from ihatetobudget.tests import (
-    TestLoginRequiredMixin,
-    WithUserMixin,
-    not_implemented,
-)
+from ihatetobudget.tests import not_implemented
 
 from ..models import Expense
 from ..views import ExpenseDeleteView
 
 
-class IndexTestCase(TestLoginRequiredMixin, WithUserMixin, TestCase):
+class IndexTestCase(TestCase):
     #  TODO: also test context:
     # - `monthly_average_spend`
     # - `median_spend`
@@ -20,27 +16,21 @@ class IndexTestCase(TestLoginRequiredMixin, WithUserMixin, TestCase):
     pass
 
 
-class SheetViewTestCase(TestLoginRequiredMixin, WithUserMixin, TestCase):
+class SheetViewTestCase(TestCase):
     @not_implemented
     def test_get_context_data(self):
         pass
 
 
-class ExpenseCreateViewTestCase(
-    TestLoginRequiredMixin, WithUserMixin, TestCase
-):
+class ExpenseCreateViewTestCase(TestCase):
     pass
 
 
-class ExpenseUpdateViewTestCase(
-    TestLoginRequiredMixin, WithUserMixin, TestCase
-):
+class ExpenseUpdateViewTestCase(TestCase):
     pass
 
 
-class ExpenseDeleteViewTestCase(
-    TestLoginRequiredMixin, WithUserMixin, TestCase
-):
+class ExpenseDeleteViewTestCase(TestCase):
     def test_get_success_url(self):
         # Single expense
         expense1 = Expense(
@@ -75,29 +65,23 @@ class ExpenseDeleteViewTestCase(
         self.assertEqual(view.get_success_url(), view.success_url)
 
 
-class ExpenseListViewTestCase(TestLoginRequiredMixin, WithUserMixin, TestCase):
+class ExpenseListViewTestCase(TestCase):
     @not_implemented
     def test_get_queryset(self):
         pass
 
 
-class CategoryListViewTestCase(TestLoginRequiredMixin, WithUserMixin, TestCase):
+class CategoryListViewTestCase(TestCase):
     pass
 
 
-class CategoryCreateViewTestCase(
-    TestLoginRequiredMixin, WithUserMixin, TestCase
-):
+class CategoryCreateViewTestCase(TestCase):
     pass
 
 
-class CategoryUpdateViewTestCase(
-    TestLoginRequiredMixin, WithUserMixin, TestCase
-):
+class CategoryUpdateViewTestCase(TestCase):
     pass
 
 
-class CategoryDeleteViewTestCase(
-    TestLoginRequiredMixin, WithUserMixin, TestCase
-):
+class CategoryDeleteViewTestCase(TestCase):
     pass
