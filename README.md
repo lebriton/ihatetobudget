@@ -158,7 +158,7 @@ Distributed under the GPLv3 License. See `COPYING` for more information.
 
 I maintain this project primarily for my own use. If you can think of any relevant changes that should be incorporated into the code, you can contribute by opening an issue or submitting a pull request.
 
-See the [Developer documentation][#developer-documentation] section below for more information.
+See the [Developer documentation](#developer-documentation) section below for more information.
 
 ## Developer documentation
 
