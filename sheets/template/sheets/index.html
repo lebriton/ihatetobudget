@@ -51,7 +51,7 @@
       <ul class="nav nav-pills justify-content-end ml-3" id="myTab" role="tablist">
         {% for year in monthly_insights_dict %}
         <li class="nav-item" role="presentation">
-          <a class="nav-link {% if forloop.first %}active{% endif %}" id="monthlyInsights{{ year }}-tab" data-toggle="tab" href="#monthlyInsights{{ year }}" role="tab" aria-controls="monthlyInsights{{ year }}" aria-selected="{{ forloop.first|yesno:'true,false' }}">{{ year }}</a>
+          <a class="nav-link {% if forloop.last %}active{% endif %}" id="monthlyInsights{{ year }}-tab" data-toggle="tab" href="#monthlyInsights{{ year }}" role="tab" aria-controls="monthlyInsights{{ year }}" aria-selected="{{ forloop.first|yesno:'true,false' }}">{{ year }}</a>
         </li>
         {% endfor %}
       </ul>
@@ -60,7 +60,7 @@
 
   <div class="tab-content" id="myTabContent">
     {% for year, category_dict in monthly_insights_dict.items %}
-      <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="monthlyInsights{{ year }}" role="tabpanel" aria-labelledby="monthlyInsights{{ year }}-tab">
+      <div class="tab-pane fade {% if forloop.last %}show active{% endif %}" id="monthlyInsights{{ year }}" role="tabpanel" aria-labelledby="monthlyInsights{{ year }}-tab">
         <canvas class="my-4" id="canvas{{ year }}"></canvas>
         <script>
 var ctx = document.getElementById('canvas{{ year }}').getContext('2d');
