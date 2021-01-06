@@ -26,7 +26,7 @@
           {% for sheet_date in year_group.list %}
             <li class="nav-item">
               {% if sheet_date.month == current_sheet_date.month and sheet_date.year == current_sheet_date.year %}
-                {% setvar "fa-hand-spock-o" as icon %}
+                {% setvar "fa-hand-o-right" as icon %}
               {% else %}
                 {% setvar '' as icon %}
               {% endif %}
