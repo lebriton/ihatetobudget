@@ -88,6 +88,9 @@ body, p {
   /* from Bootstrap's .nav */
   font-size: 0.930125rem;
 }
+.nav-collapse .fa {
+  transition: .1s transform ease-in-out;
+}
 .nav-collapse[aria-expanded="true"] .fa {
   transform: rotate(90deg);
 }
