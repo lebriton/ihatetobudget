@@ -15,22 +15,31 @@
       By date
     </h6>
 
-    <ul class="fa-ul nav nav-custom flex-column">
-      {% for sheet_date in sheet_date_list %}
-        <li class="nav-item">
-          {% if sheet_date.month == current_sheet_date.month and sheet_date.year == current_sheet_date.year %}
-            {% setvar "fa-hand-spock-o" as icon %}
-          {% else %}
-            {% setvar '' as icon %}
-          {% endif %}
+    {% regroup sheet_date_list by year as year_group_list %}
+    {% for year_group in year_group_list %}
+      <a class="nav-collapse d-block" data-toggle="collapse" href="#collapseYear{{ year_group.grouper }}" role="button" aria-expanded="false" aria-controls="collapseYear{{ year_group.grouper }}">
+        <i class="fa fa-caret-right fa-fw"></i>{{ year_group.grouper }}
+      </a>
 
-          {% url 'sheets:sheet' sheet_date.year sheet_date.month as url %}
-          {% include "sheets/macros/sidebar_link.html" with url=url icon=icon text=sheet_date|date:"F Y" %}
-        </li>
-      {% empty %}
-        <span class="text-warning">No sheet available</span>
-      {% endfor %}
-    </ul>
+      <div class="collapse" id="collapseYear{{ year_group.grouper }}">
+        <ul class="fa-ul nav nav-custom flex-column">
+          {% for sheet_date in year_group.list %}
+            <li class="nav-item">
+              {% if sheet_date.month == current_sheet_date.month and sheet_date.year == current_sheet_date.year %}
+                {% setvar "fa-hand-spock-o" as icon %}
+              {% else %}
+                {% setvar '' as icon %}
+              {% endif %}
+
+              {% url 'sheets:sheet' sheet_date.year sheet_date.month as url %}
+              {% include "sheets/macros/sidebar_link.html" with url=url icon=icon text=sheet_date|date:"F Y" %}
+            </li>
+          {% empty %}
+            <span class="text-warning">No sheet available</span>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
 
     <h6 class="mt-3 mb-1 font-weight-normal text-muted text-uppercase">
       Settings

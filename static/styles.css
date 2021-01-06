@@ -83,6 +83,15 @@ body, p {
   font-weight: bold;
 }
 
+.nav-collapse {
+  color: inherit !important;
+  /* from Bootstrap's .nav */
+  font-size: 0.930125rem;
+}
+.nav-collapse[aria-expanded="true"] .fa {
+  transform: rotate(90deg);
+}
+
 
 /*
  * Popover custom style (base on `.card.bg-dark`)
