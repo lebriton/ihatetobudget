@@ -50,6 +50,8 @@ def index(request):
             category_dict.default_factory = None
     # </>
 
+    first_day_of_current_month = datetime.datetime.today().replace(day=1)
+
     return render(
         request,
         "sheets/index.html",
@@ -59,7 +61,10 @@ def index(request):
                 # XXX: formatting using "%.2f" is not ideal
                 "%.2f" % x
                 if (
-                    x := Expense.objects.annotate(period=TruncMonth("date"))
+                    x := Expense.objects.filter(
+                        date__lt=first_day_of_current_month
+                    )
+                    .annotate(period=TruncMonth("date"))
                     .values("period")
                     .annotate(amount__sum=Sum("amount"))
                     .aggregate(Avg("amount__sum"))["amount__sum__avg"]
