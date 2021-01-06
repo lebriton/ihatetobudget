@@ -40,11 +40,11 @@
               {% url 'sheets:sheet' sheet_date.year sheet_date.month as url %}
               {% include "sheets/macros/sidebar_link.html" with url=url icon=icon text=sheet_date|date:"F Y" %}
             </li>
-          {% empty %}
-            <span class="text-warning">No sheet available</span>
           {% endfor %}
         </ul>
       </div>
+    {% empty %}
+      <span class="text-warning">No sheet available</span>
     {% endfor %}
 
     <h6 class="mt-3 mb-1 font-weight-normal text-muted text-uppercase">
