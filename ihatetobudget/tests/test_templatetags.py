@@ -37,7 +37,14 @@ class ExtrasTestCase(TestCase):
         for context, expected_rendered_string in [
             (dict(amount=20), "20€"),
             (dict(amount="20"), "20€"),
-            (dict(amount="20.00"), "20,00€"),
+            (dict(amount=20.1), "20,1€"),
+            (dict(amount="20.1"), "20,1€"),
+            (dict(amount=20.11), "20,11€"),
+            (dict(amount="20.11"), "20,11€"),
+            (dict(amount=2000.11), "2.000,11€"),
+            (dict(amount="2000.11"), "2.000,11€"),
+            (dict(amount=2000000.11), "2.000.000,11€"),
+            (dict(amount="2000000.11"), "2.000.000,11€"),
         ]:
             with self.subTest(
                 context=context,

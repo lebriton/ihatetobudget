@@ -19,10 +19,15 @@ def attrsum(container, attr_name):
     return sum(getattr(e, attr_name) for e in container)
 
 
+# TEMP:
 @register.filter
 @stringfilter
 def currency(string):
-    return f"{string.replace('.', ',')}€"  # TEMP:
+    # Separate every three digits by ','
+    new_string = re.sub(r"(\d{3})(?=\d)", r"\g<1>,", string[::-1])[::-1]
+    # Invert ',' with '.', to match French style
+    new_string = new_string.translate(str.maketrans(".,", ",."))
+    return new_string + "€"
 
 
 @register.simple_tag
