@@ -1,6 +1,8 @@
 from datetime import date
+from decimal import Decimal
 
 from colorfield.fields import ColorField
+from django.core.validators import MinValueValidator
 from django.db import models
 from django.urls import reverse
 
@@ -25,7 +27,11 @@ class Expense(models.Model):
 
     date = models.DateField(default=date.today)
     description = models.CharField(max_length=200)
-    amount = models.DecimalField(max_digits=8, decimal_places=2)
+    amount = models.DecimalField(
+        max_digits=8,
+        decimal_places=2,
+        validators=[MinValueValidator(Decimal("0.01"))],
+    )
 
     def __str__(self):
         return self.description
