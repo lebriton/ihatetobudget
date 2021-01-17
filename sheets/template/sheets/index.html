@@ -86,9 +86,10 @@ Chart.defaults.global.defaultFontSize = 14;
     {% for year, category_dict in monthly_insights_dict.items %}
       <div class="tab-pane fade {% if forloop.last %}show active{% endif %}" id="monthlyInsights{{ year }}" role="tabpanel" aria-labelledby="monthlyInsights{{ year }}-tab">
         <canvas class="my-4" id="canvas{{ year }}"></canvas>
-        <script>
-var ctx = document.getElementById('canvas{{ year }}').getContext('2d');
-var myChart = new Chart(ctx, {
+        <script type="module">
+var canvas = document.getElementById('canvas{{ year }}');
+var ctx = canvas.getContext('2d');
+var chart = new Chart(ctx, {
     type: 'bar',
     data: {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
@@ -134,6 +135,18 @@ var myChart = new Chart(ctx, {
       },
     }
 });
+
+canvas.onclick = function(evt) {
+  var activeElement = chart.getElementAtEvent(evt);
+  if (activeElement.length) {
+    var month = activeElement[0]._index + 1;
+
+    // XXX: hardcoding the url format is bad
+    var url = '/sheets/' + {{ year }} + '/' + month + '/';
+
+    window.location.href = url;
+  }
+};
         </script>
       </div>
     {% empty %}
