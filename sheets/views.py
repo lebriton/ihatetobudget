@@ -26,7 +26,7 @@ from .models import Category, Expense
 
 @login_required
 def index(request):
-    #  XXX: this whole section can probably be optimized/rewritten.
+    # XXX: this whole section can probably be optimized/rewritten.
     # <>
     monthly_insights = defaultdict(lambda: defaultdict(list))
 
@@ -44,7 +44,7 @@ def index(request):
                         or 0
                     )
 
-        #  XXX: Django templates don't work well with defaultdicts
+        # Django templates don't work well with defaultdicts
         monthly_insights.default_factory = None
         for category_dict in monthly_insights.values():
             category_dict.default_factory = None
