@@ -75,6 +75,11 @@ function currency(amount) {
   newString = reverseString(newString);
   return newString + "€";
 }
+
+// Values copied from css
+Chart.defaults.global.defaultFontFamily = "'Lato', sans-serif";
+Chart.defaults.global.defaultFontColor = "#343a40";
+Chart.defaults.global.defaultFontSize = 14;
   </script>
 
   <div class="tab-content" id="myTabContent">
@@ -109,7 +114,9 @@ var myChart = new Chart(ctx, {
           label: function(tooltipItem, data) {
             return currency(tooltipItem.yLabel.toFixed(2).toString());
           }
-        }
+        },
+        titleFontSize: 18,
+        bodyFontSize: 16,
       },
       responsive: true,
       scales: {
