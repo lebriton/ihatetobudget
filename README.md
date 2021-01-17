@@ -13,7 +13,7 @@
   <img src="https://img.shields.io/github/license/bminusl/ihatetobudget" alt="GitHub">
   <img src="https://img.shields.io/badge/code%20style-black-000000.svg" alt="Code style: black">
   <img src="https://img.shields.io/github/v/tag/bminusl/ihatetobudget" alt="GitHub tag (latest by date)">
-  <img src="https://img.shields.io/github/commits-since/bminusl/ihatetobudget/v1.3.0" alt="GitHub commits since latest release (by date)">
+  <img src="https://img.shields.io/github/commits-since/bminusl/ihatetobudget/v1.3.1" alt="GitHub commits since latest release (by date)">
 </p>
 
 <p align="center">
