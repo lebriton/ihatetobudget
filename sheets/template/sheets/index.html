@@ -46,8 +46,6 @@
     </div>
   </div>
 
-
-
   <div class="d-flex justify-content-between">
     <h2 class="h3">Monthly insights</h2>
 
@@ -61,6 +59,23 @@
       </ul>
     {% endif %}
   </div>
+
+  <script>
+{# Transcrypt of `/ihatetobudget/templatetags/ihatetobudget_extras.py` #}
+function currency(amount) {
+  function reverseString(string) {
+    // This can be buggy with unicode. It should be fine in our case.
+    return string.split("").reverse().join("");
+  }
+
+  var newString = reverseString(amount);
+  newString = newString.replace(/(\d{3})(?=\d)/, "$1,");
+  // XXX: The following line is awful, but it works
+  newString = newString.replace(',', '#').replace('.', ',').replace('#', '.');
+  newString = reverseString(newString);
+  return newString + "€";
+}
+  </script>
 
   <div class="tab-content" id="myTabContent">
     {% for year, category_dict in monthly_insights_dict.items %}
@@ -90,6 +105,11 @@ var myChart = new Chart(ctx, {
       tooltips: {
         mode: 'index',
         intersect: false,
+        callbacks: {
+          label: function(tooltipItem, data) {
+            return currency(tooltipItem.yLabel.toFixed(2).toString());
+          }
+        }
       },
       responsive: true,
       scales: {
@@ -98,6 +118,11 @@ var myChart = new Chart(ctx, {
         }],
         yAxes: [{
           stacked: true,
+          ticks: {
+            callback: function (value) {
+              return currency(value.toString());
+            }
+          }
         }]
       },
     }
