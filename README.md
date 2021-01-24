@@ -43,7 +43,7 @@
 
 ## About
 
-[![Mentioned in Awesome Selfhosted](https://awesome.re/mentioned-badge.svg)](https://github.com/bminusl/awesome-selfhosted)
+[![Mentioned in Awesome Selfhosted](https://awesome.re/mentioned-badge.svg)](https://github.com/awesome-selfhosted/awesome-selfhosted)
 
 It is important to control your budget and know where your money goes. I've tried lots of different apps and methods, but none have really convinced me. So I designed and developed IHateToBudget, a simple and efficient application that meets my needs.
 
