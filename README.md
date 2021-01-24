@@ -22,6 +22,8 @@
   Designed to be self-hosted.
 </p>
 
+[![Mentioned in Awesome Selfhosted](https://awesome.re/mentioned-badge.svg)](https://github.com/bminusl/awesome-selfhosted)
+
 ## Table of contents
 * [About](#About)
 * [Features](#Features)
