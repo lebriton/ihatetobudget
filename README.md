@@ -20,6 +20,8 @@
   A simple web app to understand and control your expenses.
   <br>
   Designed to be self-hosted.
+  <br>
+  <em>Inspired by <a href="https://github.com/inoda/ontrack">OnTrack</a>.</em>
 </p>
 
 ## Table of contents
