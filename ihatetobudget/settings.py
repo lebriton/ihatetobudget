@@ -147,3 +147,11 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = "/static/"
+
+
+# Currency formatting
+
+CURRENCY_GROUP_SEPARATOR = os.environ.get("CURRENCY_GROUP_SEPARATOR", " ")
+CURRENCY_DECIMAL_SEPARATOR = os.environ.get("CURRENCY_DECIMAL_SEPARATOR", ",")
+CURRENCY_PREFIX = os.environ.get("CURRENCY_PREFIX", "")
+CURRENCY_SUFFIX = os.environ.get("CURRENCY_SUFFIX", " €")

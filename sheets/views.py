@@ -3,6 +3,7 @@ import datetime
 import statistics
 from collections import defaultdict
 
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
@@ -76,6 +77,11 @@ def index(request):
                 else 0
             ),
             monthly_insights_dict=monthly_insights,
+            # Currency related
+            currency_group_separator=settings.CURRENCY_GROUP_SEPARATOR,
+            currency_decimal_separator=settings.CURRENCY_DECIMAL_SEPARATOR,
+            currency_prefix=settings.CURRENCY_PREFIX,
+            currency_suffix=settings.CURRENCY_SUFFIX,
         ),
     )
 

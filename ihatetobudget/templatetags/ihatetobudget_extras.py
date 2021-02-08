@@ -2,6 +2,7 @@ import datetime
 import re
 
 from django import template
+from django.conf import settings
 from django.http import QueryDict
 from django.template.defaultfilters import stringfilter
 from django.utils.safestring import mark_safe
@@ -19,11 +20,19 @@ def attrsum(container, attr_name):
     return sum(getattr(e, attr_name) for e in container)
 
 
-# TEMP:
 @register.filter
 def currency(amount):
-    output = "{:,.2f}".format(amount) + " €"
-    return output.translate(str.maketrans(".,", ",."))
+    return (
+        settings.CURRENCY_PREFIX
+        + f"{amount:,.2f}".translate(
+            str.maketrans(
+                ",.",
+                settings.CURRENCY_GROUP_SEPARATOR
+                + settings.CURRENCY_DECIMAL_SEPARATOR,
+            )
+        )
+        + settings.CURRENCY_SUFFIX
+    )
 
 
 @register.simple_tag

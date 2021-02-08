@@ -112,6 +112,24 @@ Explore and filter all expenses.
 
       See [https://docs.djangoproject.com/en/3.1/ref/settings/#std:setting-SECRET_KEY](https://docs.djangoproject.com/en/3.1/ref/settings/#std:setting-SECRET_KEY) for more information.
 
+   **Currency formatting**
+
+   In IHateToBudget, money is represented by positive decimals of the form "xxxxxxxx.yy". The user is free to change the formatting to use the currency of their choice, by setting the following environment variables:
+
+   * `CURRENCY_GROUP_SEPARATOR`: A single character which separates the whole number into groups of 3 digits.
+   * `CURRENCY_DECIMAL_SEPARATOR`: A single character that separates the whole part from the decimal part.
+   * `CURRENCY_PREFIX`: A string placed in front of the number.
+   * `CURRENCY_SUFFIX`: A string placed behind the number.
+
+   By default, it formats money as French euros. For instance, here's how to format as US dollars:
+
+   ```
+   CURRENCY_GROUP_SEPARATOR=,
+   CURRENCY_DECIMAL_SEPARATOR=.
+   CURRENCY_PREFIX="$"
+   CURRENCY_SUFFIX=""
+   ```
+
 5. Run `docker-compose up -d`. This will build the main image, and create and start the necessary containers.
 
 6. To be able to login, you will need a (super) user. To create it, execute the following commands:

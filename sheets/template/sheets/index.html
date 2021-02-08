@@ -61,10 +61,17 @@
   </div>
 
   <script>
-function currency(amount) {
-  let output = amount + " €";
-  // XXX: The following line is awful, but it works
-  return output.replace(',', '#').replace('.', ',').replace('#', '.');
+function currency(string_amount) {
+  // XXX: Sadly, this is not a trivial as in Python
+  // See `/ihatetobudget/templatetags/ihatetobudget_extras.py`
+  string_amount = string_amount.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+  string_amount = string_amount.replace(/./g, function (match) {
+    return {
+      ',': '{{ currency_group_separator }}',
+      '.': '{{ currency_decimal_separator }}',
+    }[match] || match;
+  });
+  return '{{ currency_prefix }}' + string_amount + '{{ currency_suffix }}';
 }
 
 // Values copied from css
@@ -119,7 +126,7 @@ var chart = new Chart(ctx, {
           stacked: true,
           ticks: {
             callback: function (value) {
-              return currency(value);
+              return currency(value.toString());
             }
           }
         }]
