@@ -120,8 +120,8 @@ Explore and filter all expenses.
 
    * `CURRENCY_GROUP_SEPARATOR`: A single character which separates the whole number into groups of 3 digits.
    * `CURRENCY_DECIMAL_SEPARATOR`: A single character that separates the whole part from the decimal part.
-   * `CURRENCY_PREFIX`: A string placed in front of the number.
-   * `CURRENCY_SUFFIX`: A string placed behind the number.
+   * `CURRENCY_PREFIX`: A string placed in front of the number.<sup>1</sup>
+   * `CURRENCY_SUFFIX`: A string placed behind the number.<sup>1</sup>
 
    By default, it formats money as French euros. For instance, here's how to format as US dollars:
 
@@ -131,6 +131,10 @@ Explore and filter all expenses.
    CURRENCY_PREFIX="$"
    CURRENCY_SUFFIX=""
    ```
+
+   ---
+
+   <sup>1</sup>: Note: If it contains spaces, make sure to use [non-breakable spaces](https://en.wikipedia.org/wiki/Non-breaking_space). This is simply to prevent visual "glitches".
 
 5. Run `docker-compose up -d`. This will build the main image, and create and start the necessary containers.
 
