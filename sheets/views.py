@@ -58,8 +58,7 @@ def index(request):
         dict(
             title="Overview",
             monthly_average_spend=(
-                # XXX: formatting using "%.2f" is not ideal
-                "%.2f" % x
+                x
                 if (
                     x := Expense.objects.filter(
                         date__lt=first_day_of_current_month
@@ -69,12 +68,12 @@ def index(request):
                     .annotate(amount__sum=Sum("amount"))
                     .aggregate(Avg("amount__sum"))["amount__sum__avg"]
                 )
-                else "0.00"
+                else 0
             ),
             median_spend=(
                 statistics.median(e.amount for e in x)
                 if (x := Expense.objects.all())
-                else "0.00"
+                else 0
             ),
             monthly_insights_dict=monthly_insights,
         ),

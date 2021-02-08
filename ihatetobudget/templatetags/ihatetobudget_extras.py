@@ -21,13 +21,9 @@ def attrsum(container, attr_name):
 
 # TEMP:
 @register.filter
-@stringfilter
-def currency(string):
-    # Separate every three digits by ','
-    new_string = re.sub(r"(\d{3})(?=\d)", r"\g<1>,", string[::-1])[::-1]
-    # Invert ',' with '.', to match French style
-    new_string = new_string.translate(str.maketrans(".,", ",."))
-    return new_string + "€"
+def currency(amount):
+    output = "{:,.2f}".format(amount) + " €"
+    return output.translate(str.maketrans(".,", ",."))
 
 
 @register.simple_tag

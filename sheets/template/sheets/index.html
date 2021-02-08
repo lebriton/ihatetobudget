@@ -61,19 +61,10 @@
   </div>
 
   <script>
-{# Transcrypt of `/ihatetobudget/templatetags/ihatetobudget_extras.py` #}
 function currency(amount) {
-  function reverseString(string) {
-    // This can be buggy with unicode. It should be fine in our case.
-    return string.split("").reverse().join("");
-  }
-
-  var newString = reverseString(amount);
-  newString = newString.replace(/(\d{3})(?=\d)/, "$1,");
+  let output = amount + " €";
   // XXX: The following line is awful, but it works
-  newString = newString.replace(',', '#').replace('.', ',').replace('#', '.');
-  newString = reverseString(newString);
-  return newString + "€";
+  return output.replace(',', '#').replace('.', ',').replace('#', '.');
 }
 
 // Values copied from css
@@ -113,7 +104,7 @@ var chart = new Chart(ctx, {
         intersect: false,
         callbacks: {
           label: function(tooltipItem, data) {
-            return currency(tooltipItem.yLabel.toFixed(2).toString());
+            return currency(tooltipItem.yLabel.toFixed(2));
           }
         },
         titleFontSize: 18,
@@ -128,7 +119,7 @@ var chart = new Chart(ctx, {
           stacked: true,
           ticks: {
             callback: function (value) {
-              return currency(value.toString());
+              return currency(value);
             }
           }
         }]
