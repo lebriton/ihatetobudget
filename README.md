@@ -118,8 +118,8 @@ Explore and filter all expenses.
 
    In IHateToBudget, money is represented by positive decimals of the form "xxxxxxxx.yy". The user is free to change the formatting to use the currency of their choice, by setting the following environment variables:
 
-   * `CURRENCY_GROUP_SEPARATOR`: A single character which separates the whole number into groups of 3 digits.
-   * `CURRENCY_DECIMAL_SEPARATOR`: A single character that separates the whole part from the decimal part.
+   * `CURRENCY_GROUP_SEPARATOR`: A single character which separates the whole number into groups of 3 digits.<sup>1</sup>
+   * `CURRENCY_DECIMAL_SEPARATOR`: A single character that separates the whole part from the decimal part.<sup>1</sup>
    * `CURRENCY_PREFIX`: A string placed in front of the number.<sup>1</sup>
    * `CURRENCY_SUFFIX`: A string placed behind the number.<sup>1</sup>
 
