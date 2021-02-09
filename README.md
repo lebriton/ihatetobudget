@@ -128,8 +128,8 @@ Explore and filter all expenses.
    ```
    CURRENCY_GROUP_SEPARATOR=,
    CURRENCY_DECIMAL_SEPARATOR=.
-   CURRENCY_PREFIX="$"
-   CURRENCY_SUFFIX=""
+   CURRENCY_PREFIX=$
+   CURRENCY_SUFFIX=
    ```
 
    ---
