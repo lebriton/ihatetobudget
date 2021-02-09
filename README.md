@@ -134,7 +134,7 @@ Explore and filter all expenses.
 
    ---
 
-   <sup>1</sup>: Note: Make sure to use [non-breaking spaces](https://en.wikipedia.org/wiki/Non-breaking_space) instead of regular spaces. This is simply to prevent visual "glitches".
+   <sup>1</sup>: Note: If it contains spaces, make sure to use [non-breakable spaces](https://en.wikipedia.org/wiki/Non-breaking_space). This is simply to prevent visual "glitches".
 
 5. Run `docker-compose up -d`. This will build the main image, and create and start the necessary containers.
 
