@@ -111,7 +111,8 @@ var chart = new Chart(ctx, {
         intersect: false,
         callbacks: {
           label: function(tooltipItem, data) {
-            return currency(tooltipItem.yLabel.toFixed(2));
+            let yLabel = tooltipItem.yLabel;
+            return yLabel ? currency(yLabel.toFixed(2)) : 0;
           }
         },
         titleFontSize: 18,
