@@ -132,6 +132,10 @@ var chart = new Chart(ctx, {
           }
         }]
       },
+      onHover: function(evt) {
+        var activeElement = chart.getElementAtEvent(evt);
+        canvas.style.cursor = activeElement.length ? "pointer" : "default";
+      }
     }
 });
 
