@@ -113,6 +113,10 @@ var chart = new Chart(ctx, {
           label: function(tooltipItem, data) {
             let yLabel = tooltipItem.yLabel;
             return yLabel ? currency(yLabel.toFixed(2)) : 0;
+          },
+          footer: (tooltipItems, data) => {
+            let total = tooltipItems.reduce((a, e) => a + parseInt(e.yLabel), 0);
+            return 'Total: ' + currency(total.toString());
           }
         },
         titleFontSize: 18,
