@@ -115,7 +115,7 @@ var chart = new Chart(ctx, {
             return yLabel ? currency(yLabel.toFixed(2)) : 0;
           },
           footer: (tooltipItems, data) => {
-            let total = tooltipItems.reduce((a, e) => a + parseInt(e.yLabel), 0);
+            let total = tooltipItems.reduce((a, e) => a + parseFloat(e.yLabel), .0);
             return 'Total: ' + currency(total.toString());
           }
         },
