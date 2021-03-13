@@ -61,8 +61,8 @@ class SortableListViewMixin:
                     {field.title()}
                     {
                         {
-                            field: '<i class="fa fa-chevron-down"></i>',
-                            '-' + field: '<i class="fa fa-chevron-up"></i>'
+                            field: '<i class="fa fa-sort-up"></i>',
+                            '-' + field: '<i class="fa fa-sort-down"></i>'
                         }.get(ordering, '')
                     }
                 </a>
