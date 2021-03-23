@@ -122,6 +122,7 @@ class ExpenseCreateView(
         "date": None,
         "description": None,
         "amount": None,
+        "repeat_next_month": lambda option_value: option_value == "True",
     }
 
     # SuccessMessageMixin

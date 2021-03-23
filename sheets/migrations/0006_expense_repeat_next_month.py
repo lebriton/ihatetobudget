@@ -6,13 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('sheets', '0005_auto_20210107_1228'),
+        ("sheets", "0005_auto_20210107_1228"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='expense',
-            name='repeat_next_month',
-            field=models.BooleanField(default=False, help_text='If checked, this expense will be automatically duplicated at the start of next month. This is particularly useful for monthly subscriptions.', verbose_name='Repeat next month?'),
+            model_name="expense",
+            name="repeat_next_month",
+            field=models.BooleanField(
+                default=False,
+                help_text="If checked, this expense will be automatically duplicated at the start of next month. This is particularly useful for monthly subscriptions.",  # noqa: E501
+                verbose_name="Repeat next month?",
+            ),
         ),
     ]
