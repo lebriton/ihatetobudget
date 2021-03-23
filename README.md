@@ -165,7 +165,13 @@ Explore and filter all expenses.
 
 4. Upgrade the codebase to the desired revision, e.g. run `git pull`.
 
-5. Migrate the database:
+5. Rebuild the image:
+
+   ```bash
+   docker-compose build
+   ```
+
+6. Migrate the database:
 
    ```bash
    docker-compose run --rm ihatetobudget pipenv run python manage.py migrate
@@ -173,7 +179,7 @@ Explore and filter all expenses.
 
    This action will synchronize the database state with the current set of models and migrations.
 
-6. Run `docker-compose up --build -d`. This will rebuild the main image, and create and start the necessary containers.
+7. Run `docker-compose up -d`. This will create and start the necessary containers.
 
 ## License
 
