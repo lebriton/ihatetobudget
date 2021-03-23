@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    "django_crontab",
     "mathfilters",
     "colorfield",
     "bootstrap4",
@@ -155,3 +156,12 @@ CURRENCY_GROUP_SEPARATOR = os.environ.get("CURRENCY_GROUP_SEPARATOR", " ")
 CURRENCY_DECIMAL_SEPARATOR = os.environ.get("CURRENCY_DECIMAL_SEPARATOR", ",")
 CURRENCY_PREFIX = os.environ.get("CURRENCY_PREFIX", "")
 CURRENCY_SUFFIX = os.environ.get("CURRENCY_SUFFIX", " €")
+
+
+# Cron
+
+CRONJOBS = [
+    # At 00:05 on day-of-month 1.
+    # Thanks https://crontab.guru/#5_0_1_*_*
+    ("5 0 1 * *", "sheets.cron.recurring_expenses")
+]
