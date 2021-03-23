@@ -5,6 +5,7 @@ from colorfield.fields import ColorField
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.urls import reverse
+from django.utils.translation import ugettext_lazy as _
 
 
 class Category(models.Model):
@@ -31,6 +32,15 @@ class Expense(models.Model):
         max_digits=8,
         decimal_places=2,
         validators=[MinValueValidator(Decimal("0.01"))],
+    )
+    repeat_next_month = models.BooleanField(
+        default=False,
+        verbose_name=_("Repeat next month?"),
+        help_text=_(
+            "If checked, this expense will be automatically duplicated at the"
+            " start of next month. This is particularly useful for monthly"
+            " subscriptions."
+        ),
     )
 
     def __str__(self):
