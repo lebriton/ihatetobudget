@@ -1,7 +1,8 @@
 {% load ihatetobudget_extras %}
 <div class="card mt-3 mt-md-0 mb-4">
   <div class="card-header font-weight-bold text-uppercase">
-    Sheets
+    {% setvar sheet_date_list|length as sheet_amount %}
+    {{ sheet_amount }} Sheet{{ sheet_amount|pluralize:',s' }}
   </div>
   <div class="card-body">
     <ul class="fa-ul nav nav-custom flex-column">
