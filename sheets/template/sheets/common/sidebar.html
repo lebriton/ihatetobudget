@@ -40,7 +40,11 @@
               {% endif %}
 
               {% url 'sheets:sheet' sheet_date.year sheet_date.month as url %}
-              {% include "sheets/macros/sidebar_link.html" with url=url icon=icon text=sheet_date|date:"F Y" %}
+              {% setvar sheet_date|date:"F Y" as text %}
+              {% if sheet_date|is_future_date %}
+                {% setvar '<span class="font-italic">'|add:text|add:'</span>'|safe as text %}
+              {% endif %}
+              {% include "sheets/macros/sidebar_link.html" with url=url icon=icon text=text %}
             </li>
           {% endfor %}
         </ul>

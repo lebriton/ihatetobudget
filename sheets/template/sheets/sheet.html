@@ -9,6 +9,9 @@
   {% setvar object_list|attrsum:'amount' as total_amount %}
 
   {% setvar month|date:"F Y" as title %}
+  {% if month|is_future_date %}
+    {% setvar '<span class="font-italic">'|add:title|add:'</span>'|safe as title %}
+  {% endif %}
   {% if days_left %}
     {% setvar days_left|pluralize:"day,days" as s %}
     {% setvar days_left|stringformat:"i "|add:s|add:' left' as days_left_string %}
