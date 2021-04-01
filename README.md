@@ -138,7 +138,7 @@ Explore and filter all expenses.
 
 5. Run `docker-compose up -d`. This will build the main image, and create and start the necessary containers.
 
-6. Start crontab inside the container:
+6. Start cron inside the container:
 
    ```bash
    docker-compose run --rm ihatetobudget service cron start
@@ -187,7 +187,7 @@ Explore and filter all expenses.
 
 7. Run `docker-compose up -d`. This will create and start the necessary containers.
 
-8. Start crontab inside the container:
+8. Start cron inside the container:
 
    ```bash
    docker-compose run --rm ihatetobudget service cron start
