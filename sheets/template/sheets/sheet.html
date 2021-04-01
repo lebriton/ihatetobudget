@@ -71,8 +71,9 @@
             {% for expense in category.list|dictsortreversed:'date' %}
               <li class="list-group-item d-flex justify-content-between align-items-center py-2 v-parent v-parent-bg"
                   data-toggle="popover" data-trigger="hover" data-placement="top" data-placement-md="left" data-html="true"
-                  title='{{ expense }}{% include 'sheets/macros/potential_future_expense_icon.html' with expense=expense %}' data-content="{{ expense.date|date:'jS N' }}<br>{{ expense.amount|currency }}">
+                  title='{{ expense }}{% include 'sheets/macros/potential_repeated_expense_icon.html' with expense=expense %}{% include 'sheets/macros/potential_future_expense_icon.html' with expense=expense %}' data-content="{{ expense.date|date:'jS N' }}<br>{{ expense.amount|currency }}">
                 <span class="text-truncate">
+                  {% include 'sheets/macros/potential_repeated_expense_icon.html' with expense=expense %}
                   {% include 'sheets/macros/potential_future_expense_icon.html' with expense=expense %}
                   {{ expense }}
                 </span>

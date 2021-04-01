@@ -73,6 +73,10 @@ foobarbazspamhameggs
     def test_is_future_date(self):
         pass
 
+    @not_implemented
+    def test_is_current_month(self):
+        pass
+
     def test_override_query_dict(self):
         template_code = "{{ query|override_query_dict:parameters }}"
         query = QueryDict("foo=spam&bar=ham")

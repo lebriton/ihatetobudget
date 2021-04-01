@@ -45,6 +45,7 @@
             <tr class="v-parent v-parent-bg">
               <td>
                 {{ expense.date.isoformat|highlight_text:q }}
+                {% include 'sheets/macros/potential_repeated_expense_icon.html' with expense=expense %}
                 {% include 'sheets/macros/potential_future_expense_icon.html' with expense=expense %}
               </td>
               <td>

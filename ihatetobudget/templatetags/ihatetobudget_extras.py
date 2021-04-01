@@ -46,6 +46,12 @@ def is_future_date(date):
 
 
 @register.filter
+def is_current_month(date):
+    today = datetime.datetime.today()
+    return date.month == today.month and date.year == today.year
+
+
+@register.filter
 def override_query_dict(query_dict, parameters):
     query_dict = query_dict.copy()
     query_dict.update(QueryDict(parameters))
