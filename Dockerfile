@@ -14,4 +14,5 @@ RUN pipenv install --deploy --ignore-pipfile
 
 RUN pipenv run python manage.py collectstatic --noinput
 
+RUN service cron start
 RUN pipenv run python manage.py crontab add
