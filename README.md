@@ -138,7 +138,13 @@ Explore and filter all expenses.
 
 5. Run `docker-compose up -d`. This will build the main image, and create and start the necessary containers.
 
-6. To be able to login, you will need a (super) user. To create it, execute the following commands:
+6. Start crontab inside the container:
+
+   ```bash
+   docker-compose run --rm ihatetobudget service cron start
+   ```
+
+7. To be able to login, you will need a (super) user. To create it, execute the following commands:
 
    ```bash
    docker-compose run --rm ihatetobudget pipenv run python manage.py migrate
@@ -147,7 +153,7 @@ Explore and filter all expenses.
 
    This will prompt you to set a username, an optional e-mail address and finally a password.
 
-7. You should now be able to visit your [IHateToBudget instance](http://127.0.0.1:80) at `http://127.0.0.1:80`. You can login with the username and password you just created.
+8. You should now be able to visit your [IHateToBudget instance](http://127.0.0.1:80) at `http://127.0.0.1:80`. You can login with the username and password you just created.
 
 ## Updating
 
@@ -180,6 +186,13 @@ Explore and filter all expenses.
    This action will synchronize the database state with the current set of models and migrations.
 
 7. Run `docker-compose up -d`. This will create and start the necessary containers.
+
+8. Start crontab inside the container:
+
+   ```bash
+   docker-compose run --rm ihatetobudget service cron start
+   ```
+
 
 ## License
 
