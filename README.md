@@ -147,8 +147,8 @@ Explore and filter all expenses.
 7. To be able to login, you will need a (super) user. To create it, execute the following commands:
 
    ```bash
-   docker-compose exec ihatetobudget pipenv run python manage.py migrate
-   docker-compose exec ihatetobudget pipenv run python manage.py createsuperuser
+   docker-compose run --rm ihatetobudget pipenv run python manage.py migrate
+   docker-compose run --rm ihatetobudget pipenv run python manage.py createsuperuser
    ```
 
    This will prompt you to set a username, an optional e-mail address and finally a password.
@@ -180,7 +180,7 @@ Explore and filter all expenses.
 6. Migrate the database:
 
    ```bash
-   docker-compose exec ihatetobudget pipenv run python manage.py migrate
+   docker-compose run --rm ihatetobudget pipenv run python manage.py migrate
    ```
 
    This action will synchronize the database state with the current set of models and migrations.
