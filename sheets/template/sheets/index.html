@@ -94,7 +94,7 @@ var chart = new Chart(ctx, {
       datasets: [
         {% for category, amounts_per_month_list in category_dict.items %}
           {
-            label: '{{ category|default:"No category" }}',
+            label: '{{ category|default:"No category"|escapejs }}',
             backgroundColor: '{{ category.color|default:"#ddd" }}',
             data: [
               {% for amount in amounts_per_month_list %}
