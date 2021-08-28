@@ -41,8 +41,13 @@ def setvar(val=None):
 
 
 @register.filter
-def is_future_date(date):
-    return date > datetime.datetime.now().date()
+def italic_if_future(string, date):
+    # XXX: `string` is not necessarily safe
+    return (
+        mark_safe(f'<span class="font-italic">{string}</span>')
+        if date > datetime.datetime.now().date()
+        else string
+    )
 
 
 @register.filter

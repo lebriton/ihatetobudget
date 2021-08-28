@@ -8,10 +8,7 @@
 {% block content %}
   {% setvar object_list|attrsum:'amount' as total_amount %}
 
-  {% setvar month|date:"F Y" as title %}
-  {% if month|is_future_date %}
-    {% setvar '<span class="font-italic">'|add:title|add:'</span>'|safe as title %}
-  {% endif %}
+  {% setvar month|date:"F Y"|italic_if_future:month as title %}
   {% if days_left %}
     {% setvar days_left|pluralize:"day,days" as s %}
     {% setvar days_left|stringformat:"i "|add:s|add:' left' as days_left_string %}
@@ -26,18 +23,18 @@
   <div class="d-flex justify-content-between align-items-center">
     {% if previous_month %}
       {% url 'sheets:sheet' previous_month.year previous_month.month as url %}
-      <a href="{{ url }}"><i class="fa fa-hand-o-left text-dark" data-toggle="tooltip" title="Previous month"></i></a>
+      <a href="{{ url }}"><i class="fa fa-hand-o-left text-dark" data-toggle="tooltip" title="{{ previous_month|date:"F Y" }}"></i></a>
     {% else %}
-      <span class="text-muted"><i class="fa fa-hand-o-left" data-toggle="tooltip" title="Previous month"></i></span>
+      <span class="text-muted"><i class="fa fa-hand-o-left" data-toggle="tooltip" title="No previous month"></i></span>
     {% endif %}
 
     <p class="h3 text-center fx-fadein mb-0">{{ total_amount|currency }}</p>
 
     {% if next_month %}
       {% url 'sheets:sheet' next_month.year next_month.month as url %}
-      <a href="{{ url }}"><i class="fa fa-hand-o-right text-dark" data-toggle="tooltip" title="Next month"></i></a>
+      <a href="{{ url }}"><i class="fa fa-hand-o-right text-dark" data-toggle="tooltip" title="{{ next_month|date:"F Y" }}"></i></a>
     {% else %}
-      <span class="text-muted"><i class="fa fa-hand-o-right" data-toggle="tooltip" title="Next month"></i></span>
+      <span class="text-muted"><i class="fa fa-hand-o-right" data-toggle="tooltip" title="No next month"></i></span>
     {% endif %}
   </div>
 
@@ -69,17 +66,17 @@
           </div>
           <ul class="list-group list-group-flush">
             {% for expense in category.list|dictsort:'date' %}
-              <li class="list-group-item d-flex justify-content-between align-items-center py-2 v-parent v-parent-bg"
+              <li class="list-group-item d-flex align-items-center py-2 v-parent v-parent-bg"
                   data-toggle="popover" data-trigger="hover" data-placement="top" data-placement-md="left" data-html="true"
-                  title='{{ expense }}{% include 'sheets/macros/potential_repeated_expense_icon.html' with expense=expense %}{% include 'sheets/macros/potential_future_expense_icon.html' with expense=expense %}' data-content="{{ expense.date|date:'jS N' }}<br>{{ expense.amount|currency }}">
-                <span class="text-truncate">
+                  title='{{ expense|italic_if_future:expense.date }}{% include 'sheets/macros/potential_repeated_expense_icon.html' with expense=expense %}' data-content="{{ expense.date|date:'jS N' }}<br>{{ expense.amount|currency }}">
+                <span class="flex-grow-1 text-truncate">
                   {% include 'sheets/macros/potential_repeated_expense_icon.html' with expense=expense %}
-                  {% include 'sheets/macros/potential_future_expense_icon.html' with expense=expense %}
-                  <span class="mr-1 text-muted">{{ expense.amount|currency }}</span>
-                  {{ expense }}
+                  {{ expense|italic_if_future:expense.date }}
                 </span>
 
                 {% include 'sheets/macros/expense_menu.html' with expense=expense %}
+
+                <span class="text-muted">{{ expense.amount|currency }}</span>
               </li>
             {% endfor %}
           </ul>

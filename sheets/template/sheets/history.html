@@ -11,7 +11,7 @@
 
   <form action="" method="get">
     <div class="input-group mb-3">
-      <input name="q" value="{{ q }}" type="text" class="form-control" placeholder="Date, category, amount, description" aria-label="Date, category, amount, description" aria-describedby="button-addon2">
+      <input name="q" value="{{ q }}" type="text" class="form-control" placeholder="Type a date, category, amount or description" aria-label="Date, category, amount, description" aria-describedby="button-addon2">
       <div class="input-group-append">
         <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fa fa-search"></i></button>
       </div>
@@ -44,9 +44,8 @@
           {% for expense in page_obj %}
             <tr class="v-parent v-parent-bg">
               <td>
-                {{ expense.date.isoformat|highlight_text:q }}
+                {{ expense.date.isoformat|highlight_text:q|italic_if_future:expense.date }}
                 {% include 'sheets/macros/potential_repeated_expense_icon.html' with expense=expense %}
-                {% include 'sheets/macros/potential_future_expense_icon.html' with expense=expense %}
               </td>
               <td>
                 {% if expense.category %}
