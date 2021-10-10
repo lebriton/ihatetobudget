@@ -75,7 +75,7 @@
                 </span>
 
                 {% if expense.image %}
-                  <i class="fa fa-file-image-o"></i>
+                  <a class="text-dark" href="{{ expense.image.url }}"><i class="fa fa-file-image-o"></i></a>
                 {% endif %}
 
                 {% include 'sheets/macros/expense_menu.html' with expense=expense %}
