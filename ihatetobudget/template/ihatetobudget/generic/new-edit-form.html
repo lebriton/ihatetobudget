@@ -8,7 +8,7 @@
 
   <div class="row justify-content-md-center">
     <div class="col-lg-6">
-      <form method="post" class="form">
+      <form method="post" class="form" enctype="multipart/form-data">
         {% csrf_token %}
         {% bootstrap_form form %}
         <hr class="mt-5 mb-3">
