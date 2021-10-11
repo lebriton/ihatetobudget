@@ -14,7 +14,7 @@ services:
     image: caddy:2.0.0
     restart: always
     ports:
-      - '80:80'
+      - $PORT:80
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
