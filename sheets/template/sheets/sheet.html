@@ -68,11 +68,15 @@
             {% for expense in category.list|dictsort:'date' %}
               <li class="list-group-item d-flex align-items-center py-2 v-parent v-parent-bg"
                   data-toggle="popover" data-trigger="hover" data-placement="top" data-placement-md="left" data-html="true"
-                  title='{{ expense|italic_if_future:expense.date }}{% include 'sheets/macros/potential_repeated_expense_icon.html' with expense=expense %}' data-content="{{ expense.date|date:'jS N' }}<br>{{ expense.amount|currency }}">
+                  title='{{ expense|italic_if_future:expense.date }}{% include 'sheets/macros/potential_repeated_expense_icon.html' with expense=expense %}' data-content='{{ expense.date|date:'jS N' }}<br>{{ expense.amount|currency }}{% if expense.image %}<br><img class="mt-1" src="{{ expense.image.url }}" width="100%">{% endif %}'>
                 <span class="flex-grow-1 text-truncate">
                   {% include 'sheets/macros/potential_repeated_expense_icon.html' with expense=expense %}
                   {{ expense|italic_if_future:expense.date }}
                 </span>
+
+                {% if expense.image %}
+                  <a class="text-dark" href="{{ expense.image.url }}"><i class="fa fa-file-image-o"></i></a>
+                {% endif %}
 
                 {% include 'sheets/macros/expense_menu.html' with expense=expense %}
 

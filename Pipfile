@@ -15,6 +15,7 @@ daphne = "*"
 django-mathfilters = "*"
 django-crontab = "*"
 python-dateutil = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.8"

@@ -42,6 +42,7 @@ class Expense(models.Model):
             " subscriptions."
         ),
     )
+    image = models.ImageField(upload_to="expenses", blank=True, null=True)
 
     def __str__(self):
         return self.description

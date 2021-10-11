@@ -6,5 +6,12 @@
       browse
     }
   }
+  route /media/* {
+    uri strip_prefix /media
+    root * /var/www/media
+    file_server {
+      browse
+    }
+  }
   reverse_proxy ihatetobudget:8000
 }

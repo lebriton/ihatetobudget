@@ -83,8 +83,6 @@ Explore and filter all expenses.
 
 ### Docker method
 
-**The following instructions are guidelines. You're free to adapt these to your needs.**
-
 1. Install [Docker](https://www.docker.com/) and [docker-compose](https://docs.docker.com/compose/), if you haven't already.
 
 2. Clone the repository:
@@ -96,19 +94,21 @@ Explore and filter all expenses.
 
 3. Create a copy of:
 
-   * `docker-compose.yml.example` as `docker-compose.yml`
+   * `.env.example` as `.env`
    * `docker-compose.env.example` as `docker-compose.env`
-   * `Caddyfile.example` as `Caddyfile`
 
    ```bash
-   cp docker-compose.yml.example docker-compose.yml
+   cp .env
    cp docker-compose.env.example docker-compose.env
-   cp Caddyfile.example Caddyfile
    ```
 
    Note: Making copies ensures that you can `git pull` (or equivalent) to receive updates without risking merge conflicts with upstream changes.
 
-4. Edit `docker-compose.env` and adapt the following environment variables:
+4. Edit `.env` and adapt the following environment variables:
+
+   * `PORT`: The port on which IHateToBudget should be served by the machine.
+
+5. Edit `docker-compose.env` and adapt the following environment variables:
 
    * `DJANGO_SECRET_KEY`: This is the secret key used by Django.
 
@@ -136,15 +136,16 @@ Explore and filter all expenses.
 
    <sup>1</sup>: Note: If it contains spaces, make sure to use [non-breaking spaces](https://en.wikipedia.org/wiki/Non-breaking_space). This is simply to prevent visual "glitches".
 
-5. Run `docker-compose up -d`. This will build the main image, and create and start the necessary containers.
+6. Run `docker-compose up -d`. This will build the main image, and create and start the necessary containers.
 
-6. Start cron inside the container:
+7. Start cron inside the container and collect static content:
 
    ```bash
    docker-compose exec ihatetobudget service cron start
+   docker-compose exec ihatetobudget pipenv run python manage.py collectstatic --noinput
    ```
 
-7. To be able to login, you will need a (super) user. To create it, execute the following commands:
+8. To be able to login, you will need a (super) user. To create it, execute the following commands:
 
    ```bash
    docker-compose run --rm ihatetobudget pipenv run python manage.py migrate
@@ -153,19 +154,18 @@ Explore and filter all expenses.
 
    This will prompt you to set a username, an optional e-mail address and finally a password.
 
-8. You should now be able to visit your [IHateToBudget instance](http://127.0.0.1:80) at `http://127.0.0.1:80`. You can login with the username and password you just created.
+9. You should now be able to visit your [IHateToBudget instance](http://127.0.0.1:80) at `http://127.0.0.1:80`. You can login with the username and password you just created.
 
 ## Updating
 
 ### Docker method
 
-**The following instructions are guidelines. You're free to adapt these to your needs.**
+> ⚠️ As of v?.?.?, `Caddyfile` and `docker-compose.yml` are tracked by the repository, i.e. `Caddyfile.example` and `docker-compose.yml.example` do not exist anymore. You do not have to modify any of these files anymore.
+> This means that, when pulling the latest changes to an old instance of IHateToBudget (i.e. `git pull` or equivalent), manual intervention may be required.
 
 1. Navigate to the root of the repository.
 
-2. Run `docker-compose down -v`. This will stop all containers.
-
-   Note: Volumes are also removed (`-v`), see [why](https://github.com/bminusl/ihatetobudget/commit/d893f01e223909df80f80d9187c355091b18c6e8).
+2. Run `docker-compose down`. This will stop all containers.
 
 3. **Create a backup of the database**—just in case—, e.g. run `cp db.sqlite3 db.sqlite3.bak`.
 
@@ -187,10 +187,11 @@ Explore and filter all expenses.
 
 7. Run `docker-compose up -d`. This will create and start the necessary containers.
 
-8. Start cron inside the container:
+8. Start cron inside the container and collect static content:
 
    ```bash
    docker-compose exec ihatetobudget service cron start
+   docker-compose exec ihatetobudget pipenv run python manage.py collectstatic --noinput
    ```
 
 

@@ -98,6 +98,8 @@ DATABASES = {
     }
 }
 
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
+
 
 # Auth
 
@@ -165,3 +167,9 @@ CRONJOBS = [
     # Thanks https://crontab.guru/#5_0_1_*_*
     ("5 0 1 * *", "sheets.cron.recurring_expenses")
 ]
+
+
+# File storage
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = "/media/"
