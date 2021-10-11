@@ -138,10 +138,11 @@ Explore and filter all expenses.
 
 6. Run `docker-compose up -d`. This will build the main image, and create and start the necessary containers.
 
-7. Start cron inside the container:
+7. Start cron inside the container and collect static content:
 
    ```bash
    docker-compose exec ihatetobudget service cron start
+   docker-compose exec ihatetobudget pipenv run python manage.py collectstatic --noinput
    ```
 
 8. To be able to login, you will need a (super) user. To create it, execute the following commands:
@@ -164,9 +165,7 @@ Explore and filter all expenses.
 
 1. Navigate to the root of the repository.
 
-2. Run `docker-compose down -v`. This will stop all containers.
-
-   Note: Volumes are also removed (`-v`), see [why](https://github.com/bminusl/ihatetobudget/commit/d893f01e223909df80f80d9187c355091b18c6e8).
+2. Run `docker-compose down`. This will stop all containers.
 
 3. **Create a backup of the database**—just in case—, e.g. run `cp db.sqlite3 db.sqlite3.bak`.
 
@@ -188,10 +187,11 @@ Explore and filter all expenses.
 
 7. Run `docker-compose up -d`. This will create and start the necessary containers.
 
-8. Start cron inside the container:
+8. Start cron inside the container and collect static content:
 
    ```bash
    docker-compose exec ihatetobudget service cron start
+   docker-compose exec ihatetobudget pipenv run python manage.py collectstatic --noinput
    ```
 
 
