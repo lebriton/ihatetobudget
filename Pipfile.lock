@@ -152,11 +152,11 @@
         },
         "django": {
             "hashes": [
-                "sha256:32ce792ee9b6a0cbbec340123e229ac9f765dff8c2a4ae9247a14b2ba3a365a7",
-                "sha256:baf099db36ad31f970775d0be5587cc58a6256a6771a44eb795b554d45f211b8"
+                "sha256:0fabc786489af16ad87a8c170ba9d42bfd23f7b699bd5ef05675864e8d012859",
+                "sha256:72a4a5a136a214c39cf016ccdd6b69e2aa08c7479c66d93f3a9b5e4bb9d8a347"
             ],
             "index": "pypi",
-            "version": "==3.1.7"
+            "version": "==3.1.14"
         },
         "django-bootstrap4": {
             "hashes": [
@@ -318,13 +318,13 @@
         },
         "twisted": {
             "extras": [
-
+                "tls"
             ],
             "hashes": [
                 "sha256:b7971ec9805b0f80e1dcb1a3721d7bfad636d5f909de687430ce373979d67b61",
                 "sha256:ccd638110d9ccfdc003042aa3e1b6d6af272eaca45d36e083359560549e3e848"
             ],
-            "index": "pypi",
+            "markers": "python_full_version >= '3.6.7'",
             "version": "==22.1.0"
         },
         "txaio": {
