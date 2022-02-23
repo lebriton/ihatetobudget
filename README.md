@@ -133,22 +133,15 @@ Explore and filter all expenses.
 
 5. Run `docker-compose up -d`. This will build the main image, and create and start the necessary containers.
 
-6. Start cron inside the container:
+6. To be able to login, you will need a (super) user. To create it, execute the following commands:
 
    ```bash
-   docker-compose exec ihatetobudget service cron start
-   ```
-
-7. To be able to login, you will need a (super) user. To create it, execute the following commands:
-
-   ```bash
-   docker-compose run --rm ihatetobudget pipenv run python manage.py migrate
    docker-compose run --rm ihatetobudget pipenv run python manage.py createsuperuser
    ```
 
    This will prompt you to set a username, an optional e-mail address and finally a password.
 
-8. You should now be able to visit your [IHateToBudget instance](http://127.0.0.1:80) at `http://127.0.0.1:80`. You can login with the username and password you just created.
+7. You should now be able to visit your [IHateToBudget instance](http://127.0.0.1:80) at `http://127.0.0.1:80`. You can login with the username and password you just created.
 
 ## Updating
 
@@ -162,7 +155,7 @@ Explore and filter all expenses.
 
    Note: Volumes are also removed (`-v`), see [why](https://github.com/bminusl/ihatetobudget/commit/d893f01e223909df80f80d9187c355091b18c6e8).
 
-3. **Create a backup of the database**—just in case—, e.g. run `cp db.sqlite3 db.sqlite3.bak`.
+3. **Create a backup of the database**—just in case—, e.g. run `cp infrastructure/persist/data/db.sqlite3 db.sqlite3.bak`.
 
 4. Upgrade the codebase to the desired revision, e.g. run `git pull`.
 
@@ -172,21 +165,7 @@ Explore and filter all expenses.
    docker-compose build
    ```
 
-6. Migrate the database:
-
-   ```bash
-   docker-compose run --rm ihatetobudget pipenv run python manage.py migrate
-   ```
-
-   This action will synchronize the database state with the current set of models and migrations.
-
-7. Run `docker-compose up -d`. This will create and start the necessary containers.
-
-8. Start cron inside the container:
-
-   ```bash
-   docker-compose exec ihatetobudget service cron start
-   ```
+6. Run `docker-compose up -d`. This will create and start the necessary containers.
 
 
 ## License
