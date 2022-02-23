@@ -1,5 +1,5 @@
 #!/bin/bash
-for f in README.md ihatetobudget/__init__.py; do
+for f in README.md app/ihatetobudget/__init__.py; do
   sed -i "s/$1/$2/g" $f
   git add $f
 done

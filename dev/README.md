@@ -3,8 +3,9 @@
 1. Remove all data from the database and generate random data for testing:
 
    ```bash
+   cd app
    python manage.py flush --no-input
-   python manage.py shell < dev/generate_test_data.py
+   python manage.py shell < ../dev/generate_test_data.py
    ```
 
 2. Release a new version

@@ -6,7 +6,7 @@ services:
     command: pipenv run daphne -b 0.0.0.0 ihatetobudget.asgi:application
     restart: always
     volumes:
-      - .:/usr/src/app
+      - ./app:/usr/src/app
       - static:/static
     env_file: docker-compose.env
   caddy:

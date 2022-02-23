@@ -4,7 +4,7 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /usr/src/app
 
-COPY . .
+COPY ./app .
 
 # Note: Rust is required by `cryptography` (python package)
 RUN apt-get update && apt-get -y install cron rustc

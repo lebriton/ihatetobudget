@@ -25,20 +25,19 @@
 </p>
 
 ## Table of contents
-* [About](#About)
-* [Features](#Features)
-* [Installation & Configuration](#installation--configuration)
-  * [Docker method](#docker-method)
-* [Updating](#updating)
-  * [Docker method](#docker-method-1)
-* [License](#license)
-* [Contributing](#contributing)
-* [Developer documentation](#developer-documentation)
-  * [The development environment](#the-development-environment)
-    * [Set up](#set-up)
-    * [Usage](#usage)
-  * [Code quality](#code-quality)
-  * [Testing](#testing)
+- [Table of contents](#table-of-contents)
+- [About](#about)
+- [Features](#features)
+- [Installation & Configuration](#installation--configuration)
+  - [Docker method](#docker-method)
+- [Updating](#updating)
+  - [Docker method](#docker-method-1)
+- [License](#license)
+- [Contributing](#contributing)
+- [Developer documentation](#developer-documentation)
+  - [The development environment](#the-development-environment)
+  - [Code quality](#code-quality)
+  - [Testing](#testing)
 
 
 
@@ -101,9 +100,9 @@ Explore and filter all expenses.
    * `Caddyfile.example` as `Caddyfile`
 
    ```bash
-   cp docker-compose.yml.example docker-compose.yml
-   cp docker-compose.env.example docker-compose.env
-   cp Caddyfile.example Caddyfile
+   cp infrastructure/docker-compose.yml.example docker-compose.yml
+   cp infrastructure/docker-compose.env.example docker-compose.env
+   cp infrastructure/Caddyfile.example Caddyfile
    ```
 
    Note: Making copies ensures that you can `git pull` (or equivalent) to receive updates without risking merge conflicts with upstream changes.
