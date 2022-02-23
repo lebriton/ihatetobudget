@@ -95,11 +95,9 @@ Explore and filter all expenses.
 
 3. Create a copy of:
 
-   * `docker-compose.yml.example` as `docker-compose.yml`
    * `docker-compose.env.example` as `docker-compose.env`
 
    ```bash
-   cp infrastructure/docker-compose.yml.example docker-compose.yml
    cp infrastructure/docker-compose.env.example docker-compose.env
    ```
 
