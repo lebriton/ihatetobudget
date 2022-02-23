@@ -1,19 +1,23 @@
-FROM python:3.8-slim
+FROM python:3.8-alpine
+ENV PYTHONUNBUFFERED 1
 
-ENV PYTHONUNBUFFERED=1
-
-# Note: Rust is required by `cryptography` (python package)
-RUN apt-get update && apt-get -y install cron rustc
-
-RUN pip install pipenv
-
+# Creating working directory
+RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
+# Update packages and install pipenv
+RUN apk upgrade --no-cache && pip install pipenv
+
+# Copy entrypoint script
 COPY ./scripts/entrypoint.sh .
 
-COPY ./app .
-
+# Copy Pipfile and install dependencies
+COPY ./app/Pipfile .
+COPY ./app/Pipfile.lock .
 RUN pipenv install --deploy --ignore-pipfile
+
+# Copy app code
+COPY ./app .
 
 EXPOSE 8000
 

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 # Collect static files
 pipenv run python manage.py collectstatic --noinput
@@ -12,7 +12,7 @@ fi
 pipenv run python manage.py crontab add
 
 # Start crontab service
-service cron start
+crond -b -l 2
 
 # Start ihatetobudget server
 pipenv run uvicorn ihatetobudget.asgi:application --host 0.0.0.0 --port 8000
