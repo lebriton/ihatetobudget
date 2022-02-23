@@ -8,5 +8,5 @@ services:
     ports:
       - '8000:80'
     volumes:
-      - ./app:/usr/src/app
+      - ./infrastructure/persist:/usr/src/app/data
     env_file: docker-compose.env
