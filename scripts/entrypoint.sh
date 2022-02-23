@@ -3,8 +3,10 @@
 # Collect static files
 pipenv run python manage.py collectstatic --noinput
 
-# Migrate DB
-pipenv run python manage.py migrate
+# Migrate DB (if exists)
+if [ -f /usr/src/app/data/db.sqlite3 ]; then
+  pipenv run python manage.py migrate
+fi
 
 # Add jobs to crontab
 pipenv run python manage.py crontab add
