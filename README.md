@@ -97,12 +97,10 @@ Explore and filter all expenses.
 
    * `docker-compose.yml.example` as `docker-compose.yml`
    * `docker-compose.env.example` as `docker-compose.env`
-   * `Caddyfile.example` as `Caddyfile`
 
    ```bash
    cp infrastructure/docker-compose.yml.example docker-compose.yml
    cp infrastructure/docker-compose.env.example docker-compose.env
-   cp infrastructure/Caddyfile.example Caddyfile
    ```
 
    Note: Making copies ensures that you can `git pull` (or equivalent) to receive updates without risking merge conflicts with upstream changes.
