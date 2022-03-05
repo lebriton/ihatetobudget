@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  ihatetobudget:
+    build: .
+    restart: always
+    ports:
+      - '8000:80'
+    volumes:
+      - ./infrastructure/persist:/usr/src/app/data
+    env_file: docker-compose.env

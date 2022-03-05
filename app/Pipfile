@@ -1,0 +1,21 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pre-commit = "*"
+coverage = "*"
+
+[packages]
+asgimiddlewarestaticfile = "==0.3.2"
+django = "==3.1.14"
+django-bootstrap4 = "==2.3.1"
+django-colorfield = "==0.4.1"
+django-crontab = "==0.7.1"
+django-mathfilters = "==1.0.0"
+python-dateutil = "==2.8.1"
+uvicorn = "==0.17.5"
+
+[requires]
+python_version = "3.8"

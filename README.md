@@ -96,14 +96,10 @@ Explore and filter all expenses.
 
 3. Create a copy of:
 
-   * `docker-compose.yml.example` as `docker-compose.yml`
    * `docker-compose.env.example` as `docker-compose.env`
-   * `Caddyfile.example` as `Caddyfile`
 
    ```bash
-   cp docker-compose.yml.example docker-compose.yml
-   cp docker-compose.env.example docker-compose.env
-   cp Caddyfile.example Caddyfile
+   cp infrastructure/docker-compose.env.example docker-compose.env
    ```
 
    Note: Making copies ensures that you can `git pull` (or equivalent) to receive updates without risking merge conflicts with upstream changes.
@@ -138,16 +134,15 @@ Explore and filter all expenses.
 
 5. Run `docker-compose up -d`. This will build the main image, and create and start the necessary containers.
 
-6. Start cron inside the container:
+6. Run DB migrations. This is required only the first time.
 
    ```bash
-   docker-compose exec ihatetobudget service cron start
+   docker-compose run --rm ihatetobudget pipenv run python manage.py migrate
    ```
 
 7. To be able to login, you will need a (super) user. To create it, execute the following commands:
 
    ```bash
-   docker-compose run --rm ihatetobudget pipenv run python manage.py migrate
    docker-compose run --rm ihatetobudget pipenv run python manage.py createsuperuser
    ```
 
@@ -167,7 +162,7 @@ Explore and filter all expenses.
 
    Note: Volumes are also removed (`-v`), see [why](https://github.com/bminusl/ihatetobudget/commit/d893f01e223909df80f80d9187c355091b18c6e8).
 
-3. **Create a backup of the database**—just in case—, e.g. run `cp db.sqlite3 db.sqlite3.bak`.
+3. **Create a backup of the database**—just in case—, e.g. run `cp infrastructure/persist/data/db.sqlite3 db.sqlite3.bak`.
 
 4. Upgrade the codebase to the desired revision, e.g. run `git pull`.
 
@@ -177,21 +172,7 @@ Explore and filter all expenses.
    docker-compose build
    ```
 
-6. Migrate the database:
-
-   ```bash
-   docker-compose run --rm ihatetobudget pipenv run python manage.py migrate
-   ```
-
-   This action will synchronize the database state with the current set of models and migrations.
-
-7. Run `docker-compose up -d`. This will create and start the necessary containers.
-
-8. Start cron inside the container:
-
-   ```bash
-   docker-compose exec ihatetobudget service cron start
-   ```
+6. Run `docker-compose up -d`. This will create and start the necessary containers.
 
 
 ## License
