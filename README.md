@@ -25,19 +25,20 @@
 </p>
 
 ## Table of contents
-- [Table of contents](#table-of-contents)
-- [About](#about)
-- [Features](#features)
-- [Installation & Configuration](#installation--configuration)
-  - [Docker method](#docker-method)
-- [Updating](#updating)
-  - [Docker method](#docker-method-1)
-- [License](#license)
-- [Contributing](#contributing)
-- [Developer documentation](#developer-documentation)
-  - [The development environment](#the-development-environment)
-  - [Code quality](#code-quality)
-  - [Testing](#testing)
+* [About](#About)
+* [Features](#Features)
+* [Installation & Configuration](#installation--configuration)
+  * [Docker method](#docker-method)
+* [Updating](#updating)
+  * [Docker method](#docker-method-1)
+* [License](#license)
+* [Contributing](#contributing)
+* [Developer documentation](#developer-documentation)
+  * [The development environment](#the-development-environment)
+    * [Set up](#set-up)
+    * [Usage](#usage)
+  * [Code quality](#code-quality)
+  * [Testing](#testing)
 
 
 
