@@ -1,4 +1,4 @@
-__IHateToBudget is now archived. See #26.__
+__IHateToBudget is now archived. See [#26](https://github.com/bminusl/ihatetobudget/issues/26).__
 
 ---
 
