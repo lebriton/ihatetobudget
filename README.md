@@ -1,3 +1,7 @@
+__IHateToBudget is now archived. See #26.__
+
+---
+
 <p align="center">
   <a href="https://github.com/bminusl/ihatetobudget/">
     <img src="https://raw.githubusercontent.com/bminusl/ihatetobudget/master/static/logo.png" alt="IHateToBudget logo" height="75">
